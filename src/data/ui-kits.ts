@@ -28,6 +28,7 @@ export type FitnessTheme = {
   label: string;
   description: string;
   iconStyle: FitnessIconStyle;
+  downloadPath: string;
   tokens: {
     primary: string;
     background: string;
@@ -65,7 +66,8 @@ export type UIkit = {
   defaultThemeId?: FitnessThemeId;
 };
 
-export const uiKits: UIkit[] = [
+// Filter to only show Fitness, Habit Tracker, and Social Feed kits
+const allKits: UIkit[] = [
   {
     id: "fitness",
     name: "Fitness App Kit V1",
@@ -104,6 +106,7 @@ export const uiKits: UIkit[] = [
         label: "Active Green",
         description: "Bright, energetic green accent for fitness apps.",
         iconStyle: "outline",
+        downloadPath: "/downloads/fitness-activeGreen.zip",
         tokens: {
           primary: "#22C55E",
           background: "#020617",
@@ -120,6 +123,7 @@ export const uiKits: UIkit[] = [
         label: "Power Blue",
         description: "Sharp, focused blue for performance-driven apps.",
         iconStyle: "minimal",
+        downloadPath: "/downloads/fitness-powerBlue.zip",
         tokens: {
           primary: "#2563EB",
           background: "#020617",
@@ -136,6 +140,7 @@ export const uiKits: UIkit[] = [
         label: "Wellness Peach",
         description: "Soft, friendly look for wellness and habit apps.",
         iconStyle: "filled",
+        downloadPath: "/downloads/fitness-wellnessPeach.zip",
         tokens: {
           primary: "#F97316",
           background: "#020617",
@@ -152,6 +157,7 @@ export const uiKits: UIkit[] = [
         label: "Dark Mode",
         description: "High contrast dark theme.",
         iconStyle: "outline",
+        downloadPath: "/downloads/fitness-darkMode.zip",
         tokens: {
           primary: "#22C55E",
           background: "#020617",
@@ -363,3 +369,8 @@ Content:
     cursorPrompt: "Legacy prompt...",
   }
 ];
+
+// Export only Fitness, Habit Tracker, and Social Feed kits
+export const uiKits: UIkit[] = allKits.filter(
+  (kit) => kit.id === "fitness" || kit.id === "habit-kit" || kit.id === "social-kit"
+);

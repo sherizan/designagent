@@ -3,11 +3,16 @@
 import React, { useState } from "react";
 import type { FitnessTheme, FitnessThemeId } from "@/data/ui-kits";
 import { FitnessPreviewFrame } from "./FitnessPreviewFrame";
+import { CopyButton } from "@/components/kit-copy-button";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 type FitnessCustomizerProps = {
   themes: FitnessTheme[];
   defaultThemeId: FitnessThemeId;
+  fullAppPrompt?: string;
+  showLoading?: boolean;
+  onToggleLoading?: () => void;
   children?: React.ReactNode;
 };
 
@@ -27,8 +32,15 @@ function getThemeSummary(theme: FitnessTheme) {
   return `${fontLabel} · ${radiusLabel} · ${spacingLabel}`;
 }
 
-export function FitnessCustomizer({ themes, defaultThemeId, children }: FitnessCustomizerProps) {
+// Shared type for screen navigation
+export type FitnessScreenId = "login" | "dashboard" | "onboarding" | "workoutDetail" | "profile" | "settings";
+
+type PreviewMode = "app" | "components";
+
+export function FitnessCustomizer({ themes, defaultThemeId, fullAppPrompt, showLoading = false, onToggleLoading, children }: FitnessCustomizerProps) {
   const [selectedThemeId, setSelectedThemeId] = useState<FitnessThemeId>(defaultThemeId);
+  const [previewMode, setPreviewMode] = useState<PreviewMode>("app");
+  const [currentScreen, setCurrentScreen] = useState<FitnessScreenId>("login");
 
   const activeTheme = themes.find(t => t.id === selectedThemeId) || themes[0];
   const summary = getThemeSummary(activeTheme);
@@ -47,7 +59,7 @@ export function FitnessCustomizer({ themes, defaultThemeId, children }: FitnessC
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-sm font-medium text-zinc-300 uppercase tracking-wider">Theme</h3>
+            <h3 className="text-sm font-medium text-zinc-300 uppercase tracking-wider">Step 1 · Pick Theme</h3>
             <div className="flex flex-wrap gap-3">
               {themes.map((theme) => (
                 <button
@@ -109,11 +121,106 @@ export function FitnessCustomizer({ themes, defaultThemeId, children }: FitnessC
                 </div>
              </div>
           </div>
+
+          {/* Download & Copy Actions */}
+          <div className="space-y-6 pt-4 max-w-[360px] sm:max-w-none">
+            
+            {/* Step 2: Download UI Kit */}
+            {activeTheme.downloadPath && (
+              <div className="space-y-2">
+                <p className="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-semibold">
+                  Step 2 · Download UI Kit
+                </p>
+                <a
+                  href={`/api/download/kit?kit=fitness&theme=${activeTheme.id}`}
+                  download={`fitness-${activeTheme.id}.zip`}
+                  className="flex items-center justify-center w-full rounded-md border border-zinc-700 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-900 shadow-sm hover:bg-zinc-200 transition-colors"
+                >
+                  Download Fitness UI Kit
+                </a>
+                <p className="text-[11px] text-zinc-400">
+                  Includes <code>design-system/</code> and <code>cursor-rules/</code> for the "{activeTheme.label}" theme. Drag these into your Cursor project before using the prompts.
+                </p>
+              </div>
+            )}
+
+            {/* Step 3: Copy Prompt */}
+            {fullAppPrompt && (
+              <div className="space-y-2 pt-2">
+                <p className="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-semibold">
+                  Step 3 · Copy Prompts
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <CopyButton 
+                    textToCopy={fullAppPrompt} 
+                    label="Copy Full-App Prompt" 
+                    className="flex-1 bg-zinc-800 text-zinc-200 border border-zinc-700 hover:bg-zinc-700 hover:text-white"
+                  />
+                  <Link 
+                    href="#screens" 
+                    className="inline-flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium transition-colors bg-transparent border border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white sm:w-auto w-full"
+                  >
+                    View Screens
+                  </Link>
+                </div>
+              </div>
+            )}
+
+          </div>
         </div>
       </div>
 
-      <div className="flex justify-center lg:sticky lg:top-8 order-first lg:order-last mb-12 lg:mb-0">
-        <FitnessPreviewFrame theme={activeTheme} />
+      <div className="flex flex-col items-center lg:sticky lg:top-8 order-first lg:order-last mb-12 lg:mb-0 gap-6">
+        {/* View Toggle */}
+        <div className="flex flex-col items-center gap-3">
+          <div className="inline-flex items-center gap-1 rounded-full border border-zinc-800 bg-zinc-950 p-1 text-xs">
+            <button
+              type="button"
+              onClick={() => setPreviewMode("app")}
+              className={previewMode === "app"
+                ? "rounded-full bg-zinc-50 px-3 py-1 text-[11px] font-medium text-zinc-900"
+                : "rounded-full px-3 py-1 text-[11px] text-zinc-300 hover:text-zinc-50"
+              }
+            >
+              App Preview
+            </button>
+            <button
+              type="button"
+              onClick={() => setPreviewMode("components")}
+              className={previewMode === "components"
+                ? "rounded-full bg-zinc-50 px-3 py-1 text-[11px] font-medium text-zinc-900"
+                : "rounded-full px-3 py-1 text-[11px] text-zinc-300 hover:text-zinc-50"
+              }
+            >
+              Components
+            </button>
+          </div>
+
+          {onToggleLoading && (
+            <button
+              type="button"
+              onClick={onToggleLoading}
+              className={`inline-flex items-center gap-2 rounded-full border border-zinc-800 px-3 py-1 text-[11px] transition-colors ${
+                showLoading ? "bg-zinc-50 text-zinc-900" : "bg-zinc-950 text-zinc-400 hover:text-zinc-300"
+              }`}
+            >
+              <span
+                className={`h-1.5 w-1.5 rounded-full ${
+                  showLoading ? "bg-emerald-500" : "bg-zinc-600"
+                }`}
+              />
+              Loading state
+            </button>
+          )}
+        </div>
+
+        <FitnessPreviewFrame 
+          theme={activeTheme} 
+          mode={previewMode}
+          currentScreen={currentScreen}
+          onScreenChange={setCurrentScreen}
+          showLoading={showLoading}
+        />
       </div>
     </div>
   );

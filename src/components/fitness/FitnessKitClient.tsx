@@ -1,16 +1,21 @@
 "use client";
 
+import React, { useState } from "react";
 import Link from "next/link";
 import { UIkit } from "@/data/ui-kits";
 import { CopyButton, PromptBlock, ScreenPromptCard } from "@/components/kit-copy-button";
 import { ArrowLeft } from "lucide-react";
 import { FitnessCustomizer } from "./FitnessCustomizer";
+import { getScreenBySlug } from "@/data/screens";
+import { ScreenCard } from "@/components/screen/ScreenCard";
 
 interface FitnessKitClientProps {
   kit: UIkit;
 }
 
 export function FitnessKitClient({ kit }: FitnessKitClientProps) {
+  const [showLoading, setShowLoading] = useState(false);
+
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-50 pt-24 pb-20">
       <div className="container mx-auto px-6 max-w-6xl">
@@ -28,6 +33,9 @@ export function FitnessKitClient({ kit }: FitnessKitClientProps) {
           <FitnessCustomizer 
             themes={kit.themes ?? []} 
             defaultThemeId={kit.defaultThemeId ?? "activeGreen"} 
+            fullAppPrompt={kit.fullAppPrompt}
+            showLoading={showLoading}
+            onToggleLoading={() => setShowLoading(v => !v)}
           >
             {/* Header Content injected as children */}
             <div className="space-y-6">
@@ -53,22 +61,6 @@ export function FitnessKitClient({ kit }: FitnessKitClientProps) {
                   </span>
                 ))}
               </div>
-
-               <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                  {kit.fullAppPrompt && (
-                    <CopyButton 
-                      textToCopy={kit.fullAppPrompt} 
-                      label="Copy Full-App Prompt" 
-                      className="bg-white text-black hover:bg-zinc-200 min-w-[200px]"
-                    />
-                  )}
-                  <Link 
-                    href="#screens" 
-                    className="inline-flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium transition-colors bg-transparent border border-zinc-800 text-zinc-300 hover:bg-zinc-900 hover:text-white min-w-[160px]"
-                  >
-                    View Screens
-                  </Link>
-                </div>
             </div>
           </FitnessCustomizer>
         </div>
@@ -108,14 +100,43 @@ export function FitnessKitClient({ kit }: FitnessKitClientProps) {
           </div>
         </div>
 
+        {/* Popular Screen Patterns */}
+        <div className="mb-20 space-y-6">
+          <div className="space-y-2">
+            <h3 className="text-2xl font-semibold text-zinc-100">Popular Screen Patterns</h3>
+            <p className="text-zinc-400">
+              These screens pair perfectly with the Fitness Kit.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              getScreenBySlug("login"),
+              getScreenBySlug("profile"),
+              getScreenBySlug("home-list"),
+              getScreenBySlug("paywall"),
+            ]
+              .filter((screen): screen is NonNullable<typeof screen> => screen !== undefined)
+              .map((screen) => (
+                <ScreenCard key={screen.slug} screen={screen} />
+              ))}
+          </div>
+        </div>
+
         {/* Prompts Section */}
         <div id="screens" className="space-y-12">
           <div className="space-y-6">
-            <h3 className="text-2xl font-semibold text-zinc-100">Cursor Prompts</h3>
-            <p className="text-zinc-400 max-w-2xl">
-              Use these prompts to generate the full app foundation or specific screens. 
-              Copy and paste directly into Cursor's AI chat.
-            </p>
+            <h3 className="text-2xl font-semibold text-zinc-100">How to Use This Kit in Cursor</h3>
+            <div className="text-zinc-400 max-w-2xl space-y-4">
+              <p>Follow these steps to generate your app with the chosen theme:</p>
+              <ol className="list-decimal list-inside space-y-2 ml-2">
+                <li>Pick your theme using the customizer above.</li>
+                <li>Download the <strong>Fitness UI Kit</strong> using the button in the sidebar.</li>
+                <li>Unzip and drag the <code className="text-zinc-300">design-system/</code> and <code className="text-zinc-300">cursor-rules/</code> folders into your Cursor project root.</li>
+                <li>Copy the content from <code className="text-zinc-300">cursor-rules/rules.md</code> and paste it into your Project Instructions (Settings &gt; General &gt; Rules for AI).</li>
+                <li>Copy the <strong>Full App Foundation</strong> prompt below and paste it into Cursor Chat to build the core screens.</li>
+                <li>Use individual screen prompts for any additional pages you need.</li>
+              </ol>
+            </div>
           </div>
 
           {/* Full App Prompt */}
