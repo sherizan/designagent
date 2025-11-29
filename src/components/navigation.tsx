@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navigationItems = [
+  { label: "Theme", href: "/theme" },
   { label: "Screens", href: "/screens" },
   { label: "Components", href: "/components" },
   { label: "MCP", href: "/mcp" },

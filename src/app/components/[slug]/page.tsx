@@ -1,17 +1,37 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { findComponentBySlug } from "@/data/components";
+import { findComponentBySlug, type ComponentMeta } from "@/data/components";
 import { screens as screenVariants } from "@/data/screens";
 import { ArrowLeft } from "lucide-react";
+import { useThemePreview } from "@/context/ThemePreviewContext";
+import { isCustomTheme, serializeTheme } from "@/lib/themeUtils";
+import { ThemeHeader } from "@/components/ThemeHeader";
 
-const PREVIEW_BASE_URL =
-  process.env.NEXT_PUBLIC_PREVIEW_BASE_URL ??
-  "https://designagent-preview-rn.vercel.app";
+// Determine preview base URL based on environment
+function getPreviewBaseUrl(): string {
+  // Allow explicit override via environment variable
+  if (process.env.NEXT_PUBLIC_PREVIEW_BASE_URL) {
+    return process.env.NEXT_PUBLIC_PREVIEW_BASE_URL;
+  }
+
+  // In development, use localhost
+  if (process.env.NODE_ENV === "development") {
+    const port = process.env.NEXT_PUBLIC_PREVIEW_PORT || "8081";
+    return `http://localhost:${port}`;
+  }
+
+  // In production, use deployed URL
+  return "https://designagent-preview-rn.vercel.app";
+}
+
+const PREVIEW_BASE_URL = getPreviewBaseUrl();
 
 // Components that have live previews in the preview app
 const PREVIEWABLE_COMPONENTS = [
   "button",
-  "input-field",
   "text",
   "surface",
   "stack",
@@ -29,9 +49,38 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
-export default async function ComponentDetailPage({ params }: Props) {
-  const { slug } = await params;
-  const component = findComponentBySlug(slug);
+export default function ComponentDetailPage({ params }: Props) {
+  const [component, setComponent] = useState<ComponentMeta | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const { themeId, mode, theme } = useThemePreview();
+
+  // Resolve params promise
+  useEffect(() => {
+    let isMounted = true;
+    
+    params.then((resolvedParams) => {
+      if (!isMounted) return;
+      const foundComponent = findComponentBySlug(resolvedParams.slug);
+      if (foundComponent) {
+        setComponent(foundComponent);
+      }
+      setIsLoading(false);
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [params]);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-zinc-950 text-zinc-50 pt-28 pb-20">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="text-zinc-400">Loading...</div>
+        </div>
+      </div>
+    );
+  }
 
   if (!component) {
     return notFound();
@@ -47,7 +96,7 @@ export default async function ComponentDetailPage({ params }: Props) {
     : "@/design-system/components/patterns";
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-50 pt-24 pb-20">
+    <div className="min-h-screen bg-zinc-950 text-zinc-50 pt-28 pb-20">
       <div className="container mx-auto px-6 max-w-6xl">
         {/* Back Link */}
         <Link
@@ -58,33 +107,31 @@ export default async function ComponentDetailPage({ params }: Props) {
           Back to Components Gallery
         </Link>
 
-        {/* Hero Section */}
-        <div className="mb-20 space-y-6">
-          <div className="inline-flex items-center gap-2 flex-wrap">
-            <div className="inline-flex items-center px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-xs font-medium text-zinc-400 uppercase tracking-wider">
-              Component · {component.category}
-            </div>
-            <div className="inline-flex items-center px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-xs font-medium text-zinc-400 uppercase tracking-wider">
-              {component.framework === "react-native" ? "React Native" : component.framework}
-            </div>
+        {/* Theme Header */}
+        <ThemeHeader
+          title={component.name}
+          subtitle="Preview this component in your current DesignAgent theme."
+        />
+
+        {/* Component Meta */}
+        <div className="mb-12 inline-flex items-center gap-2 flex-wrap">
+          <div className="inline-flex items-center px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-xs font-medium text-zinc-400 uppercase tracking-wider">
+            Component · {component.category}
           </div>
-
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
-            {component.name}
-          </h1>
-
-          <p className="text-xl text-zinc-400 leading-relaxed max-w-3xl">
-            {component.description}
-          </p>
+          <div className="inline-flex items-center px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-xs font-medium text-zinc-400 uppercase tracking-wider">
+            {component.framework === "react-native" ? "React Native" : component.framework}
+          </div>
         </div>
 
         {/* Variants gallery */}
         <section className="mb-20 space-y-6">
-          <h2 className="text-2xl font-semibold text-zinc-100">Variants</h2>
-          <p className="text-zinc-400">
-            These are the pre-built visual treatments you get out of the box.
-            All variants are theme-aware and map to your DesignAgent tokens.
-          </p>
+          <div>
+            <h2 className="text-2xl font-semibold text-zinc-100">Variants</h2>
+            <p className="text-zinc-400 mt-1">
+              These are the pre-built visual treatments you get out of the box.
+              All variants are theme-aware and map to your DesignAgent tokens.
+            </p>
+          </div>
           <div className="grid gap-6 md:grid-cols-2">
             {component.variants.map((variant) => (
               <div
@@ -112,20 +159,27 @@ export default async function ComponentDetailPage({ params }: Props) {
                   <>
                     <div className="overflow-hidden rounded-xl border border-zinc-800 bg-black">
                       <iframe
+                        key={`${component.slug}-${variant.key}-${themeId}-${mode}`}
                         title={`${component.name} – ${variant.label} preview`}
-                        src={`${PREVIEW_BASE_URL}/component/${component.slug}?variant=${encodeURIComponent(
-                          variant.key
-                        )}&theme=midnight&mode=dark`}
+                        src={(() => {
+                          const url = new URL(`${PREVIEW_BASE_URL}/component/${component.slug}`);
+                          url.searchParams.set("variant", variant.key);
+                          url.searchParams.set("themeId", themeId);
+                          url.searchParams.set("mode", mode);
+                          // If theme is custom, pass it as base64-encoded JSON
+                          if (isCustomTheme(theme, themeId)) {
+                            const customThemeData = serializeTheme(theme);
+                            if (customThemeData) {
+                              url.searchParams.set("customTheme", customThemeData);
+                            }
+                          }
+                          return url.toString();
+                        })()}
                         className="h-28 w-full"
                         loading="lazy"
                         referrerPolicy="no-referrer"
                       />
                     </div>
-                    <p className="text-xs text-zinc-500">
-                      Previewing <span className="font-mono">{variant.key}</span> · theme:{" "}
-                      <span className="font-mono">midnight</span> · mode:{" "}
-                      <span className="font-mono">dark</span>
-                    </p>
                   </>
                 ) : (
                   <div className="rounded-xl border border-zinc-800 bg-gradient-to-tr from-zinc-900 to-zinc-950 p-4">

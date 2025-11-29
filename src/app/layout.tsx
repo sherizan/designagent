@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter, Outfit, DM_Sans, Urbanist } from "next/font/google";
 import "./globals.css";
 import { Navigation } from "@/components/navigation";
+import { ThemePreviewProvider } from "@/context/ThemePreviewContext";
+import { AuthProvider } from "@/context/AuthContext";
+import { ThemeStyles } from "@/components/ThemeStyles";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,8 +23,23 @@ const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dmsans" });
 const urbanist = Urbanist({ subsets: ["latin"], variable: "--font-urbanist" });
 
 export const metadata: Metadata = {
-  title: "DesignAgent - AI-Native Product Design",
-  description: "Your very own AI-native product design superpower",
+  title: "DesignAgent.dev – Design your app. Ship it instantly.",
+  description: "Design your app. Ship it instantly. Pick a style, choose app pages, preview them, and install with one click. No code required.",
+  openGraph: {
+    title: "DesignAgent.dev – Design your app. Ship it instantly.",
+    description: "Design your app. Ship it instantly. Pick a style, choose app pages, preview them, and install with one click. No code required.",
+    url: "https://designagent.dev",
+    type: "website",
+    // TODO: Add social image when available
+    // images: ["/og-image.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DesignAgent.dev – Design your app. Ship it instantly.",
+    description: "Design your app. Ship it instantly. Pick a style, choose app pages, preview them, and install with one click. No code required.",
+    // TODO: Add Twitter image when available
+    // images: ["/twitter-image.png"],
+  },
 };
 
 export default function RootLayout({
@@ -34,8 +52,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${outfit.variable} ${dmSans.variable} ${urbanist.variable} antialiased bg-zinc-950 text-zinc-50`}
       >
-        <Navigation />
-        {children}
+        <AuthProvider>
+          <ThemePreviewProvider>
+            <ThemeStyles />
+            <Navigation />
+            {children}
+          </ThemePreviewProvider>
+        </AuthProvider>
       </body>
     </html>
   );
