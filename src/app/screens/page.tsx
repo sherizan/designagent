@@ -17,8 +17,8 @@ export default function ScreensGalleryPage() {
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {screens.map((screen) => (
-            <ScreenCard key={screen.slug} screen={screen} />
+          {screens.map((variant) => (
+            <ScreenCard key={variant.slug} variant={variant} />
           ))}
         </div>
       </div>

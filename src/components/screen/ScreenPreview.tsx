@@ -1,10 +1,10 @@
 "use client";
 
-import { Screen } from "@/data/screens";
+import { ScreenVariant } from "@/data/screens";
 import Image from "next/image";
 
 interface ScreenPreviewProps {
-  screen: Screen;
+  screen: ScreenVariant;
   size?: "small" | "medium" | "large";
 }
 
@@ -19,15 +19,13 @@ export function ScreenPreview({ screen, size = "medium" }: ScreenPreviewProps) {
     <div
       className={`${sizeClasses[size]} rounded-2xl bg-zinc-900 border border-zinc-800 overflow-hidden relative shadow-2xl`}
     >
-      {/* Placeholder for preview image */}
-      <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center">
-        <div className="text-center px-4">
-          <div className="w-20 h-20 mx-auto mb-4 rounded-xl bg-zinc-700/50 flex items-center justify-center">
-            <span className="text-4xl">📱</span>
-          </div>
-          <span className="text-zinc-600 font-semibold text-sm">{screen.title}</span>
-        </div>
-      </div>
+      <Image
+        src={screen.preview}
+        alt={screen.name}
+        fill
+        className="object-cover"
+        sizes="(max-width: 768px) 200px, (max-width: 1200px) 300px, 400px"
+      />
     </div>
   );
 }

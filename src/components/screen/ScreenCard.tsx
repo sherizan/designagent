@@ -1,73 +1,90 @@
 "use client";
 
 import Link from "next/link";
-import { Screen } from "@/data/screens";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { ScreenVariant, getCategoryLabel } from "@/data/screens";
+import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
+import { ChevronRight } from "lucide-react";
 
-interface ScreenCardProps {
-  screen: Screen;
-}
+export type ScreenCardProps = {
+  variant: ScreenVariant;
+  previewMode?: "image" | "live";
+};
 
-export function ScreenCard({ screen }: ScreenCardProps) {
+export function ScreenCard({ variant, previewMode = "image" }: ScreenCardProps) {
+  const isPro = variant.access === "pro";
+  const categoryLabel = getCategoryLabel(variant.category);
+
   return (
-    <Card className="group overflow-hidden bg-zinc-900 border-zinc-800 flex flex-col h-full hover:border-zinc-700 transition-all duration-300">
-      <Link href={`/screens/${screen.slug}`} className="block flex-1">
-        {/* Thumbnail Area - Aspect Ratio 4:5 */}
-        <div className="relative aspect-[4/5] bg-zinc-800 overflow-hidden">
-          {/* Placeholder for preview image */}
-          <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-            <div className="text-center px-4">
-              <div className="w-16 h-16 mx-auto mb-3 rounded-lg bg-zinc-700/50 flex items-center justify-center">
-                <span className="text-2xl">📱</span>
-              </div>
-              <span className="text-zinc-700 font-bold text-sm">
-                {screen.title}
-              </span>
-            </div>
+    <Link href={`/screens/${variant.slug}`} className="block group">
+      <Card
+        className={`overflow-hidden rounded-2xl border border-border/60 bg-card/80 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex flex-col h-full ${
+          isPro ? "ring-1 ring-amber-500/50" : ""
+        }`}
+      >
+        {/* Preview Area */}
+        <div className="relative aspect-[9/16] overflow-hidden rounded-2xl bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950">
+          {/* Live Preview or Image */}
+          {previewMode === "live" && variant.livePreviewUrl ? (
+            <iframe
+              src={variant.livePreviewUrl}
+              className="w-full h-full rounded-2xl border border-white/10"
+              loading="lazy"
+              title={`${variant.name} preview`}
+            />
+          ) : (
+            <Image
+              src={variant.preview}
+              alt={variant.name}
+              fill
+              className="rounded-2xl transition-transform duration-300 group-hover:scale-[1.03] object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          )}
+
+          {/* Category Badge - Top Left */}
+          <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-black/60 text-white/80 backdrop-blur text-xs">
+            {categoryLabel}
           </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60" />
+
+          {/* Pro Badge - Top Right */}
+          {isPro && (
+            <div className="absolute top-2 right-2 px-2 py-0.5 rounded-full bg-amber-500/90 text-black font-semibold shadow-sm text-[10px] uppercase tracking-wide">
+              Pro
+            </div>
+          )}
+
+          {/* Subtle gradient overlay for Pro screens */}
+          {isPro && (
+            <div className="absolute inset-0 bg-gradient-to-t from-transparent to-black/20 pointer-events-none" />
+          )}
         </div>
 
-        <CardContent className="flex-1 p-5 space-y-3">
-          <div className="space-y-2">
-            <h3 className="text-xl font-semibold text-zinc-100 group-hover:text-white transition-colors">
-              {screen.title}
+        {/* Content Area */}
+        <CardContent className="flex-1 p-5 space-y-3 flex flex-col">
+          <div className="space-y-2 flex-1">
+            <h3 className="text-sm font-medium text-foreground group-hover:text-foreground/90 transition-colors">
+              {variant.name}
             </h3>
-            <p className="text-sm text-zinc-400 line-clamp-2">{screen.description}</p>
+            <p className="text-xs text-muted-foreground line-clamp-2">
+              {variant.description}
+            </p>
           </div>
 
-          {/* Components used */}
-          <div className="flex flex-wrap gap-1.5 pt-2">
-            {screen.components.slice(0, 3).map((component, i) => (
-              <span
-                key={i}
-                className="px-2 py-0.5 rounded-md bg-zinc-900 border border-zinc-800 text-zinc-500 text-[10px] font-mono"
-              >
-                {component}
+          {/* Meta Row */}
+          <div className="flex items-center justify-between pt-2 border-t border-border/50">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] text-muted-foreground">
+                {variant.components.length} components
               </span>
-            ))}
-            {screen.components.length > 3 && (
-              <span className="px-2 py-0.5 rounded-md bg-zinc-900 border border-zinc-800 text-zinc-500 text-[10px]">
-                +{screen.components.length - 3}
-              </span>
-            )}
+              <span className="text-[10px] text-muted-foreground">·</span>
+              <span className="text-[10px] text-muted-foreground">RN + Cursor ready</span>
+            </div>
+            <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground group-hover:translate-x-0.5 transition-all" />
           </div>
         </CardContent>
-      </Link>
-
-      <CardFooter className="p-5 pt-0">
-        <Link href={`/screens/${screen.slug}`} className="w-full">
-          <Button
-            variant="outline"
-            className="w-full bg-transparent border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white"
-          >
-            View Details
-          </Button>
-        </Link>
-      </CardFooter>
-    </Card>
+      </Card>
+    </Link>
   );
 }
 

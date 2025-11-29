@@ -1,18 +1,7 @@
-import { UIKitGallery } from "@/components/ui-kit-gallery";
-import { screens, getScreenBySlug } from "@/data/screens";
+import { screens } from "@/data/screens";
 import { ScreenCard } from "@/components/screen/ScreenCard";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 export default function Home() {
-  // Get the 4 featured screens for homepage
-  const featuredScreens = [
-    getScreenBySlug("login"),
-    getScreenBySlug("signup"),
-    getScreenBySlug("paywall"),
-    getScreenBySlug("profile"),
-  ].filter((screen): screen is NonNullable<typeof screen> => screen !== undefined);
-
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-50">
       {/* Hero Section */}
@@ -42,28 +31,15 @@ export default function Home() {
             </p>
           </div>
 
-          {/* 4-card mini preview */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-8">
-            {featuredScreens.map((screen) => (
-              <ScreenCard key={screen.slug} screen={screen} />
+          {/* All screens grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+            {screens.map((variant) => (
+              <ScreenCard key={variant.slug} variant={variant} />
             ))}
-          </div>
-
-          {/* Browse All Screens button */}
-          <div className="flex justify-center">
-            <Link href="/screens">
-              <Button className="bg-white text-black hover:bg-zinc-200 min-w-[200px]">
-                Browse All Screens
-              </Button>
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* Gallery Section */}
-      <section className="px-4 pb-24 max-w-7xl mx-auto">
-        <UIKitGallery />
-      </section>
     </div>
   );
 }

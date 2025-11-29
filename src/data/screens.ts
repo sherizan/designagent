@@ -1,71 +1,105 @@
-export type Screen = {
+export type AccessTier = "free" | "pro";
+
+export type ScreenCategory =
+  | "auth"
+  | "paywall"
+  | "profile"
+  | "home"
+  | "settings"
+  | "detail"
+  | "empty";
+
+export type ThemeOption = {
+  key: string; // e.g. "midnight"
+  label: string; // e.g. "Midnight"
+  accent?: string; // optional CSS color for chip background or border
+};
+
+export type ScreenVariant = {
   slug: string;
-  title: string;
+  name: string;
+  category: ScreenCategory;
   description: string;
   preview: string;
   components: string[];
+  recommendedUse: string;
+  access: AccessTier;
+  // Legacy field for backward compatibility
+  livePreviewUrl?: string;
+  // New fields for theme support
+  livePreviewBaseUrl?: string;
+  themes?: ThemeOption[];
 };
 
-export const screens: Screen[] = [
+// Legacy type alias for backward compatibility during migration
+export type Screen = ScreenVariant;
+
+export const screens: ScreenVariant[] = [
   {
-    slug: "login",
-    title: "Login Screen",
-    description: "Classic email + password login with strong visual hierarchy.",
-    preview: "/screens/login-thumb.png",
-    components: ["TextInput", "Button", "Card"],
+    slug: "login-simple",
+    name: "Login – Simple",
+    category: "auth",
+    description:
+      "A clean email/password login screen with strong typography, dark theme, and clear error handling.",
+    preview: "/screens/login-simple.png", // TODO: add actual thumbnail later
+    components: [
+      "FormField",
+      "Button",
+      "SocialButton",
+      "Divider",
+      "Text",
+    ],
+    recommendedUse:
+      "Use this as the default login entry point for apps with simple email-based authentication.",
+    access: "free",
+    livePreviewBaseUrl:
+      "https://designagent-preview-rn.vercel.app/login-simple",
+    themes: [
+      { key: "midnight", label: "Midnight", accent: "#6366F1" },
+      { key: "activeGreen", label: "Active Green", accent: "#22C55E" },
+      { key: "wellnessPeach", label: "Wellness Peach", accent: "#F97373" },
+    ],
   },
   {
-    slug: "signup",
-    title: "Signup Screen",
-    description: "User registration with validation and clear call-to-action.",
-    preview: "/screens/signup-thumb.png",
-    components: ["TextInput", "Button", "Card", "Checkbox"],
-  },
-  {
-    slug: "paywall",
-    title: "Paywall Screen",
-    description: "Subscription pricing with feature highlights and clear benefits.",
-    preview: "/screens/paywall-thumb.png",
-    components: ["Card", "Button", "Text", "List"],
-  },
-  {
-    slug: "profile",
-    title: "Profile Screen",
-    description: "User profile with avatar, stats, and settings access.",
-    preview: "/screens/profile-thumb.png",
-    components: ["Card", "Avatar", "Button", "List"],
-  },
-  {
-    slug: "home-list",
-    title: "Home List Screen",
-    description: "Feed-style list with cards, pull-to-refresh, and infinite scroll.",
-    preview: "/screens/home-list-thumb.png",
-    components: ["Card", "List", "Image", "Button"],
-  },
-  {
-    slug: "settings",
-    title: "Settings Screen",
-    description: "Organized settings with sections, toggles, and navigation.",
-    preview: "/screens/settings-thumb.png",
-    components: ["List", "Switch", "Button", "Card"],
-  },
-  {
-    slug: "detail",
-    title: "Detail Screen",
-    description: "Content detail view with header, body, and action buttons.",
-    preview: "/screens/detail-thumb.png",
-    components: ["Image", "Card", "Button", "Text"],
-  },
-  {
-    slug: "empty-states",
-    title: "Empty States",
-    description: "Engaging empty states with illustrations and helpful messaging.",
-    preview: "/screens/empty-states-thumb.png",
-    components: ["Image", "Text", "Button"],
+    slug: "login-minimal",
+    name: "Login – Minimal",
+    category: "auth",
+    description:
+      "An ultra-minimal login screen focused on essential email/password authentication with clean typography and spacing.",
+    preview: "/screens/login-minimal.png", // TODO: add actual thumbnail later
+    components: [
+      "FormField",
+      "Button",
+      "Text",
+    ],
+    recommendedUse:
+      "Perfect for apps that prioritize simplicity and want a distraction-free authentication experience.",
+    access: "free",
+    livePreviewBaseUrl:
+      "https://designagent-preview-rn.vercel.app/login-minimal",
+    themes: [
+      { key: "midnight", label: "Midnight", accent: "#6366F1" },
+      { key: "activeGreen", label: "Active Green", accent: "#22C55E" },
+      { key: "wellnessPeach", label: "Wellness Peach", accent: "#F97373" },
+    ],
   },
 ];
 
-export function getScreenBySlug(slug: string): Screen | undefined {
+export function getScreenBySlug(slug: string): ScreenVariant | undefined {
   return screens.find((screen) => screen.slug === slug);
+}
+
+// Helper function to get category label
+export function getCategoryLabel(category: ScreenCategory): string {
+  const labels: Record<ScreenCategory, string> = {
+    auth: "Auth",
+    paywall: "Paywall",
+    profile: "Profile",
+    home: "Home",
+    settings: "Settings",
+    detail: "Detail",
+    empty: "Empty",
+  };
+  return labels[category];
 }
 

@@ -6,9 +6,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navigationItems = [
-  { label: "Features", href: "/features" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Try Now", href: "/try-now" },
+  { label: "Screens", href: "/screens" },
+  { label: "Components", href: "/components" },
+  { label: "MCP", href: "/mcp" },
 ];
 
 export const Navigation = () => {

@@ -116,8 +116,8 @@ export function FitnessKitClient({ kit }: FitnessKitClientProps) {
               getScreenBySlug("paywall"),
             ]
               .filter((screen): screen is NonNullable<typeof screen> => screen !== undefined)
-              .map((screen) => (
-                <ScreenCard key={screen.slug} screen={screen} />
+              .map((variant) => (
+                <ScreenCard key={variant.slug} variant={variant} />
               ))}
           </div>
         </div>
