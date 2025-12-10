@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
-import type { DesignAgentTheme } from "../../preview-rn/src/design-system/tokens/types";
+import type { DesignAgentTheme } from "@/lib/types";
 
 // Theme storage structure - stores separate themes for light and dark modes
 type StoredTheme = {

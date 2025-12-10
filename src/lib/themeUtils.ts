@@ -1,4 +1,4 @@
-import type { DesignAgentTheme } from "../../preview-rn/src/design-system/tokens/types";
+import type { DesignAgentTheme } from "./types";
 
 // Base theme definitions (must match the ones in theme/page.tsx)
 const baseThemes = {

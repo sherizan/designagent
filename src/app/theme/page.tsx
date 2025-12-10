@@ -8,7 +8,7 @@ import { ArrowRight, Check, X } from "lucide-react";
 import { useThemePreview } from "@/context/ThemePreviewContext";
 import { useAuth } from "@/context/AuthContext";
 import { isCustomTheme } from "@/lib/themeUtils";
-import type { DesignAgentTheme } from "../../../preview-rn/src/design-system/tokens/types";
+import type { DesignAgentTheme } from "@/lib/types";
 
 // Base theme definitions with light and dark variants
 const baseThemes = {
