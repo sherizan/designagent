@@ -1,4 +1,6 @@
-# DesignAgent
+# UIStack
+
+On-Demand UI for React Native. Delivered via MCP. Install screens, components, themes with a single prompt.
 
 A modern Next.js application built with TypeScript, Tailwind CSS, and shadcn/ui components.
 

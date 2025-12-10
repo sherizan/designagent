@@ -9,8 +9,8 @@
     "start": "node dist/server.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "latest",
-    "zod": "latest"
+    "@modelcontextprotocol/sdk": "^1.23.0",
+    "zod": "^3.25.0"
   },
   "devDependencies": {
     "@types/node": "latest",

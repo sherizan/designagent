@@ -40,9 +40,11 @@ const PREVIEWABLE_COMPONENTS = [
   "social-button",
   "divider",
   "icon",
+  "full-background",
   "auth-card",
   "auth-header",
   "form-field",
+  "floating-action-button",
 ];
 
 type Props = {
@@ -175,7 +177,7 @@ export default function ComponentDetailPage({ params }: Props) {
                           }
                           return url.toString();
                         })()}
-                        className="h-28 w-full"
+                        className={component.slug === "floating-action-button" ? "h-96 w-full" : "h-28 w-full"}
                         loading="lazy"
                         referrerPolicy="no-referrer"
                       />

@@ -193,8 +193,12 @@ export default function ScreenDetailPage({ params }: ScreenDetailPageProps) {
                 onClick={async () => {
                   const componentName = slugToComponentName(screen.slug);
                   const baseScreenType = getBaseScreenType(screen.slug);
+                  const componentsUsed = findComponentsByScreen(screen.slug);
+                  const componentsList = componentsUsed.length > 0
+                    ? `\n\nThis screen uses the following components:\n${componentsUsed.map(c => `- ${c.name}`).join("\n")}\n`
+                    : "";
                   
-                  const prompt = `Install the DesignAgent ${screen.name} screen into this project.
+                  const prompt = `Install the DesignAgent ${screen.name} screen into this project.${componentsList}
 
 You MUST follow these rules:
 
@@ -338,6 +342,7 @@ You MUST follow these rules:
                     src="/images/status-bar.svg"
                     alt="Status bar"
                     fill
+                    sizes="(max-width: 768px) 100vw, 448px"
                     className="object-contain object-top"
                     priority
                   />
@@ -347,6 +352,7 @@ You MUST follow these rules:
                   src="/images/bezel.png"
                   alt="Device bezel"
                   fill
+                  sizes="(max-width: 768px) 100vw, 448px"
                   className="object-contain z-10 pointer-events-none"
                   priority
                 />

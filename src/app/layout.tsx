@@ -23,20 +23,20 @@ const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dmsans" });
 const urbanist = Urbanist({ subsets: ["latin"], variable: "--font-urbanist" });
 
 export const metadata: Metadata = {
-  title: "DesignAgent.dev – Design your app. Ship it instantly.",
-  description: "Design your app. Ship it instantly. Pick a style, choose app pages, preview them, and install with one click. No code required.",
+  title: "UIStack.dev – On-Demand UI for React Native",
+  description: "On-Demand UI for React Native. Delivered via MCP. Install screens, components, themes with a single prompt.",
   openGraph: {
-    title: "DesignAgent.dev – Design your app. Ship it instantly.",
-    description: "Design your app. Ship it instantly. Pick a style, choose app pages, preview them, and install with one click. No code required.",
-    url: "https://designagent.dev",
+    title: "UIStack.dev – On-Demand UI for React Native",
+    description: "On-Demand UI for React Native. Delivered via MCP. Install screens, components, themes with a single prompt.",
+    url: "https://uistack.dev",
     type: "website",
     // TODO: Add social image when available
     // images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DesignAgent.dev – Design your app. Ship it instantly.",
-    description: "Design your app. Ship it instantly. Pick a style, choose app pages, preview them, and install with one click. No code required.",
+    title: "UIStack.dev – On-Demand UI for React Native",
+    description: "On-Demand UI for React Native. Delivered via MCP. Install screens, components, themes with a single prompt.",
     // TODO: Add Twitter image when available
     // images: ["/twitter-image.png"],
   },

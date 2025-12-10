@@ -83,6 +83,29 @@ export const screens: ScreenVariant[] = [
       { key: "wellnessPeach", label: "Wellness Peach", accent: "#F97373" },
     ],
   },
+  {
+    slug: "login-sheet",
+    name: "Login – Sheet",
+    category: "auth",
+    description:
+      "A modern bottom sheet login screen with social authentication options, featuring a clean design with rounded top corners and prominent social login buttons.",
+    preview: "/screens/login-sheet.png", // TODO: add actual thumbnail later
+    components: [
+      "FullBackground",
+      "SocialButton",
+      "Text",
+    ],
+    recommendedUse:
+      "Ideal for mobile apps that want a modern, sheet-based authentication flow with social login options.",
+    access: "free",
+    livePreviewBaseUrl:
+      "https://designagent-preview-rn.vercel.app/login-sheet",
+    themes: [
+      { key: "midnight", label: "Midnight", accent: "#6366F1" },
+      { key: "activeGreen", label: "Active Green", accent: "#22C55E" },
+      { key: "wellnessPeach", label: "Wellness Peach", accent: "#F97373" },
+    ],
+  },
 ];
 
 export function getScreenBySlug(slug: string): ScreenVariant | undefined {

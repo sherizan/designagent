@@ -60,6 +60,20 @@ export const screenKitConfigs: ScreenKitConfig[] = [
       },
     ],
   },
+  {
+    id: "login-sheet",
+    name: "Login Sheet",
+    description:
+      "Modern bottom sheet login screen with social authentication options, featuring a clean design with rounded top corners.",
+    framework: "react-native",
+    tags: ["auth", "login", "rn", "designagent", "sheet", "social"],
+    files: [
+      {
+        outputPath: "src/design-system/screens/login-sheet.tsx",
+        sourcePath: "src/screens/auth/LoginSheetScreen.tsx",
+      },
+    ],
+  },
 ];
 
 export function listScreens(): ListScreenResult[] {

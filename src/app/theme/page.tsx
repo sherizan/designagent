@@ -1284,6 +1284,7 @@ When you're done, tell me which files you created/modified.`;
                       src="/images/status-bar.svg"
                       alt="Status bar"
                       fill
+                      sizes="(max-width: 768px) 100vw, 448px"
                       className="object-contain object-top"
                       priority
                     />
@@ -1293,6 +1294,7 @@ When you're done, tell me which files you created/modified.`;
                     src="/images/bezel.png"
                     alt="Device bezel"
                     fill
+                    sizes="(max-width: 768px) 100vw, 448px"
                     className="object-contain z-10 pointer-events-none"
                     priority
                   />

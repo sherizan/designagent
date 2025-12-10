@@ -33,7 +33,7 @@ export const componentsRegistry: ComponentMeta[] = [
       { key: "label", label: "Label", description: "Small, medium-weight text for form labels." },
       { key: "caption", label: "Caption", description: "Smallest text for hints and metadata." },
     ],
-    usedInScreens: ["login-simple", "login-minimal"],
+    usedInScreens: ["login-simple", "login-minimal", "login-sheet"],
   },
   {
     slug: "surface",
@@ -115,7 +115,7 @@ export const componentsRegistry: ComponentMeta[] = [
       { key: "google", label: "Google", description: "Google sign-in button." },
       { key: "apple", label: "Apple", description: "Apple sign-in button." },
     ],
-    usedInScreens: ["login-simple"],
+    usedInScreens: ["login-simple", "login-sheet"],
   },
   {
     slug: "divider",
@@ -140,6 +140,21 @@ export const componentsRegistry: ComponentMeta[] = [
       { key: "default", label: "Default", description: "Standard icon." },
     ],
     usedInScreens: ["login-simple", "login-minimal"],
+  },
+  {
+    slug: "full-background",
+    name: "Full Background",
+    category: "primitive",
+    description: "Full-screen background component supporting gradients, shaders, images, and videos with optional overlays.",
+    framework: "react-native",
+    tags: ["background", "visual", "primitive", "gradient", "shader"],
+    variants: [
+      { key: "gradient", label: "Gradient", description: "Simple linear gradient background (e.g., #DFEBF5 to #F1D6C4)." },
+      { key: "shader", label: "Shader", description: "ShaderGradient.co animated shader background." },
+      { key: "image", label: "Image", description: "Image background with optional opacity overlay." },
+      { key: "video", label: "Video", description: "Video background with optional opacity overlay." },
+    ],
+    usedInScreens: ["login-sheet"],
   },
 
   // --- Patterns ---
@@ -178,6 +193,20 @@ export const componentsRegistry: ComponentMeta[] = [
       { key: "default", label: "Default", description: "Standard form field." },
     ],
     usedInScreens: ["login-simple", "login-minimal"],
+  },
+  {
+    slug: "floating-action-button",
+    name: "Floating Action Button",
+    category: "pattern",
+    description: "A floating action button that expands into multiple action items arranged in an arc with smooth animations.",
+    framework: "react-native",
+    tags: ["action", "fab", "pattern", "animation"],
+    variants: [
+      { key: "bottom-center", label: "Bottom Center", description: "FAB positioned at the bottom center of the screen." },
+      { key: "bottom-right", label: "Bottom Right", description: "FAB positioned at the bottom right corner." },
+      { key: "bottom-left", label: "Bottom Left", description: "FAB positioned at the bottom left corner." },
+    ],
+    usedInScreens: [],
   },
 ];
 

@@ -8,11 +8,11 @@ import { ArrowRight, Sparkles, Palette, Layout, Zap, CheckCircle2 } from "lucide
 const JSON_LD_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "DesignAgent.dev",
+  name: "UIStack.dev",
   applicationCategory: "DesignApplication",
   operatingSystem: "Cross-platform",
-  description: "Design your app. Ship it instantly. DesignAgent.dev lets you pick a style, choose app pages, preview them, and install with one click.",
-  url: "https://designagent.dev",
+  description: "On-Demand UI for React Native. Delivered via MCP. Install screens, components, themes with a single prompt.",
+  url: "https://uistack.dev",
   offers: {
     "@type": "Offer",
     price: "0",
@@ -28,13 +28,13 @@ function Hero() {
       <div className="text-center space-y-8 max-w-4xl mx-auto">
         <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.1]">
           <span className="bg-gradient-to-r from-zinc-100 via-zinc-200 to-zinc-300 bg-clip-text text-transparent">
-            Design your app.
+            On-Demand UI
           </span>
           <br />
-          <span className="text-zinc-50">Ship it instantly.</span>
+          <span className="text-zinc-50">for your app</span>
         </h1>
         <p className="text-xl md:text-2xl text-zinc-300 leading-relaxed max-w-2xl mx-auto">
-          No code. No complexity. Just beautiful app designs, ready to use for React Native + Expo with Cursor.
+          Delivered via MCP. Works with React Native, Expo, and Cursor. Install screens, components, themes with a single prompt.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
           <Button
@@ -430,14 +430,14 @@ function Footer() {
           </ul>
         </div>
         <div>
-          <h3 className="text-sm font-semibold text-zinc-100 mb-4">DesignAgent.dev</h3>
+          <h3 className="text-sm font-semibold text-zinc-100 mb-4">UIStack.dev</h3>
           <p className="text-sm text-zinc-400">
-            Design your app. Ship it instantly.
+            On-Demand UI for React Native
           </p>
         </div>
       </div>
       <div className="pt-8 border-t border-zinc-800 text-center text-sm text-zinc-500">
-        <p>© {new Date().getFullYear()} DesignAgent.dev. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} UIStack.dev. All rights reserved.</p>
       </div>
     </footer>
   );
