@@ -8,52 +8,123 @@ Local-first, platform-agnostic UI contract engine for AI-native development.
 - **Workspace-first architecture**: All state lives on disk; no in-memory-only models
 - **Multi-platform token compilation**: Core → Semantic → Platform (web/rn) with proper unit transforms
 - **MCP server**: Exposes contracts and tokens to AI assistants (Cursor, Claude, etc.) over stdio
-- **Preview runtime**: Local HTTP server for component exploration and token inspection
+- **Web Editor**: Visual interface for editing contracts and tokens with live preview
+- **Preview runtime**: Vite-powered component explorer with hot reload
 
 ## What it is NOT
 
 - Not a design tool or canvas
-- Not a visual editor
+- Not a visual editor for drawing UI
 - Not an IDE
 - Not a Figma plugin
 - Not an AI that generates UI
 
 DesignAgent does not invent or generate UI. It enforces contracts that humans define.
 
+## Quick Start
+
+```bash
+# Clone and install
+git clone https://github.com/sherizan/designagent.git
+cd designagent
+npm install
+npm run build
+
+# Start the editor
+npm run dev
+
+# Open http://localhost:3000/editor
+```
+
 ## Architecture
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    Workspace (Disk)                      │
-│  ┌─────────┐  ┌──────────────┐  ┌───────────────────┐  │
-│  │ tokens/ │  │  contracts/  │  │    system.json    │  │
-│  └─────────┘  └──────────────┘  └───────────────────┘  │
-└─────────────────────────────────────────────────────────┘
-                          │
-                          ▼
-              ┌───────────────────────┐
-              │   SystemWorkspace     │
-              │   (Core Engine)       │
-              └───────────────────────┘
-                          │
-          ┌───────────────┼───────────────┐
-          ▼               ▼               ▼
-    ┌──────────┐    ┌──────────┐    ┌──────────┐
-    │   CLI    │    │   MCP    │    │ Preview  │
-    └──────────┘    └──────────┘    └──────────┘
+┌─────────────────────────────────────────────────────────────────┐
+│                         Web Editor                               │
+│  ┌──────────────┐  ┌───────────────┐  ┌────────────────────┐   │
+│  │ File Explorer│  │ Monaco Editor │  │   Preview Pane     │   │
+│  └──────────────┘  └───────────────┘  └────────────────────┘   │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    Workspace (~/.designagent/)                   │
+│  ┌─────────┐  ┌──────────────┐  ┌───────────────────┐          │
+│  │ tokens/ │  │  contracts/  │  │    system.json    │          │
+│  └─────────┘  └──────────────┘  └───────────────────┘          │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+                ┌───────────────────────┐
+                │   SystemWorkspace     │
+                │   (Core Engine)       │
+                └───────────────────────┘
+                              │
+          ┌───────────────────┼───────────────────┐
+          ▼                   ▼                   ▼
+    ┌──────────┐        ┌──────────┐        ┌──────────┐
+    │   CLI    │        │   MCP    │        │ Preview  │
+    └──────────┘        └──────────┘        └──────────┘
 ```
 
-All consumers read/write through `SystemWorkspace`. No direct file access.
+## Editor Features
+
+The web editor provides a complete interface for managing your design system:
+
+### 3-Column Layout
+- **File Explorer** (left): Navigate system.json, tokens, and contracts
+- **Monaco Editor** (center): Edit JSON files with syntax highlighting
+- **Preview Pane** (right): Live component preview with platform/theme switching
+
+### Key Features
+- **Auto-save**: `Cmd/Ctrl+S` saves and validates
+- **Validation**: One-click validation of all workspace files
+- **Platform/Theme**: Switch between web/rn and light/dark
+- **MCP Config**: Copy-paste config for Cursor integration
+
+### Screenshots
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│ my-design-system │ Web ▼ │ Light ▼ │ ● Preview │ ✓ Save │ ▶ Val │
+├────────────┬─────────────────────────┬──────────────────────────┤
+│ SYSTEM     │ 1 {                     │ http://localhost:3333    │
+│ system.json│ 2   "$schema": "...",   ├──────────────────────────┤
+│            │ 3   "name": "Button",   │ DesignAgent Preview      │
+│ TOKENS     │ 4   "description":...   │                          │
+│ core.json  │ 5   "platformTargets"..│ COMPONENTS               │
+│ semantic...│ 6   "props": {          │ Button                   │
+│            │ 7     "variant": {      │                          │
+│ CONTRACTS  │ 8       "type": "enum", │                          │
+│ Button.json│ 9       "values": [...] │                          │
+├────────────┴─────────────────────────┴──────────────────────────┤
+│ >_ Connect to Cursor                                        ▲   │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ## Workflows
 
-### 1. Cursor-first (MCP)
+### 1. Editor-first (Web UI)
+
+Visual editing with live preview:
+
+```bash
+npm run dev
+# Open http://localhost:3000/editor
+```
+
+The editor automatically:
+- Creates a workspace at `~/.designagent/workspaces/<id>/`
+- Starts a Vite preview server at port 3333
+- Validates on save
+
+### 2. Cursor-first (MCP)
 
 AI assistant reads contracts and tokens via MCP to generate compliant code:
 
 ```bash
 # Start MCP server
-designagent serve-mcp --workspace ./my-system
+npm run designagent -- serve-mcp --workspace ./my-system
 ```
 
 Configure in Cursor's MCP settings:
@@ -61,8 +132,8 @@ Configure in Cursor's MCP settings:
 {
   "mcpServers": {
     "designagent": {
-      "command": "designagent",
-      "args": ["serve-mcp", "--workspace", "/path/to/workspace"]
+      "command": "npm",
+      "args": ["run", "designagent", "--", "serve-mcp", "--workspace", "/path/to/workspace"]
     }
   }
 }
@@ -74,20 +145,20 @@ Available MCP tools:
 - `getTokens` - Get compiled tokens for platform/theme
 - `validateUsage` - Validate props against contract
 
-### 2. Preview-first (Local runtime)
+### 3. CLI-first
 
-Inspect contracts and tokens via HTTP API:
+Command-line operations for CI/CD:
 
 ```bash
-# Start preview server
-designagent preview --workspace ./my-system --port 3456
-```
+# Initialize a workspace
+npm run designagent -- init ./my-system
 
-Endpoints:
-- `GET /api/contracts` - List contracts
-- `GET /api/contracts/:name` - Get contract
-- `GET /api/tokens/:platform/:theme` - Compiled tokens
-- `GET /api/validate` - Validate workspace
+# Validate
+npm run designagent -- validate --workspace ./my-system
+
+# Compile tokens
+npm run designagent -- tokens --workspace ./my-system --platform web --theme light
+```
 
 ## Token Model
 
@@ -107,51 +178,52 @@ Three-layer token architecture:
    - Web: spacing → `"16px"`
    - React Native: spacing → `16`
 
-```bash
-# Compile tokens for web, light theme
-designagent tokens --platform web --theme light --format css
-```
-
 ## Contract Schema
 
 Component contracts define the canonical interface:
 
 ```json
 {
+  "$schema": "../schemas/component-contract.schema.json",
+  "$version": "1.0.0",
   "name": "Button",
+  "description": "Primary interactive element",
   "platformTargets": ["web", "rn"],
   "props": {
     "variant": {
       "type": "enum",
-      "values": ["primary", "secondary"],
-      "default": "primary"
+      "values": ["primary", "secondary", "ghost"],
+      "default": "primary",
+      "description": "Visual style variant"
     },
     "label": {
       "type": "string",
-      "required": true
+      "required": true,
+      "description": "Button text"
     }
   },
   "code": {
     "importPath": "@ui/Button"
-  }
+  },
+  "examples": [
+    { "name": "Primary", "props": { "variant": "primary", "label": "Click me" } }
+  ]
 }
 ```
 
-## Installation
+## API Routes
 
-```bash
-# Clone and install
-git clone <repo>
-cd designagent
-npm install
-npm run build
+The editor exposes these endpoints:
 
-# Initialize a workspace
-npx designagent init ./my-system
-
-# Validate
-npx designagent validate --workspace ./my-system
-```
+| Route | Method | Description |
+|-------|--------|-------------|
+| `/api/workspaces/create` | POST | Create new workspace |
+| `/api/workspaces/[id]/tree` | GET | Get file tree |
+| `/api/workspaces/[id]/file` | GET/PUT | Read/write files |
+| `/api/workspaces/[id]/validate` | POST | Validate workspace |
+| `/api/preview/start` | POST | Start Vite preview |
+| `/api/preview/stop` | POST | Stop preview |
+| `/api/preview/status` | GET | Get preview URL |
 
 ## CLI Commands
 
@@ -167,17 +239,34 @@ npx designagent validate --workspace ./my-system
 
 ```
 /designagent
+  /app
+    /api              # Next.js API routes
+    /editor           # Editor page
+  /components
+    /editor           # Editor UI components
+    /ui               # shadcn/ui components
+  /lib
+    workspace-manager.ts  # Workspace CRUD
+    preview-manager.ts    # Preview lifecycle
   /packages
-    /core        # Types, workspace, validation
-    /compiler    # Token compilation
-    /preview     # HTTP preview server
-    /mcp         # MCP stdio server
-    /cli         # CLI entry point
+    /core             # Types, workspace, validation
+    /compiler         # Token compilation
+    /preview          # Vite preview server
+    /mcp              # MCP stdio server
+    /cli              # CLI entry point
   /workspace-template
-    /tokens      # Example token files
-    /contracts   # Example contracts
+    /tokens           # Example token files
+    /contracts        # Example contracts
     system.json
 ```
+
+## Tech Stack
+
+- **Frontend**: Next.js 16, React 19, TypeScript
+- **Editor**: Monaco Editor
+- **Styling**: Tailwind CSS, shadcn/ui (zinc theme)
+- **Preview**: Vite dev server
+- **MCP**: @modelcontextprotocol/sdk
 
 ## Why this exists
 
@@ -187,6 +276,9 @@ DesignAgent provides:
 1. A canonical source of truth for component interfaces
 2. Platform-aware token compilation
 3. Machine-readable validation for AI-generated code
-4. No visual canvas, no editor lock-in
+4. Visual editor for contract management
+5. MCP integration for AI assistants
 
-The editor (coming later) will be a thin shell over these files.
+## License
+
+MIT
