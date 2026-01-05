@@ -15,6 +15,7 @@ program
     .description('Initialize a new DesignAgent workspace')
     .argument('[path]', 'Path to create workspace', '.')
     .option('-f, --force', 'Overwrite existing files')
+    .option('-p, --preset <url>', 'Initialize from a preset URL')
     .action(initCommand);
 program
     .command('validate')

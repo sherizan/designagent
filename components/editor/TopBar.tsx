@@ -1,6 +1,7 @@
 'use client';
 
-import { Check, Loader2, Play, AlertCircle } from 'lucide-react';
+import Link from 'next/link';
+import { Check, Loader2, Play, AlertCircle, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -73,6 +74,16 @@ export function TopBar({
             </SelectContent>
           </Select>
         </div>
+
+        <div className="h-4 w-px bg-zinc-200" />
+
+        <Link
+          href="/create"
+          className="flex items-center gap-1.5 text-xs text-zinc-600 hover:text-zinc-900 transition-colors"
+        >
+          <Sparkles className="w-3.5 h-3.5" />
+          Create theme
+        </Link>
       </div>
 
       <div className="flex items-center gap-2">
