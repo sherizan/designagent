@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "platform-rules.schema.json",
+  "title": "DesignAgent Platform Rules",
+  "description": "Platform-specific token transformation rules",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON Schema reference"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["web", "rn", "ios", "android"],
+      "description": "Target platform"
+    },
+    "transforms": {
+      "type": "object",
+      "description": "Token type transformations",
+      "additionalProperties": {
+        "$ref": "#/definitions/transformRule"
+      }
+    }
+  },
+  "definitions": {
+    "transformRule": {
+      "type": "object",
+      "required": ["unit"],
+      "properties": {
+        "unit": {
+          "type": "string",
+          "description": "Unit to append (e.g., 'px', 'rem', '')",
+          "examples": ["px", "rem", "em", ""]
+        },
+        "scale": {
+          "type": "number",
+          "description": "Scale factor to apply",
+          "default": 1
+        },
+        "transform": {
+          "type": "string",
+          "enum": ["none", "toString", "toNumber"],
+          "description": "Value transformation"
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

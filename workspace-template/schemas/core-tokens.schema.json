@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "core-tokens.schema.json",
+  "title": "DesignAgent Core Tokens",
+  "description": "Raw primitive design tokens (colors, spacing, typography)",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON Schema reference"
+    },
+    "color": {
+      "type": "object",
+      "description": "Color palette tokens",
+      "additionalProperties": {
+        "oneOf": [
+          { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$|^#[0-9a-fA-F]{8}$" },
+          { "type": "object", "additionalProperties": { "type": "string" } }
+        ]
+      }
+    },
+    "spacing": {
+      "type": "object",
+      "description": "Spacing scale tokens",
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "fontSize": {
+      "type": "object",
+      "description": "Font size tokens",
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "fontWeight": {
+      "type": "object",
+      "description": "Font weight tokens",
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "lineHeight": {
+      "type": "object",
+      "description": "Line height tokens",
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "fontFamily": {
+      "type": "object",
+      "description": "Font family tokens",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "borderRadius": {
+      "type": "object",
+      "description": "Border radius tokens",
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "borderWidth": {
+      "type": "object",
+      "description": "Border width tokens",
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "shadow": {
+      "type": "object",
+      "description": "Shadow tokens",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "opacity": {
+      "type": "object",
+      "description": "Opacity tokens",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      }
+    },
+    "duration": {
+      "type": "object",
+      "description": "Animation duration tokens",
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "easing": {
+      "type": "object",
+      "description": "Animation easing tokens",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

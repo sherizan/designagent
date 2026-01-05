@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "semantic-tokens.schema.json",
+  "title": "DesignAgent Semantic Tokens",
+  "description": "Intent-based tokens that reference core tokens",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON Schema reference"
+    },
+    "color": {
+      "type": "object",
+      "description": "Semantic color tokens",
+      "properties": {
+        "background": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/definitions/tokenReference" }
+        },
+        "text": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/definitions/tokenReference" }
+        },
+        "border": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/definitions/tokenReference" }
+        },
+        "icon": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/definitions/tokenReference" }
+        },
+        "interactive": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/definitions/tokenReference" }
+        },
+        "status": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/definitions/tokenReference" }
+        }
+      },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": { "$ref": "#/definitions/tokenReference" }
+      }
+    },
+    "spacing": {
+      "type": "object",
+      "description": "Semantic spacing tokens",
+      "additionalProperties": { "$ref": "#/definitions/tokenReference" }
+    },
+    "typography": {
+      "type": "object",
+      "description": "Semantic typography tokens",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "fontSize": { "$ref": "#/definitions/tokenReference" },
+          "fontWeight": { "$ref": "#/definitions/tokenReference" },
+          "lineHeight": { "$ref": "#/definitions/tokenReference" },
+          "fontFamily": { "$ref": "#/definitions/tokenReference" }
+        }
+      }
+    },
+    "border": {
+      "type": "object",
+      "description": "Semantic border tokens",
+      "additionalProperties": { "$ref": "#/definitions/tokenReference" }
+    },
+    "shadow": {
+      "type": "object",
+      "description": "Semantic shadow tokens",
+      "additionalProperties": { "$ref": "#/definitions/tokenReference" }
+    }
+  },
+  "definitions": {
+    "tokenReference": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^\\{[a-zA-Z0-9.]+\\}$",
+          "description": "Reference to core token, e.g., {color.blue.500}"
+        },
+        {
+          "type": "string",
+          "description": "Direct value"
+        }
+      ]
+    }
+  },
+  "additionalProperties": true
+}

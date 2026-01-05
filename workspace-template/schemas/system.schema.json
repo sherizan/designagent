@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "system.schema.json",
+  "title": "DesignAgent System Manifest",
+  "description": "Configuration for a DesignAgent design system workspace",
+  "type": "object",
+  "required": ["name", "version"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON Schema reference"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the design system",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "version": {
+      "type": "string",
+      "description": "Semantic version of the design system",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the design system"
+    },
+    "componentSource": {
+      "type": "object",
+      "description": "Source of component implementations",
+      "required": ["type", "value"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["npm", "path"],
+          "description": "Type of component source"
+        },
+        "value": {
+          "type": "string",
+          "description": "Package name or file path"
+        }
+      }
+    },
+    "defaultPlatform": {
+      "type": "string",
+      "enum": ["web", "rn"],
+      "description": "Default platform for token compilation"
+    },
+    "defaultTheme": {
+      "type": "string",
+      "enum": ["light", "dark"],
+      "description": "Default theme for token compilation"
+    }
+  },
+  "additionalProperties": false
+}

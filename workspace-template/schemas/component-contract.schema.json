@@ -1,0 +1,165 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "component-contract.schema.json",
+  "title": "DesignAgent Component Contract",
+  "description": "Defines the interface contract for a UI component",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON Schema reference"
+    },
+    "$version": {
+      "type": "string",
+      "description": "Contract schema version",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "name": {
+      "type": "string",
+      "description": "Component name (PascalCase)",
+      "pattern": "^[A-Z][a-zA-Z0-9]*$"
+    },
+    "description": {
+      "type": "string",
+      "description": "Component description"
+    },
+    "platformTargets": {
+      "type": "array",
+      "description": "Supported platforms",
+      "items": {
+        "type": "string",
+        "enum": ["web", "rn", "ios", "android"]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "props": {
+      "type": "object",
+      "description": "Component props definitions",
+      "additionalProperties": {
+        "$ref": "#/definitions/propDefinition"
+      }
+    },
+    "variants": {
+      "type": "object",
+      "description": "Component variants",
+      "additionalProperties": {
+        "$ref": "#/definitions/variantDefinition"
+      }
+    },
+    "states": {
+      "type": "object",
+      "description": "Component states",
+      "additionalProperties": {
+        "$ref": "#/definitions/stateDefinition"
+      }
+    },
+    "code": {
+      "type": "object",
+      "description": "Code references",
+      "properties": {
+        "importPath": {
+          "type": "string",
+          "description": "Import path for the component"
+        },
+        "componentName": {
+          "type": "string",
+          "description": "Exported component name"
+        },
+        "storyPath": {
+          "type": "string",
+          "description": "Path to Storybook story"
+        }
+      }
+    },
+    "examples": {
+      "type": "array",
+      "description": "Usage examples",
+      "items": {
+        "$ref": "#/definitions/componentExample"
+      }
+    }
+  },
+  "definitions": {
+    "propType": {
+      "type": "string",
+      "enum": ["string", "number", "boolean", "enum", "object", "array", "function", "node", "element"]
+    },
+    "propDefinition": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/propType"
+        },
+        "values": {
+          "type": "array",
+          "description": "Allowed values for enum type",
+          "items": {
+            "type": "string"
+          }
+        },
+        "default": {
+          "description": "Default value"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Whether the prop is required"
+        },
+        "description": {
+          "type": "string",
+          "description": "Prop description"
+        }
+      }
+    },
+    "variantDefinition": {
+      "type": "object",
+      "required": ["values"],
+      "properties": {
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "default": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "stateDefinition": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "cssSelector": {
+          "type": "string"
+        },
+        "tokens": {
+          "type": "object"
+        }
+      }
+    },
+    "componentExample": {
+      "type": "object",
+      "required": ["name", "props"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "props": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

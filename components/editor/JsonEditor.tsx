@@ -29,12 +29,14 @@ export function JsonEditor({
       onSave();
     });
 
-    // Configure JSON language features
+    // Configure JSON language features - disable schema validation
+    // since we have our own validation API and schemas are on disk
     monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
       validate: true,
       allowComments: false,
       schemas: [],
       enableSchemaRequest: false,
+      schemaValidation: 'ignore',
     });
   }, [onSave]);
 
