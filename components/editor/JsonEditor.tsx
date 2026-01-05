@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef } from 'react';
-import Editor, { type OnMount, type OnChange } from '@monaco-editor/react';
+import Editor, { type OnMount, type OnChange, type BeforeMount } from '@monaco-editor/react';
 import type { editor } from 'monaco-editor';
 
 interface JsonEditorProps {
@@ -20,17 +20,16 @@ export function JsonEditor({
   fileName,
 }: JsonEditorProps) {
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
+  const onSaveRef = useRef(onSave);
+  
+  // Keep onSave ref updated
+  useEffect(() => {
+    onSaveRef.current = onSave;
+  }, [onSave]);
 
-  const handleEditorMount: OnMount = useCallback((editor, monaco) => {
-    editorRef.current = editor;
-
-    // Add Cmd/Ctrl+S save shortcut
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {
-      onSave();
-    });
-
-    // Configure JSON language features - disable schema validation
-    // since we have our own validation API and schemas are on disk
+  // Configure Monaco BEFORE it mounts to disable schema fetching
+  const handleBeforeMount: BeforeMount = useCallback((monaco) => {
+    // Disable schema validation completely - we use our own validation API
     monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
       validate: true,
       allowComments: false,
@@ -38,22 +37,22 @@ export function JsonEditor({
       enableSchemaRequest: false,
       schemaValidation: 'ignore',
     });
-  }, [onSave]);
+  }, []);
+
+  const handleEditorMount: OnMount = useCallback((editor, monaco) => {
+    editorRef.current = editor;
+
+    // Add Cmd/Ctrl+S save shortcut
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {
+      onSaveRef.current();
+    });
+  }, []);
 
   const handleChange: OnChange = useCallback((value) => {
     if (value !== undefined) {
       onChange(value);
     }
   }, [onChange]);
-
-  // Update save handler when onSave changes
-  useEffect(() => {
-    if (editorRef.current) {
-      // Re-add the command with the new handler
-      // Monaco doesn't have a great way to update commands,
-      // so we rely on the closure being updated
-    }
-  }, [onSave]);
 
   return (
     <div className="h-full w-full">
@@ -62,6 +61,7 @@ export function JsonEditor({
         language="json"
         value={value}
         onChange={handleChange}
+        beforeMount={handleBeforeMount}
         onMount={handleEditorMount}
         theme="vs-light"
         options={{
