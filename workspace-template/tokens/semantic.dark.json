@@ -1,5 +1,4 @@
 {
-  "$schema": "../schemas/semantic-tokens.schema.json",
   "$version": "1.0.0",
   "$theme": "dark",
   "tokens": {

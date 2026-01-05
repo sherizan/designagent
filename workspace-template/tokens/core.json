@@ -1,5 +1,4 @@
 {
-  "$schema": "../schemas/core-tokens.schema.json",
   "$version": "1.0.0",
   "tokens": {
     "colors.blue.50": { "value": "#eff6ff", "category": "color" },

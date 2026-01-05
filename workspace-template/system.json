@@ -1,5 +1,4 @@
 {
-  "$schema": "./schemas/system.schema.json",
   "name": "my-design-system",
   "version": "0.1.0",
   "description": "A DesignAgent-managed design system",

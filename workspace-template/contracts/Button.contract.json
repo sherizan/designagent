@@ -1,5 +1,4 @@
 {
-  "$schema": "../schemas/component-contract.schema.json",
   "$version": "1.0.0",
   "name": "Button",
   "description": "Primary interactive element for triggering actions",
