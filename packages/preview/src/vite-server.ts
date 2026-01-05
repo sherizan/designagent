@@ -1,6 +1,7 @@
 import { createServer } from 'vite';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import react from '@vitejs/plugin-react';
 import type { SystemWorkspace } from '@designagent/core';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -33,6 +34,7 @@ export async function startVitePreviewServer(
       host: 'localhost',
     },
     plugins: [
+      react(),
       // Inject workspace data as virtual module
       {
         name: 'designagent-workspace',

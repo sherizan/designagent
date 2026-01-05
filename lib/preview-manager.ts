@@ -76,13 +76,13 @@ export async function startPreview(workspaceId: string): Promise<{ url: string; 
 
   const previewDir = join(process.cwd(), 'packages', 'preview');
   
-  // For simplicity, we'll use a different approach - spawn vite directly
-  // and configure it to use the workspace
-  const child = spawn('npx', ['vite', '--port', String(port), '--host', 'localhost'], {
+  // Spawn the preview server using the start-server script
+  const child = spawn('node', ['dist/start-server.js'], {
     cwd: previewDir,
     env: {
       ...process.env,
       DESIGNAGENT_WORKSPACE: workspacePath,
+      DESIGNAGENT_PORT: String(port),
     },
     stdio: ['ignore', 'pipe', 'pipe'],
     shell: true,
