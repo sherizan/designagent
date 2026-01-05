@@ -1,0 +1,77 @@
+{
+  "$schema": "../schemas/component-contract.schema.json",
+  "$version": "1.0.0",
+  "name": "Button",
+  "description": "Primary interactive element for triggering actions",
+  "platformTargets": ["web", "rn"],
+  "props": {
+    "variant": {
+      "type": "enum",
+      "values": ["primary", "secondary", "ghost"],
+      "default": "primary",
+      "description": "Visual style variant"
+    },
+    "size": {
+      "type": "enum",
+      "values": ["sm", "md", "lg"],
+      "default": "md",
+      "description": "Button size"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the button is disabled"
+    },
+    "label": {
+      "type": "string",
+      "required": true,
+      "description": "Button text content"
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether button fills container width"
+    }
+  },
+  "variants": [
+    {
+      "name": "Primary",
+      "description": "Default primary button",
+      "props": { "variant": "primary", "size": "md" }
+    },
+    {
+      "name": "Secondary",
+      "description": "Secondary action button",
+      "props": { "variant": "secondary", "size": "md" }
+    },
+    {
+      "name": "Ghost",
+      "description": "Minimal ghost button",
+      "props": { "variant": "ghost", "size": "md" }
+    }
+  ],
+  "states": [
+    { "name": "default", "description": "Default state" },
+    { "name": "hover", "description": "Mouse hover state" },
+    { "name": "active", "description": "Active/pressed state" },
+    { "name": "focus", "description": "Keyboard focus state" },
+    { "name": "disabled", "description": "Disabled state" }
+  ],
+  "code": {
+    "importPath": "@ui/Button"
+  },
+  "examples": [
+    {
+      "name": "Primary Submit",
+      "props": { "label": "Submit", "variant": "primary" }
+    },
+    {
+      "name": "Secondary Cancel",
+      "props": { "label": "Cancel", "variant": "secondary" }
+    },
+    {
+      "name": "Disabled",
+      "props": { "label": "Unavailable", "disabled": true }
+    }
+  ]
+}

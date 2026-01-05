@@ -1,0 +1,13 @@
+{
+  "$schema": "../schemas/platform-rules.schema.json",
+  "$version": "1.0.0",
+  "$platform": "web",
+  "rules": [
+    { "category": "spacing", "transform": "px" },
+    { "category": "fontSize", "transform": "px" },
+    { "category": "lineHeight", "transform": "px" },
+    { "category": "borderRadius", "transform": "px" },
+    { "category": "borderWidth", "transform": "px" },
+    { "category": "color", "transform": "passthrough" }
+  ]
+}

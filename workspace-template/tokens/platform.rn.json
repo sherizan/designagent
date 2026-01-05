@@ -1,0 +1,13 @@
+{
+  "$schema": "../schemas/platform-rules.schema.json",
+  "$version": "1.0.0",
+  "$platform": "rn",
+  "rules": [
+    { "category": "spacing", "transform": "number" },
+    { "category": "fontSize", "transform": "number" },
+    { "category": "lineHeight", "transform": "number" },
+    { "category": "borderRadius", "transform": "number" },
+    { "category": "borderWidth", "transform": "number" },
+    { "category": "color", "transform": "passthrough" }
+  ]
+}

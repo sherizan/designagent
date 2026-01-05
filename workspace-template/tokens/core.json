@@ -1,0 +1,53 @@
+{
+  "$schema": "../schemas/core-tokens.schema.json",
+  "$version": "1.0.0",
+  "tokens": {
+    "colors.blue.50": { "value": "#eff6ff", "category": "color" },
+    "colors.blue.100": { "value": "#dbeafe", "category": "color" },
+    "colors.blue.500": { "value": "#3b82f6", "category": "color" },
+    "colors.blue.600": { "value": "#2563eb", "category": "color" },
+    "colors.blue.700": { "value": "#1d4ed8", "category": "color" },
+    
+    "colors.gray.50": { "value": "#f9fafb", "category": "color" },
+    "colors.gray.100": { "value": "#f3f4f6", "category": "color" },
+    "colors.gray.200": { "value": "#e5e7eb", "category": "color" },
+    "colors.gray.500": { "value": "#6b7280", "category": "color" },
+    "colors.gray.700": { "value": "#374151", "category": "color" },
+    "colors.gray.900": { "value": "#111827", "category": "color" },
+    
+    "colors.white": { "value": "#ffffff", "category": "color" },
+    "colors.black": { "value": "#000000", "category": "color" },
+    
+    "colors.red.500": { "value": "#ef4444", "category": "color" },
+    "colors.green.500": { "value": "#22c55e", "category": "color" },
+    
+    "spacing.0": { "value": 0, "category": "spacing" },
+    "spacing.1": { "value": 4, "category": "spacing" },
+    "spacing.2": { "value": 8, "category": "spacing" },
+    "spacing.3": { "value": 12, "category": "spacing" },
+    "spacing.4": { "value": 16, "category": "spacing" },
+    "spacing.5": { "value": 20, "category": "spacing" },
+    "spacing.6": { "value": 24, "category": "spacing" },
+    "spacing.8": { "value": 32, "category": "spacing" },
+    
+    "fontSize.xs": { "value": 12, "category": "fontSize" },
+    "fontSize.sm": { "value": 14, "category": "fontSize" },
+    "fontSize.base": { "value": 16, "category": "fontSize" },
+    "fontSize.lg": { "value": 18, "category": "fontSize" },
+    "fontSize.xl": { "value": 20, "category": "fontSize" },
+    
+    "lineHeight.tight": { "value": 20, "category": "lineHeight" },
+    "lineHeight.normal": { "value": 24, "category": "lineHeight" },
+    "lineHeight.relaxed": { "value": 28, "category": "lineHeight" },
+    
+    "borderRadius.none": { "value": 0, "category": "borderRadius" },
+    "borderRadius.sm": { "value": 4, "category": "borderRadius" },
+    "borderRadius.md": { "value": 6, "category": "borderRadius" },
+    "borderRadius.lg": { "value": 8, "category": "borderRadius" },
+    "borderRadius.full": { "value": 9999, "category": "borderRadius" },
+    
+    "borderWidth.0": { "value": 0, "category": "borderWidth" },
+    "borderWidth.1": { "value": 1, "category": "borderWidth" },
+    "borderWidth.2": { "value": 2, "category": "borderWidth" }
+  }
+}

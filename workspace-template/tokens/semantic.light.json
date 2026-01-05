@@ -1,0 +1,36 @@
+{
+  "$schema": "../schemas/semantic-tokens.schema.json",
+  "$version": "1.0.0",
+  "$theme": "light",
+  "tokens": {
+    "color.background.primary": { "ref": "colors.white", "description": "Primary background" },
+    "color.background.secondary": { "ref": "colors.gray.50", "description": "Secondary background" },
+    "color.background.tertiary": { "ref": "colors.gray.100", "description": "Tertiary background" },
+    
+    "color.text.primary": { "ref": "colors.gray.900", "description": "Primary text" },
+    "color.text.secondary": { "ref": "colors.gray.700", "description": "Secondary text" },
+    "color.text.muted": { "ref": "colors.gray.500", "description": "Muted text" },
+    "color.text.inverse": { "ref": "colors.white", "description": "Inverse text (on dark bg)" },
+    
+    "color.border.default": { "ref": "colors.gray.200", "description": "Default border" },
+    "color.border.focus": { "ref": "colors.blue.500", "description": "Focus ring" },
+    
+    "color.interactive.primary": { "ref": "colors.blue.600", "description": "Primary interactive" },
+    "color.interactive.primaryHover": { "ref": "colors.blue.700", "description": "Primary hover" },
+    "color.interactive.primaryActive": { "ref": "colors.blue.700", "description": "Primary active" },
+    
+    "color.status.error": { "ref": "colors.red.500", "description": "Error state" },
+    "color.status.success": { "ref": "colors.green.500", "description": "Success state" },
+    
+    "spacing.component.paddingX": { "ref": "spacing.4", "description": "Horizontal padding" },
+    "spacing.component.paddingY": { "ref": "spacing.2", "description": "Vertical padding" },
+    "spacing.component.gap": { "ref": "spacing.2", "description": "Component gap" },
+    
+    "typography.body.fontSize": { "ref": "fontSize.base", "description": "Body font size" },
+    "typography.body.lineHeight": { "ref": "lineHeight.normal", "description": "Body line height" },
+    "typography.label.fontSize": { "ref": "fontSize.sm", "description": "Label font size" },
+    
+    "shape.borderRadius.button": { "ref": "borderRadius.md", "description": "Button radius" },
+    "shape.borderWidth.default": { "ref": "borderWidth.1", "description": "Default border" }
+  }
+}

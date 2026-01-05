@@ -1,0 +1,32 @@
+{
+  "name": "@designagent/cli",
+  "version": "0.1.0",
+  "description": "CLI for DesignAgent - workspace management and server control",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "designagent": "./dist/index.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@designagent/core": "*",
+    "@designagent/compiler": "*",
+    "@designagent/preview": "*",
+    "@designagent/mcp": "*",
+    "commander": "^12.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.0",
+    "typescript": "^5.6.3"
+  }
+}
