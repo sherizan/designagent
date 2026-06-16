@@ -18,6 +18,7 @@ Status: ▢ todo · ◐ in progress · ✓ done
 
 ## Phase 2 — Community
 
+- ✓ Shipped 3rd plugin **`tokens`** (github.com/sherizan/designagent-tokens) — extract design tokens + drift; live on the marketplace + site. Next candidates (ranked): `design-qa`, `a11y`, `redlines`, `palette`.
 - ▢ Accept first external submissions; triage the submission issue label
 - ▢ Pin plugin sources to a `ref`/`sha` once each repo cuts a tagged release (currently tracking default branch)
 - ▢ "How to build a design plugin" guide (the moat)
