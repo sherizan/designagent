@@ -14,7 +14,7 @@ Status: ▢ todo · ◐ in progress · ✓ done
 - ✓ Reskinned the whole site to `docs/DESIGN.md` (light theme, Inter + DM Mono, black as the only action color); home simplified to hero → plugins → submit card
 - ✓ Verified end-to-end: `marketplace add` + `install superdesigner@designagent` resolves the git-subdir source
 - ✓ Deployed to Vercel — **live at https://designagent.dev** (prod); GitHub repo connected for auto preview builds
-- ▢ Submit both plugins to `claude-community` (interactive, at claude.ai/admin-settings/directory) — `claude plugin validate --strict` already passes
+- ✓ Submitted both plugins to `claude-community` (manual web submission at claude.ai/admin-settings/directory)
 
 ## Phase 2 — Community
 

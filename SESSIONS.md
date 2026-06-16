@@ -17,7 +17,7 @@ Human-readable handoff log. Newest first. Read this first in a new session.
 
 **superdesigner.** PR #8 **merged** (squash) → `claude-plugin/` now on `superdesigner-ai` `main`. Verified end-to-end: `marketplace add` + `install superdesigner@designagent` succeeds; cleaned up after.
 
-**Open:** submit both to `claude-community` (interactive); custom favicon/OG; responsive headline step-down on small mobile. See BACKLOG.md.
+**Phase 1 complete** — both plugins submitted to `claude-community`. Remaining nice-to-haves: custom favicon/OG; responsive headline step-down on small mobile; pin plugin sources to a ref/sha once repos cut releases. See BACKLOG.md.
 
 ---
 
