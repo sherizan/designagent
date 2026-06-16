@@ -22,7 +22,7 @@ Status: ▢ todo · ◐ in progress · ✓ done
 - ▢ Pin plugin sources to a `ref`/`sha` once each repo cuts a tagged release (currently tracking default branch)
 - ▢ "How to build a design plugin" guide (the moat)
 - ▢ Newsletter / changelog for new plugin drops
-- ▢ Per-plugin screenshots / demo media in `public/plugins/`
+- ✓ Per-plugin demo media — branded per-plugin OG social cards + detail-page covers; drop a real screenshot in `public/plugins/<slug>.{png,jpg,webp}` to override the branded cover
 
 ## Phase 3 — Platform
 
@@ -32,8 +32,9 @@ Status: ▢ todo · ◐ in progress · ✓ done
 
 ## Tech debt / nice-to-have
 
-- ▢ OG image generation per plugin page
-- ▢ Sitemap + robots
-- ▢ `claude plugin validate` in CI on PRs
+- ✓ OG image generation per plugin page (next/og, prerendered)
+- ✓ Sitemap + robots (`app/sitemap.ts` + `app/robots.ts`)
+- ✓ `claude plugin validate` in CI (`.github/workflows/ci.yml`, runs on push/PR)
+- ✓ Custom favicon + site OG image (brand 2×2 mark)
 - ▢ Mobile polish: `display-lg` (52px) headline is large on ≤390px — consider a responsive step-down
-- ▢ Custom favicon / OG image (still the create-next-app default favicon)
+- ▢ Bump CI actions for Node 24 (GitHub deprecating Node 20 action runtime)
