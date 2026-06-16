@@ -45,6 +45,18 @@
       "category": "design",
       "tags": ["design-tokens", "design-system", "drift", "tailwind"],
       "homepage": "https://designagent.dev/plugins/tokens"
+    },
+    {
+      "name": "design-qa",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/sherizan/designagent-design-qa.git",
+        "path": "claude-plugin"
+      },
+      "description": "Does the build match the design? Screenshots your running UI, diffs it against the Figma frame / DESIGN.md, and reports layout, spacing, color, and type drift by severity.",
+      "category": "design",
+      "tags": ["design-qa", "visual-regression", "figma", "qa"],
+      "homepage": "https://designagent.dev/plugins/design-qa"
     }
   ]
 }

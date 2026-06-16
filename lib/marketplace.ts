@@ -62,6 +62,7 @@ const PRESENTATION: Record<
   designagent: { status: "live", featured: true, accent: "figma", author: "@sherizan" },
   superdesigner: { status: "new", featured: false, accent: "review", author: "@sherizan" },
   tokens: { status: "new", featured: false, accent: "tokens", author: "@sherizan" },
+  "design-qa": { status: "new", featured: false, accent: "community", author: "@sherizan" },
 };
 
 /** Best-effort accent from tags/category when a plugin isn't in PRESENTATION. */
