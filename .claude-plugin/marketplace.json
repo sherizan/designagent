@@ -33,6 +33,18 @@
       "category": "design",
       "tags": ["design-review", "ux", "critique", "qa"],
       "homepage": "https://designagent.dev/plugins/superdesigner"
+    },
+    {
+      "name": "tokens",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/sherizan/designagent-tokens.git",
+        "path": "claude-plugin"
+      },
+      "description": "Extract your design tokens from code — colors, spacing, type, radius — with deterministic clustering and hardcoded-value drift detection, and keep DESIGN.md in sync.",
+      "category": "design",
+      "tags": ["design-tokens", "design-system", "drift", "tailwind"],
+      "homepage": "https://designagent.dev/plugins/tokens"
     }
   ]
 }

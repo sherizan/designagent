@@ -1,0 +1,44 @@
+---
+title: tokens
+slug: tokens
+description: Extract design tokens + drift from your codebase.
+category: design
+author: Sherizan Sheikh
+repo: https://github.com/sherizan/designagent-tokens
+tags: [design-tokens, design-system, drift, tailwind]
+status: published
+installMarketplace: sherizan/designagent
+installPlugin: tokens@designagent
+---
+
+## What it does
+
+tokens reverse-engineers the design system that already lives in your codebase. Point it at a
+project and it reports the real tokens — **colors** (clustered by perceptual similarity, not naive
+string-matching), the **spacing** scale and grid, the **type** scale, and **radius** — then flags
+**drift**: the hardcoded values scattered through your source that *should* be tokens but aren't.
+
+The analysis is **deterministic**. It runs a bundled scanner, not a guess — so the same code always
+yields the same tokens.
+
+## What you can do with it
+
+- "What are my design tokens?" — get the full color / spacing / type / radius system.
+- "Find hardcoded colors that should be tokens." — the drift report, with `file:line` and a suggested token for each.
+- "Sync DESIGN.md with the code." — render and write a design-system-faithful `DESIGN.md`.
+- "Name these colors." — hand auto-named clusters to the `token-namer` skill for semantic, role-based names.
+
+## How it works
+
+The plugin bundles a single self-contained scanner (`scan.js`, no install) that reads Tailwind config
+and v4 `@theme`, CSS custom properties, SCSS variables, JS/TS theme objects, `tokens.json`
+(DTCG / Style Dictionary), Swift/Kotlin literals, Storybook stories, and any existing `DESIGN.md`.
+Colors are clustered in CIELAB space (ΔE) so near-duplicates collapse to one token; drift is detected
+by matching hardcoded source values to the nearest token. The scanner is pure — it never writes;
+the `tokens` skill reports the results and writes `DESIGN.md` only with your confirmation.
+
+## Install
+
+- Add the marketplace: `/plugin marketplace add sherizan/designagent`
+- Install: `/plugin install tokens@designagent`
+- Run: `/tokens` (or just ask "what are my design tokens?")
