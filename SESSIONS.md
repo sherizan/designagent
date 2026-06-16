@@ -4,6 +4,23 @@ Human-readable handoff log. Newest first. Read this first in a new session.
 
 ---
 
+## 2026-06-16 (later) — Reskin to DESIGN.md, deploy, merge superdesigner
+
+**Status: shipped & live.** designagent.dev is in production and both plugins are installable.
+
+**Reskin (light theme).** Sherizan exported a DesignAgent `docs/DESIGN.md` — now the authoritative UI spec, imported via `CLAUDE.md` (`@docs/DESIGN.md`). The earlier dark/mint brand was **dropped**. New system: white `#FFFFFF` surfaces, near-black `#0F0F0F` text, **black is the only action color** (no mint), depth via borders not shadows, **Inter + DM Mono**, weights ≤ 600, color only as light category tints behind plugin icons. Tokens live in `app/globals.css` `@theme` + named type-scale utilities (`.text-display-lg` … `.text-eyebrow`).
+- New components: `CategoryIcon`, `StatusBadge` (Live/New/Soon), `SubmitBanner` (inverted), `Eyebrow`. Re-themed `InstallBlock` / `PluginCard` (+ featured white/black-border variant) / `PluginGrid` / `mdx`. Per-plugin presentation (status/featured/accent/author) is a `PRESENTATION` lookup in `lib/marketplace.ts` (keeps the catalog schema-clean).
+- **Home simplified** (per Sherizan): hero → all plugins → submit card. Removed the install card and the "How it works" steps section as noise — landing shows value immediately. `Steps.tsx` deleted.
+- Mobile fix: long install commands now **wrap** (copy button stays visible) instead of scrolling off.
+
+**Deploy.** Installed Vercel CLI (at `~/.npm-global/bin/vercel`, not on sandbox PATH — call by full path; authed as `sherizan`). Linked `sherizan-2a05db34/designagent`, connected the GitHub repo (pushes to `main` auto-build previews). Preview → promoted to prod. **Gotcha:** Vercel's security gate blocks `next-mdx-remote@5.0.0` → upgraded to **v6** (same RSC API, no code change). `designagent.dev` + `www` already aliased; site is fully static (8 prerendered routes). Per-deployment `*.vercel.app` URLs are 401 (Deployment Protection) but the apex domain is public (200).
+
+**superdesigner.** PR #8 **merged** (squash) → `claude-plugin/` now on `superdesigner-ai` `main`. Verified end-to-end: `marketplace add` + `install superdesigner@designagent` succeeds; cleaned up after.
+
+**Open:** submit both to `claude-community` (interactive); custom favicon/OG; responsive headline step-down on small mobile. See BACKLOG.md.
+
+---
+
 ## 2026-06-16 — Pivot + scaffold
 
 **What this repo is now.** `designagent` pivoted from the npm CLI (renamed to

@@ -3,17 +3,18 @@
 Prioritized work for the designagent marketplace + designagent.dev.
 Status: ▢ todo · ◐ in progress · ✓ done
 
-## Phase 1 — Ship
+## Phase 1 — Ship  ✓ COMPLETE
 
 - ✓ Marketplace catalog (`.claude-plugin/marketplace.json`) referencing both plugin repos via `git-subdir`
 - ✓ Next.js 16 + Tailwind v4 site: home, /plugins, /plugins/[slug], /submit
 - ✓ Plugin grid generated from `marketplace.json` (single source of truth)
 - ✓ GitHub Issue Form submission flow
-- ◐ `superdesigner-ai`: add `claude-plugin/` package + `plugin.json` (PR in its own repo)
-- ▢ Create + push `sherizan/designagent` GitHub repo
-- ▢ Verify end-to-end: `/plugin marketplace add sherizan/designagent` + install both plugins
-- ▢ Deploy to Vercel, point `designagent.dev`
-- ▢ Submit both plugins to `claude-community` (after `claude plugin validate` passes)
+- ✓ `superdesigner-ai`: added `claude-plugin/` package + `plugin.json` (PR #8 merged to `main`)
+- ✓ Created + pushed `sherizan/designagent` GitHub repo (old CLI renamed → `designagent-old`)
+- ✓ Reskinned the whole site to `docs/DESIGN.md` (light theme, Inter + DM Mono, black as the only action color); home simplified to hero → plugins → submit card
+- ✓ Verified end-to-end: `marketplace add` + `install superdesigner@designagent` resolves the git-subdir source
+- ✓ Deployed to Vercel — **live at https://designagent.dev** (prod); GitHub repo connected for auto preview builds
+- ▢ Submit both plugins to `claude-community` (interactive, at claude.ai/admin-settings/directory) — `claude plugin validate --strict` already passes
 
 ## Phase 2 — Community
 
@@ -34,4 +35,5 @@ Status: ▢ todo · ◐ in progress · ✓ done
 - ▢ OG image generation per plugin page
 - ▢ Sitemap + robots
 - ▢ `claude plugin validate` in CI on PRs
-- ▢ Reconcile accent: shipped with brand mint `#9ae6b4`; revisit if the brighter `#A5FF4D` from the original plan is preferred
+- ▢ Mobile polish: `display-lg` (52px) headline is large on ≤390px — consider a responsive step-down
+- ▢ Custom favicon / OG image (still the create-next-app default favicon)
