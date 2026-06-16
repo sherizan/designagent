@@ -1,0 +1,63 @@
+name: Plugin submission
+description: Submit a Claude Code design plugin to the designagent marketplace.
+title: "[plugin] <your plugin name>"
+labels: ["submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for submitting to **designagent** — the Claude Code plugin marketplace for designers.
+        Fill this in and we'll review it. See the criteria at https://designagent.dev/submit
+  - type: input
+    id: name
+    attributes:
+      label: Plugin name
+      description: The name users will install (the `name` in your plugin.json).
+      placeholder: my-design-plugin
+    validations:
+      required: true
+  - type: input
+    id: one-liner
+    attributes:
+      label: What it does (one sentence)
+      placeholder: Generates accessible color palettes from a brand description, on the Figma canvas.
+    validations:
+      required: true
+  - type: input
+    id: repo
+    attributes:
+      label: GitHub repo URL
+      placeholder: https://github.com/you/my-design-plugin
+    validations:
+      required: true
+  - type: textarea
+    id: install
+    attributes:
+      label: Install commands
+      description: The two-command install pattern, exactly as a user would run it.
+      placeholder: |
+        /plugin marketplace add you/my-design-plugin
+        /plugin install my-design-plugin@your-marketplace
+      render: shell
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: Your name / contact
+      placeholder: Jane Doe — @janedoe
+    validations:
+      required: true
+  - type: checkboxes
+    id: criteria
+    attributes:
+      label: Acceptance criteria
+      options:
+        - label: It has a `.claude-plugin/plugin.json` manifest.
+          required: true
+        - label: It installs via the two-command pattern (no clone / setup script).
+          required: true
+        - label: It does design-specific work (Figma, design systems, review, prototyping…).
+          required: true
+        - label: The repo is public.
+          required: true

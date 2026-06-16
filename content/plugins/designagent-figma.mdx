@@ -1,0 +1,50 @@
+---
+title: designagent (Figma bridge)
+slug: designagent-figma
+description: Claude Code's live two-way bridge to Figma.
+category: design
+author: Sherizan Sheikh
+repo: https://github.com/sherizan/designagent-figma
+tags: [figma, design-to-code, canvas, design-system]
+status: published
+installMarketplace: sherizan/designagent
+installPlugin: designagent@designagent
+---
+
+## What it does
+
+designagent gives Claude Code hands and eyes inside Figma. It opens a live,
+two-way bridge to the canvas — Claude can read what's there, build new frames
+and components, and edit existing ones in real time. The same bridge exports a
+design-system-faithful `DESIGN.md` spec you then build production UI from.
+
+It's two halves of one loop:
+
+- **Canvas → code.** Export tokens, components, and layout as `DESIGN.md`, then
+  use the bundled `design-to-code` skill to build UI that respects your tokens
+  and component system instead of hardcoding values.
+- **Code → canvas.** Have Claude read the open file, annotate issues, create
+  shapes and text, restyle layers, and render HTML straight onto the canvas.
+
+## What you can do with it
+
+- "Read the open Figma frame and build it as a React component using our tokens."
+- "Create a pricing section on the canvas with three tiers and a featured plan."
+- "Audit this screen for spacing and contrast issues and annotate them in place."
+- "Turn this HTML into Figma frames."
+
+## How it works
+
+The plugin bundles an MCP server that talks to a companion Figma plugin over a
+local WebSocket bridge. When you install it through Claude Code, the MCP server
+is wired up automatically — Claude gets a toolset for reading and mutating the
+canvas (`get_design_md`, `create_frame`, `set_fill`, `instantiate_component`,
+`html_to_design`, and ~30 more). The `design-to-code` skill handles the
+translation from a `DESIGN.md` spec into framework-faithful UI code.
+
+## Install
+
+It's the flagship — its plugin name is simply `designagent`:
+
+- Add the marketplace: `/plugin marketplace add sherizan/designagent`
+- Install: `/plugin install designagent@designagent`
