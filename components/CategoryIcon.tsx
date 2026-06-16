@@ -7,10 +7,10 @@ const ACCENT: Record<AccentKey, string> = {
   community: "bg-accent-community text-on-accent-community",
 };
 
-function Glyph({ accent }: { accent: AccentKey }) {
+function Glyph({ accent, px = 20 }: { accent: AccentKey; px?: number }) {
   const common = {
-    width: 20,
-    height: 20,
+    width: px,
+    height: px,
     viewBox: "0 0 24 24",
     fill: "none",
     stroke: "currentColor",
@@ -57,13 +57,20 @@ function Glyph({ accent }: { accent: AccentKey }) {
   }
 }
 
-export function CategoryIcon({ accent }: { accent: AccentKey }) {
+export function CategoryIcon({
+  accent,
+  size = 40,
+}: {
+  accent: AccentKey;
+  size?: number;
+}) {
   return (
     <span
       aria-hidden
-      className={`inline-flex size-10 items-center justify-center rounded-[10px] ${ACCENT[accent]}`}
+      className={`inline-flex items-center justify-center ${ACCENT[accent]}`}
+      style={{ width: size, height: size, borderRadius: size * 0.25 }}
     >
-      <Glyph accent={accent} />
+      <Glyph accent={accent} px={Math.round(size / 2)} />
     </span>
   );
 }

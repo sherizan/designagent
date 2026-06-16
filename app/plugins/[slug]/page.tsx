@@ -5,6 +5,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { InstallBlock } from "@/components/InstallBlock";
 import { CategoryIcon } from "@/components/CategoryIcon";
 import { StatusBadge } from "@/components/StatusBadge";
+import { PluginCover } from "@/components/PluginCover";
 import { getPlugin, getPlugins } from "@/lib/marketplace";
 import { getPluginDoc } from "@/lib/plugins";
 import { mdxComponents } from "@/components/mdx";
@@ -58,6 +59,10 @@ export default async function PluginPage({
           {plugin.repo ? ` · ${plugin.repo}` : ""}
         </p>
       </header>
+
+      <div className="mt-8">
+        <PluginCover plugin={plugin} />
+      </div>
 
       <div className="mt-8">
         <InstallBlock add={plugin.install.add} install={plugin.install.install} />
