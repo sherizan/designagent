@@ -1,21 +1,61 @@
 @import "tailwindcss";
 
+/* ── DesignAgent design system (source of truth: docs/DESIGN.md) ───────────── */
 @theme {
-  --color-background: #0e100f;
-  --color-foreground: #fffcde;
-  --color-accent: #9ae6b4;
-  --color-accent-ink: #0e100f;
-  --color-card: #1a1a1a;
-  --color-border: #fffcde1a;
-  --color-border-strong: #fffcde33;
-  --color-muted: #fffcde99;
+  /* Surface */
+  --color-surface: #ffffff;
+  --color-surface-secondary: #f8f8f8;
+  --color-surface-tertiary: #f0f0f0;
 
+  /* Content */
+  --color-on-surface: #0f0f0f;
+  --color-on-surface-muted: #666666;
+  --color-on-surface-subtle: #999999;
+  --color-on-surface-faint: #cccccc;
+
+  /* Borders */
+  --color-border: #ebebeb;
+  --color-border-strong: #d0d0d0;
+
+  /* Primary — the single action color (black is the brand) */
+  --color-primary: #0f0f0f;
+  --color-primary-hover: #2a2a2a;
+  --color-on-primary: #ffffff;
+
+  /* Category accents — plugin icon containers only */
+  --color-accent-figma: #e8f4ff;
+  --color-on-accent-figma: #1a6fad;
+  --color-accent-review: #f0ebff;
+  --color-on-accent-review: #6b3fa0;
+  --color-accent-tokens: #fff4e6;
+  --color-on-accent-tokens: #a05a00;
+  --color-accent-community: #f5f5f5;
+  --color-on-accent-community: #999999;
+
+  /* Semantic */
+  --color-success: #1a8a4a;
+  --color-success-surface: #e8faf0;
+  --color-info: #185fa5;
+  --color-info-surface: #e6f1fb;
+  --color-warning: #a05a00;
+  --color-warning-surface: #fff4e6;
+  --color-error: #a32d2d;
+  --color-error-surface: #fcebeb;
+
+  /* Fonts */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains-mono), ui-monospace, "SF Mono", monospace;
+  --font-mono: var(--font-dm-mono), ui-monospace, "SF Mono", monospace;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html {
@@ -23,20 +63,95 @@ html {
 }
 
 body {
-  background: var(--color-background);
-  color: var(--color-foreground);
+  background: var(--color-surface);
+  color: var(--color-on-surface);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: var(--color-accent);
-  color: var(--color-accent-ink);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
 }
 
-/* Subtle dotted grid backdrop — no gradients, no hero art. */
-.bg-grid {
-  background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
-  background-size: 28px 28px;
+/* ── Type scale (verbatim from DESIGN.md typography tokens) ─────────────────── */
+.text-display-lg {
+  font-size: 52px;
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+.text-display-md {
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+.text-heading-lg {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+.text-heading-md {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+.text-heading-sm {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+.text-body-lg {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.65;
+}
+.text-body-md {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+.text-body-sm {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+.text-label-lg {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+}
+.text-label-md {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+}
+.text-label-sm {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+}
+.text-mono-md {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.text-mono-sm {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.text-eyebrow {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }

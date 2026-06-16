@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { InstallBlock } from "@/components/InstallBlock";
+import { CategoryIcon } from "@/components/CategoryIcon";
+import { StatusBadge } from "@/components/StatusBadge";
 import { getPlugin, getPlugins } from "@/lib/marketplace";
 import { getPluginDoc } from "@/lib/plugins";
 import { mdxComponents } from "@/components/mdx";
@@ -34,46 +36,44 @@ export default async function PluginPage({
   const doc = getPluginDoc(slug);
 
   return (
-    <article className="mx-auto max-w-3xl px-6 py-16">
+    <article className="mx-auto max-w-[760px] px-6 py-16 sm:px-10">
       <Link
         href="/plugins"
-        className="font-mono text-sm text-muted transition-colors hover:text-foreground"
+        className="text-mono-sm text-on-surface-subtle transition-colors hover:text-on-surface"
       >
         ← all plugins
       </Link>
 
       <header className="mt-6">
-        <div className="flex items-center gap-3">
-          <h1 className="font-mono text-3xl font-semibold tracking-tight">
-            {plugin.name}
-          </h1>
-          <span className="rounded-full border border-border px-2 py-0.5 font-mono text-[11px] uppercase tracking-wider text-muted">
-            {plugin.category}
-          </span>
+        <div className="flex items-start justify-between">
+          <CategoryIcon accent={plugin.accent} />
+          <StatusBadge status={plugin.status} />
         </div>
-        <p className="mt-4 text-lg leading-relaxed text-muted">
+        <h1 className="text-display-md mt-5 text-on-surface">{plugin.name}</h1>
+        <p className="text-body-lg mt-3 text-on-surface-muted">
           {plugin.description}
+        </p>
+        <p className="text-mono-sm mt-3 text-on-surface-faint">
+          {plugin.author}
+          {plugin.repo ? ` · ${plugin.repo}` : ""}
         </p>
       </header>
 
       <div className="mt-8">
-        <p className="mb-3 font-mono text-xs uppercase tracking-wider text-muted">
-          Install
-        </p>
         <InstallBlock add={plugin.install.add} install={plugin.install.install} />
       </div>
 
       {doc ? (
-        <div className="prose-designagent mt-12">
+        <div className="mt-12">
           <MDXRemote source={doc.body} components={mdxComponents} />
         </div>
       ) : (
-        <p className="mt-12 text-muted">
+        <p className="text-body-lg mt-12 text-on-surface-muted">
           Documentation coming soon. In the meantime, see the{" "}
           {plugin.repo ? (
             <a
               href={`https://github.com/${plugin.repo}`}
-              className="text-accent underline-offset-4 hover:underline"
+              className="text-on-surface underline decoration-on-surface-faint underline-offset-4 hover:decoration-on-surface"
             >
               source repository
             </a>
@@ -84,16 +84,16 @@ export default async function PluginPage({
         </p>
       )}
 
-      <footer className="mt-14 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-border pt-6 text-sm text-muted">
+      <footer className="text-body-sm mt-14 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-border pt-6 text-on-surface-subtle">
         {plugin.repo && (
           <a
             href={`https://github.com/${plugin.repo}`}
-            className="transition-colors hover:text-foreground"
+            className="transition-colors hover:text-on-surface"
           >
             {plugin.repo} ↗
           </a>
         )}
-        <Link href="/submit" className="transition-colors hover:text-foreground">
+        <Link href="/submit" className="transition-colors hover:text-on-surface">
           Submit your own →
         </Link>
       </footer>

@@ -29,10 +29,10 @@ export function PluginGrid({
               key={cat}
               type="button"
               onClick={() => setActive(cat)}
-              className={`rounded-full border px-3 py-1 font-mono text-xs transition-colors ${
+              className={`text-label-md rounded-full border px-3.5 py-1.5 transition-colors ${
                 active === cat
-                  ? "border-accent bg-accent text-accent-ink"
-                  : "border-border text-muted hover:border-border-strong hover:text-foreground"
+                  ? "border-primary bg-primary text-on-primary"
+                  : "border-border text-on-surface-subtle hover:border-border-strong hover:text-on-surface"
               }`}
             >
               {cat}
@@ -40,7 +40,7 @@ export function PluginGrid({
           ))}
         </div>
       )}
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {visible.map((plugin) => (
           <PluginCard key={plugin.slug} plugin={plugin} />
         ))}

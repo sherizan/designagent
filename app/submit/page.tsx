@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Eyebrow } from "@/components/Eyebrow";
 
 export const metadata: Metadata = {
   title: "Submit a plugin",
@@ -30,9 +31,10 @@ const CRITERIA = [
 
 export default function SubmitPage() {
   return (
-    <div className="mx-auto max-w-3xl px-6 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight">Submit a plugin</h1>
-      <p className="mt-4 max-w-xl leading-relaxed text-muted">
+    <div className="mx-auto max-w-[1200px] px-6 py-16 sm:px-10">
+      <Eyebrow>Submit</Eyebrow>
+      <h1 className="text-heading-lg mt-3 text-on-surface">Submit a plugin</h1>
+      <p className="text-body-lg mt-3 max-w-[680px] text-on-surface-muted">
         designagent is open. If you&apos;ve built a Claude Code plugin for
         designers, submit it and we&apos;ll review it. Submission opens a public
         GitHub issue — no account beyond GitHub, no form to chase.
@@ -40,33 +42,31 @@ export default function SubmitPage() {
 
       <a
         href={ISSUE_URL}
-        className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 font-mono text-sm font-medium text-accent-ink transition-opacity hover:opacity-90"
+        className="text-label-lg mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-[22px] py-[11px] text-on-primary transition-colors hover:bg-primary-hover"
       >
         Open the submission form ↗
       </a>
 
-      <h2 className="mt-14 text-xl font-semibold tracking-tight">
+      <h2 className="text-heading-md mt-16 text-on-surface">
         What we&apos;re looking for
       </h2>
-      <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+      <ul className="mt-6 grid gap-4 sm:grid-cols-2">
         {CRITERIA.map((c) => (
           <li
             key={c.title}
-            className="rounded-xl border border-border bg-card/40 p-5"
+            className="rounded-xl border border-border bg-surface-secondary p-6"
           >
-            <p className="font-mono text-sm font-semibold text-foreground">
-              {c.title}
-            </p>
-            <p className="mt-2 text-sm leading-relaxed text-muted">{c.body}</p>
+            <p className="text-heading-sm text-on-surface">{c.title}</p>
+            <p className="text-body-sm mt-2 text-on-surface-muted">{c.body}</p>
           </li>
         ))}
       </ul>
 
-      <p className="mt-10 text-sm text-muted">
+      <p className="text-body-sm mt-10 text-on-surface-subtle">
         Review is manual for now. Approved plugins get added to the{" "}
         <a
           href="https://github.com/sherizan/designagent/blob/main/.claude-plugin/marketplace.json"
-          className="text-accent underline-offset-4 hover:underline"
+          className="text-on-surface underline decoration-on-surface-faint underline-offset-4 hover:decoration-on-surface"
         >
           marketplace catalog
         </a>{" "}

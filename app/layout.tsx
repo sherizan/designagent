@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, DM_Mono } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 
@@ -9,9 +9,10 @@ const inter = Inter({
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const dmMono = DM_Mono({
   subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
+  weight: ["400", "500"],
+  variable: "--font-dm-mono",
   display: "swap",
 });
 
@@ -39,52 +40,73 @@ const NAV = [
   { href: "/submit", label: "Submit" },
 ];
 
+function LogoMark() {
+  return (
+    <span aria-hidden className="grid grid-cols-2 gap-[2px]">
+      {[0, 1, 2, 3].map((i) => (
+        <span
+          key={i}
+          className="size-[7px] rounded-[2px] bg-primary"
+        />
+      ))}
+    </span>
+  );
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${dmMono.variable}`}>
       <body className="min-h-dvh flex flex-col antialiased">
-        <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur-md">
-          <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-            <Link
-              href="/"
-              className="font-mono text-sm font-semibold tracking-tight"
-            >
-              <span className="text-accent">design</span>agent
+        <header className="sticky top-0 z-40 border-b border-border bg-surface/85 backdrop-blur-md">
+          <nav className="relative mx-auto flex h-[60px] max-w-[1200px] items-center justify-between px-6 sm:px-10">
+            <Link href="/" className="flex items-center gap-2.5">
+              <LogoMark />
+              <span className="text-[15px] font-semibold tracking-tight text-on-surface">
+                designagent
+              </span>
             </Link>
-            <div className="flex items-center gap-6 text-sm">
+
+            <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-7 sm:flex">
               {NAV.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-muted transition-colors hover:text-foreground"
+                  className="text-label-md text-on-surface-subtle transition-colors hover:text-on-surface"
                 >
                   {item.label}
                 </Link>
               ))}
             </div>
+
+            <Link
+              href="/submit"
+              className="text-label-lg rounded-full bg-primary px-[18px] py-2.5 text-on-primary transition-colors hover:bg-primary-hover"
+            >
+              Submit a plugin
+            </Link>
           </nav>
         </header>
 
         <main className="flex-1">{children}</main>
 
         <footer className="border-t border-border">
-          <div className="mx-auto flex max-w-5xl flex-col gap-2 px-6 py-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
-            <p>
-              <span className="text-accent">design</span>agent — Claude Code
-              plugins for designers.
+          <div className="mx-auto flex max-w-[1200px] flex-col gap-3 px-6 py-8 text-body-sm text-on-surface-subtle sm:flex-row sm:items-center sm:justify-between sm:px-10">
+            <p className="flex items-center gap-2">
+              <LogoMark />
+              <span>Claude Code plugins for designers.</span>
             </p>
-            <div className="flex gap-5">
+            <div className="flex gap-6">
               <a
                 href="https://github.com/sherizan/designagent"
-                className="transition-colors hover:text-foreground"
+                className="transition-colors hover:text-on-surface"
               >
                 GitHub
               </a>
               <Link
                 href="/submit"
-                className="transition-colors hover:text-foreground"
+                className="transition-colors hover:text-on-surface"
               >
                 Submit a plugin
               </Link>

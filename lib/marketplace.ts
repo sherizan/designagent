@@ -28,6 +28,9 @@ interface RawMarketplace {
   plugins: RawPlugin[];
 }
 
+export type PluginStatus = "live" | "new" | "soon";
+export type AccentKey = "figma" | "review" | "tokens" | "community";
+
 export interface Plugin {
   /** Canonical plugin name (what you install). */
   name: string;
@@ -41,6 +44,32 @@ export interface Plugin {
   homepage: string | null;
   /** The two-line install command, ready to render. */
   install: { add: string; install: string };
+  /** Presentation (DESIGN.md): status badge, featured card, icon accent, author handle. */
+  status: PluginStatus;
+  featured: boolean;
+  accent: AccentKey;
+  author: string;
+}
+
+/**
+ * Per-plugin presentation, keyed by plugin name. Kept here (not in marketplace.json)
+ * so the catalog stays schema-clean for `claude plugin validate`.
+ */
+const PRESENTATION: Record<
+  string,
+  { status: PluginStatus; featured: boolean; accent: AccentKey; author: string }
+> = {
+  designagent: { status: "live", featured: true, accent: "figma", author: "@sherizan" },
+  superdesigner: { status: "new", featured: false, accent: "review", author: "@sherizan" },
+};
+
+/** Best-effort accent from tags/category when a plugin isn't in PRESENTATION. */
+function accentFor(p: { tags: string[]; category: string }): AccentKey {
+  const hay = [...p.tags, p.category].join(" ").toLowerCase();
+  if (hay.includes("figma") || hay.includes("canvas")) return "figma";
+  if (hay.includes("review") || hay.includes("critique") || hay.includes("ux")) return "review";
+  if (hay.includes("token") || hay.includes("design-system")) return "tokens";
+  return "community";
 }
 
 function slugFromHomepage(homepage: string | undefined, name: string): string {
@@ -68,19 +97,28 @@ export function getMarketplace() {
     readFileSync(join(process.cwd(), ".claude-plugin", "marketplace.json"), "utf8"),
   ) as RawMarketplace;
 
-  const plugins: Plugin[] = raw.plugins.map((p) => ({
-    name: p.name,
-    slug: slugFromHomepage(p.homepage, p.name),
-    description: p.description,
-    category: p.category ?? "design",
-    tags: p.tags ?? [],
-    repo: repoFromSource(p.source),
-    homepage: p.homepage ?? null,
-    install: {
-      add: `/plugin marketplace add ${MARKETPLACE_REPO}`,
-      install: `/plugin install ${p.name}@${MARKETPLACE}`,
-    },
-  }));
+  const plugins: Plugin[] = raw.plugins.map((p) => {
+    const tags = p.tags ?? [];
+    const category = p.category ?? "design";
+    const pres = PRESENTATION[p.name];
+    return {
+      name: p.name,
+      slug: slugFromHomepage(p.homepage, p.name),
+      description: p.description,
+      category,
+      tags,
+      repo: repoFromSource(p.source),
+      homepage: p.homepage ?? null,
+      install: {
+        add: `/plugin marketplace add ${MARKETPLACE_REPO}`,
+        install: `/plugin install ${p.name}@${MARKETPLACE}`,
+      },
+      status: pres?.status ?? "soon",
+      featured: pres?.featured ?? false,
+      accent: pres?.accent ?? accentFor({ tags, category }),
+      author: pres?.author ?? "@sherizan",
+    };
+  });
 
   cache = {
     name: raw.name,

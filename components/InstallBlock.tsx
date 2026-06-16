@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-function CopyRow({ command, prompt }: { command: string; prompt: string }) {
+function CopyRow({ command }: { command: string }) {
   const [copied, setCopied] = useState(false);
 
   async function copy() {
@@ -16,18 +16,21 @@ function CopyRow({ command, prompt }: { command: string; prompt: string }) {
   }
 
   return (
-    <div className="group flex items-center gap-3 px-4 py-3 sm:px-5 sm:py-4">
-      <span aria-hidden className="select-none font-mono text-accent">
-        {prompt}
+    <div className="flex items-start gap-3 py-1.5">
+      <span
+        aria-hidden
+        className="select-none pt-px text-mono-sm text-on-surface-faint"
+      >
+        /
       </span>
-      <code className="flex-1 overflow-x-auto whitespace-nowrap font-mono text-sm text-foreground sm:text-base">
+      <code className="text-mono-sm min-w-0 flex-1 break-words text-on-surface sm:whitespace-nowrap">
         {command}
       </code>
       <button
         type="button"
         onClick={copy}
         aria-label={`Copy: ${command}`}
-        className="shrink-0 rounded-md border border-border px-2.5 py-1 font-mono text-xs text-muted transition-colors hover:border-border-strong hover:text-foreground"
+        className="text-mono-sm shrink-0 rounded-[6px] border border-border bg-surface px-2.5 py-1 text-on-surface-subtle transition-colors hover:border-border-strong hover:text-on-surface"
       >
         {copied ? "copied" : "copy"}
       </button>
@@ -46,10 +49,11 @@ export function InstallBlock({
 }) {
   return (
     <div
-      className={`overflow-hidden rounded-xl border border-border-strong bg-card/60 divide-y divide-border ${className}`}
+      className={`inline-block max-w-full rounded-xl border border-border bg-surface-secondary px-6 py-5 ${className}`}
     >
-      <CopyRow command={add} prompt="›" />
-      <CopyRow command={install} prompt="›" />
+      <p className="text-eyebrow mb-2.5 text-on-surface-faint">Quick install</p>
+      <CopyRow command={add} />
+      <CopyRow command={install} />
     </div>
   );
 }

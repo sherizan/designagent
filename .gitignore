@@ -25,7 +25,9 @@
 *.pem
 
 # internal planning (PLAN.md and specs stay private)
-/docs/
+/docs/*
+# …but ship the design spec (imported by CLAUDE.md, source of truth for UI)
+!/docs/DESIGN.md
 
 # claude / playwright artifacts
 .claude/
