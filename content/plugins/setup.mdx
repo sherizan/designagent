@@ -1,0 +1,45 @@
+---
+title: setup
+slug: setup
+description: Scaffold a project's design context for Claude Code.
+category: design
+author: Sherizan Sheikh
+repo: https://github.com/sherizan/designagent-setup
+tags: [setup, onboarding, design-system, claude-md]
+status: published
+installMarketplace: sherizan/designagent
+installPlugin: setup@designagent
+---
+
+## What it does
+
+setup is the fastest on-ramp for designers new to Claude Code. It scaffolds the **three-file design
+context** that makes Claude Code design-aware — tailored to your stack, in one conversation:
+
+- **`DESIGN.md`** — machine-readable tokens (colors, type, spacing, radius, components), linted via `@google/design.md`.
+- **`CLAUDE.md`** — the design brain: principles, accessibility baseline, agent instructions, and a do/don't list.
+- **`DECISIONS.md`** — a running log of *why*, so context survives across sessions.
+
+It's conversational, not a wizard: it reads your repo and asks only what it can't infer (project name,
+design system, framework, canvas). And it **augments, never clobbers** — an existing `CLAUDE.md` gets a
+marked block appended, not overwritten.
+
+## What you can do with it
+
+- "Set up my project for design work."
+- "Scaffold a DESIGN.md and CLAUDE.md for this app."
+- "Get this repo ready for designagent."
+
+## How it works
+
+setup bundles a set of proven starter templates (CLAUDE.md base + per-framework sections for React /
+SwiftUI / Compose, and DESIGN.md starters for Tailwind / shadcn / custom). The skill picks the right
+ones for your stack, fills them in, and writes the files. Working in an **existing codebase**? It points
+you to the **tokens** plugin to reverse-engineer `DESIGN.md` from your real code instead of starting
+from a template — then writes `CLAUDE.md` and `DECISIONS.md` around it.
+
+## Install
+
+- Add the marketplace: `/plugin marketplace add sherizan/designagent`
+- Install: `/plugin install setup@designagent`
+- Run: `/setup` (or just ask "set up my project for design work")

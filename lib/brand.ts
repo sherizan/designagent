@@ -19,4 +19,5 @@ export const ACCENT_HEX: Record<AccentKey, { bg: string; fg: string }> = {
   review: { bg: "#F0EBFF", fg: "#6B3FA0" },
   tokens: { bg: "#FFF4E6", fg: "#A05A00" },
   community: { bg: "#F5F5F5", fg: "#999999" },
+  setup: { bg: "#E8FAF0", fg: "#1A8A4A" },
 };

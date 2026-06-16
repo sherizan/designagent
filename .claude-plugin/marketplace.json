@@ -23,6 +23,18 @@
       "homepage": "https://designagent.dev/plugins/designagent-figma"
     },
     {
+      "name": "setup",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/sherizan/designagent-setup.git",
+        "path": "claude-plugin"
+      },
+      "description": "Set up a project for design work in Claude Code — scaffold DESIGN.md (tokens), CLAUDE.md (design intelligence), and DECISIONS.md, tailored to your stack. The fastest on-ramp for designers new to Claude Code.",
+      "category": "design",
+      "tags": ["setup", "onboarding", "design-system", "claude-md"],
+      "homepage": "https://designagent.dev/plugins/setup"
+    },
+    {
       "name": "superdesigner",
       "source": {
         "source": "git-subdir",

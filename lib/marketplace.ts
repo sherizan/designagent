@@ -29,7 +29,7 @@ interface RawMarketplace {
 }
 
 export type PluginStatus = "live" | "new" | "soon";
-export type AccentKey = "figma" | "review" | "tokens" | "community";
+export type AccentKey = "figma" | "review" | "tokens" | "community" | "setup";
 
 export interface Plugin {
   /** Canonical plugin name (what you install). */
@@ -63,6 +63,7 @@ const PRESENTATION: Record<
   superdesigner: { status: "new", featured: false, accent: "review", author: "@sherizan" },
   tokens: { status: "new", featured: false, accent: "tokens", author: "@sherizan" },
   "design-qa": { status: "new", featured: false, accent: "community", author: "@sherizan" },
+  setup: { status: "new", featured: false, accent: "setup", author: "@sherizan" },
 };
 
 /** Best-effort accent from tags/category when a plugin isn't in PRESENTATION. */
