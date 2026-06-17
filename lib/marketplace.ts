@@ -29,7 +29,13 @@ interface RawMarketplace {
 }
 
 export type PluginStatus = "live" | "new" | "soon";
-export type AccentKey = "figma" | "review" | "tokens" | "community" | "setup";
+export type AccentKey =
+  | "figma"
+  | "review"
+  | "tokens"
+  | "community"
+  | "setup"
+  | "backgrounds";
 
 export interface Plugin {
   /** Canonical plugin name (what you install). */
@@ -64,6 +70,7 @@ const PRESENTATION: Record<
   tokens: { status: "new", featured: false, accent: "tokens", author: "@sherizan" },
   "design-qa": { status: "new", featured: false, accent: "community", author: "@sherizan" },
   setup: { status: "new", featured: false, accent: "setup", author: "@sherizan" },
+  backgrounds: { status: "new", featured: false, accent: "backgrounds", author: "@sherizan" },
 };
 
 /** Best-effort accent from tags/category when a plugin isn't in PRESENTATION. */
@@ -72,6 +79,8 @@ function accentFor(p: { tags: string[]; category: string }): AccentKey {
   if (hay.includes("figma") || hay.includes("canvas")) return "figma";
   if (hay.includes("review") || hay.includes("critique") || hay.includes("ux")) return "review";
   if (hay.includes("token") || hay.includes("design-system")) return "tokens";
+  if (hay.includes("shader") || hay.includes("background") || hay.includes("generative") || hay.includes("ascii")) return "backgrounds";
+  if (hay.includes("setup") || hay.includes("onboarding") || hay.includes("scaffold")) return "setup";
   return "community";
 }
 

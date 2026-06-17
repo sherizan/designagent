@@ -69,6 +69,18 @@
       "category": "design",
       "tags": ["design-qa", "visual-regression", "figma", "qa"],
       "homepage": "https://designagent.dev/plugins/design-qa"
+    },
+    {
+      "name": "backgrounds",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/sherizan/designagent-backgrounds.git",
+        "path": "claude-plugin"
+      },
+      "description": "Generate self-contained, brand-aware background effects — animated WebGL shader, dot-grid, or ASCII art — recolored from your DESIGN.md, with reduced-motion and fallbacks baked in.",
+      "category": "design",
+      "tags": ["background", "shader", "generative", "ascii"],
+      "homepage": "https://designagent.dev/plugins/backgrounds"
     }
   ]
 }

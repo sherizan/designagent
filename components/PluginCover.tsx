@@ -10,6 +10,7 @@ const COVER_BG: Record<Plugin["accent"], string> = {
   tokens: "bg-accent-tokens",
   community: "bg-accent-community",
   setup: "bg-accent-setup",
+  backgrounds: "bg-accent-backgrounds",
 };
 
 const EXTS = ["png", "jpg", "jpeg", "webp"] as const;

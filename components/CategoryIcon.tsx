@@ -6,6 +6,7 @@ const ACCENT: Record<AccentKey, string> = {
   tokens: "bg-accent-tokens text-on-accent-tokens",
   community: "bg-accent-community text-on-accent-community",
   setup: "bg-accent-setup text-on-accent-setup",
+  backgrounds: "bg-accent-backgrounds text-on-accent-backgrounds",
 };
 
 function Glyph({ accent, px = 20 }: { accent: AccentKey; px?: number }) {
@@ -44,6 +45,15 @@ function Glyph({ accent, px = 20 }: { accent: AccentKey; px?: number }) {
           <circle cx="13.5" cy="6.5" r="2.5" />
           <circle cx="6.5" cy="11.5" r="2.5" />
           <path d="M12 22a10 10 0 1 1 10-10 4 4 0 0 1-4 4h-2a2 2 0 0 0-1.4 3.4A2 2 0 0 1 12 22Z" />
+        </svg>
+      );
+    case "backgrounds":
+      // stacked waves — generative background
+      return (
+        <svg {...common}>
+          <path d="M2 6c3 0 3 2 5 2s2-2 5-2 3 2 5 2 3-2 5-2" />
+          <path d="M2 12c3 0 3 2 5 2s2-2 5-2 3 2 5 2 3-2 5-2" />
+          <path d="M2 18c3 0 3 2 5 2s2-2 5-2 3 2 5 2 3-2 5-2" />
         </svg>
       );
     case "setup":
