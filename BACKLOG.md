@@ -20,7 +20,8 @@ Status: ▢ todo · ◐ in progress · ✓ done
 
 - ✓ Shipped 3rd plugin **`tokens`** (github.com/sherizan/designagent-tokens) — extract design tokens + drift; live on the marketplace + site.
 - ✓ Shipped 4th plugin **`design-qa`** (github.com/sherizan/designagent-design-qa) — build↔design QA (vision diff + computed-style token check, bundled Playwright MCP); live.
-- ✓ Shipped 5th plugin **`setup`** (github.com/sherizan/designagent-setup) — onboarding scaffolder for the 3-file design context (DESIGN.md/CLAUDE.md/DECISIONS.md); live. Added a 5th green accent. Next (locked): `backgrounds` (generative shader/dotgrid/ASCII) → `mobbin` (competitor analysis); then `a11y`, `redlines`, `palette`. Fold UX-copywriting into `superdesigner`; heuristics dropped.
+- ✓ Shipped 5th plugin **`setup`** (github.com/sherizan/designagent-setup) — onboarding scaffolder for the 3-file design context; live. Added a 5th green accent.
+- ✓ Shipped 6th plugin **`backgrounds`** (github.com/sherizan/designagent-backgrounds) — generative shader/dotgrid/ASCII backgrounds (recipe-based, brand-aware); live. Added a 6th teal accent. Next (locked): `mobbin` (competitor analysis via the stable Mobbin MCP); then `a11y`, `redlines`, `palette`. Fold UX-copywriting into `superdesigner`; heuristics dropped.
 - ▢ Accept first external submissions; triage the submission issue label
 - ▢ Pin plugin sources to a `ref`/`sha` once each repo cuts a tagged release (currently tracking default branch)
 - ▢ "How to build a design plugin" guide (the moat)
