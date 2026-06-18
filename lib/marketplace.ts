@@ -29,6 +29,8 @@ interface RawMarketplace {
 }
 
 export type PluginStatus = "live" | "new" | "soon";
+/** Kind: a `bridge` connects Claude Code to an external surface (e.g. Figma); a `capability` is something Claude Code does. */
+export type PluginKind = "bridge" | "capability";
 export type AccentKey =
   | "figma"
   | "review"
@@ -55,6 +57,7 @@ export interface Plugin {
   featured: boolean;
   accent: AccentKey;
   author: string;
+  kind: PluginKind;
 }
 
 /**
@@ -63,14 +66,14 @@ export interface Plugin {
  */
 const PRESENTATION: Record<
   string,
-  { status: PluginStatus; featured: boolean; accent: AccentKey; author: string }
+  { status: PluginStatus; featured: boolean; accent: AccentKey; author: string; kind: PluginKind }
 > = {
-  designagent: { status: "live", featured: true, accent: "figma", author: "@sherizan" },
-  superdesigner: { status: "new", featured: false, accent: "review", author: "@sherizan" },
-  tokens: { status: "new", featured: false, accent: "tokens", author: "@sherizan" },
-  "design-qa": { status: "new", featured: false, accent: "community", author: "@sherizan" },
-  setup: { status: "new", featured: false, accent: "setup", author: "@sherizan" },
-  backgrounds: { status: "new", featured: false, accent: "backgrounds", author: "@sherizan" },
+  designagent: { status: "live", featured: true, accent: "figma", author: "@sherizan", kind: "bridge" },
+  superdesigner: { status: "new", featured: false, accent: "review", author: "@sherizan", kind: "capability" },
+  tokens: { status: "new", featured: false, accent: "tokens", author: "@sherizan", kind: "capability" },
+  "design-qa": { status: "new", featured: false, accent: "community", author: "@sherizan", kind: "capability" },
+  setup: { status: "new", featured: false, accent: "setup", author: "@sherizan", kind: "capability" },
+  backgrounds: { status: "new", featured: false, accent: "backgrounds", author: "@sherizan", kind: "capability" },
 };
 
 /** Best-effort accent from tags/category when a plugin isn't in PRESENTATION. */
@@ -129,6 +132,7 @@ export function getMarketplace() {
       featured: pres?.featured ?? false,
       accent: pres?.accent ?? accentFor({ tags, category }),
       author: pres?.author ?? "@sherizan",
+      kind: pres?.kind ?? "capability",
     };
   });
 
@@ -146,6 +150,16 @@ export function getPlugins(): Plugin[] {
 
 export function getPlugin(slug: string): Plugin | undefined {
   return getPlugins().find((p) => p.slug === slug);
+}
+
+/** The bridge plugins (connect Claude Code to an external surface, e.g. Figma). */
+export function getBridges(): Plugin[] {
+  return getPlugins().filter((p) => p.kind === "bridge");
+}
+
+/** The capability plugins (things Claude Code does). */
+export function getCapabilities(): Plugin[] {
+  return getPlugins().filter((p) => p.kind === "capability");
 }
 
 export function getCategories(): string[] {
