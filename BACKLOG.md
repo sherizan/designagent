@@ -42,5 +42,6 @@ Status: ▢ todo · ◐ in progress · ✓ done
 - ✓ Sitemap + robots (`app/sitemap.ts` + `app/robots.ts`)
 - ✓ `claude plugin validate` in CI (`.github/workflows/ci.yml`, runs on push/PR)
 - ✓ Custom favicon + site OG image (brand 2×2 mark)
-- ▢ Mobile polish: `display-lg` (52px) headline is large on ≤390px — consider a responsive step-down
+- ✓ Mobile headline fixed (fluid `clamp()` on `display-lg`/`display-md`)
+- ✓ UI polish pass: faint hero dot-grid + tasteful motion (reduced-motion guarded), richer plugin covers, hover micro-interactions; DESIGN.md evolved a notch (texture + Motion section)
 - ▢ Bump CI actions for Node 24 (GitHub deprecating Node 20 action runtime)

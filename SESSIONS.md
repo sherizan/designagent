@@ -4,6 +4,18 @@ Human-readable handoff log. Newest first. Read this first in a new session.
 
 ---
 
+## 2026-06-19 — Frontend/UI polish pass
+
+**Status: shipped & live.** A four-area UI pass, "evolve the spec a notch" (DESIGN.md updated to match).
+- **Hero/landing:** faint, masked **dot-grid** behind the hero only (`.hero-grid` in `app/globals.css`); staggered `animate-rise` entrance.
+- **Motion:** `animate-rise` keyframes + `.delay-1/2/3`; arrow-nudge on card hover (`PluginCard`/`BridgeCard`); `InstallBlock` shows `✓ copied`. **Global `prefers-reduced-motion` guard** zeroes all animation/transition durations.
+- **Detail covers:** `PluginCover` is now a designed branded cover (accent ground + faint `.bg-dotgrid` + icon tile + mono name), still overridable by a real `public/plugins/<slug>.*`.
+- **Mobile:** `.text-display-lg`/`-md` are now fluid (`clamp()`), fixing the oversized headline at ≤390px.
+- **`docs/DESIGN.md` evolved:** added a "Texture (the one permitted exception)" note (hero/cover dot-grid only) + a new **Motion** section; everything else (pure white, borders-not-shadows, weights ≤600) intact. `CLAUDE.md` already imports it.
+- Verified: build clean (21 routes), Playwright desktop + mobile (390), 0 console errors; reduced-motion guard is the canonical global pattern. Site-only change; deployed to prod.
+
+---
+
 ## 2026-06-16 → 19 — Grew the catalog to 6 plugins + bridge/capabilities split
 
 **Status: all shipped & live in production.** The marketplace went from 2 → **6 plugins**, plus SEO/OG
