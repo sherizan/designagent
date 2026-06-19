@@ -45,11 +45,18 @@ export function PluginCover({ plugin }: { plugin: Plugin }) {
   // Branded fallback cover — no fake screenshot, just on-brand media.
   return (
     <div
-      className={`flex aspect-[16/9] items-center justify-center rounded-xl border border-border ${COVER_BG[plugin.accent]}`}
+      className={`relative flex aspect-[16/9] flex-col items-center justify-center gap-4 overflow-hidden rounded-xl border border-border ${COVER_BG[plugin.accent]}`}
     >
-      <div className="flex items-center justify-center rounded-2xl bg-surface p-5 shadow-none">
+      <div
+        aria-hidden
+        className="bg-dotgrid pointer-events-none absolute inset-0 opacity-50"
+      />
+      <div className="relative flex items-center justify-center rounded-2xl border border-border bg-surface p-5">
         <CategoryIcon accent={plugin.accent} size={64} />
       </div>
+      <span className="text-mono-sm relative text-on-surface-muted">
+        {plugin.name}
+      </span>
     </div>
   );
 }

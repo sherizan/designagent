@@ -11,13 +11,17 @@ export default function Home() {
   return (
     <div className="mx-auto max-w-[1200px] px-6 sm:px-10">
       {/* Hero */}
-      <section className="pt-16 pb-12 sm:pt-20">
-        <h1 className="text-display-lg max-w-[680px] text-balance text-on-surface">
+      <section className="relative isolate pt-16 pb-12 sm:pt-20">
+        <div
+          aria-hidden
+          className="hero-grid pointer-events-none absolute inset-x-0 -top-20 bottom-0 -z-10"
+        />
+        <h1 className="text-display-lg animate-rise max-w-[680px] text-balance text-on-surface">
           Claude Code plugins,
           <br />
           built for designers.
         </h1>
-        <p className="text-body-lg mt-5 max-w-[680px] text-on-surface-muted">
+        <p className="text-body-lg animate-rise delay-1 mt-5 max-w-[680px] text-on-surface-muted">
           Curated plugins that let you prompt Claude Code to do design work — in
           Figma, in design reviews, wherever the canvas lives. Install in one
           command.
@@ -26,7 +30,7 @@ export default function Home() {
 
       {/* The bridge — the connection to Figma */}
       {bridges.length > 0 && (
-        <section className="pb-12">
+        <section className="animate-rise delay-2 pb-12">
           <Eyebrow>The bridge</Eyebrow>
           <h2 className="text-heading-lg mt-3 mb-2 text-on-surface">
             Connect Claude Code to your canvas
@@ -44,7 +48,7 @@ export default function Home() {
       )}
 
       {/* Capabilities — what Claude Code does */}
-      <section className="pb-20">
+      <section className="animate-rise delay-3 pb-20">
         <Eyebrow>Capabilities</Eyebrow>
         <h2 className="text-heading-lg mt-3 mb-2 text-on-surface">
           What Claude Code can do

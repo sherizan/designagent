@@ -438,6 +438,33 @@ shadows. No `box-shadow` on any surface in the default state.
 - **Submit banner:** Inverted surface (`#0F0F0F` background). Elevation
   through contrast inversion, not depth.
 
+### Texture (the one permitted exception)
+
+A single, **very faint dot-grid** is allowed in two places only: **behind the
+hero** (masked so it fades before it reaches the headline) and as the **ground
+of a plugin cover**. Dots are 1px on a ~26px grid in the `border` tint
+(`#EBEBEB`) — texture, not decoration. Everywhere else the surface stays pure
+white. Still **no gradients, no section color-tints, no shadows.**
+
+---
+
+## Motion
+
+Motion is subtle, fast, and purposeful — it confirms an action or eases an
+entrance; it never performs.
+
+- **Speed:** ≤ 260ms, `ease-out` (or a gentle `cubic-bezier(0.16, 1, 0.3, 1)`).
+- **Entrance:** content may fade + rise ~8px on load (`animate-rise`), lightly
+  staggered between sections. Once only — no looping, no scroll-jacking.
+- **Hover:** small, legible nudges — a card's `→` shifts a few px, a border or
+  text color transitions. No scale-pops, no bounce.
+- **Feedback:** the install copy button flips to a `✓ copied` success state.
+- **Always honor `prefers-reduced-motion: reduce`** — a global guard drops all
+  animation and transition durations to ~0. The site must be fully usable, and
+  look intentional, with motion off.
+- **Don't:** parallax, auto-playing loops, spinners-as-decoration, or motion on
+  anything the user is trying to read.
+
 ---
 
 ## Shapes

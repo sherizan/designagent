@@ -37,9 +37,10 @@ export function BridgeCard({ plugin }: { plugin: Plugin }) {
         <span className="text-mono-sm text-on-surface-faint">{plugin.author}</span>
         <span
           aria-hidden
-          className="text-on-surface-subtle transition-colors group-hover:text-on-surface"
+          className="inline-flex items-center gap-1.5 text-on-surface-subtle transition-colors group-hover:text-on-surface"
         >
-          View the bridge →
+          View the bridge
+          <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
         </span>
       </div>
     </Link>

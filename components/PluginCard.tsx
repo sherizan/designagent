@@ -28,7 +28,7 @@ export function PluginCard({ plugin }: { plugin: Plugin }) {
         </span>
         <span
           aria-hidden
-          className="text-on-surface-faint transition-colors group-hover:text-on-surface"
+          className="text-on-surface-faint transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-on-surface"
         >
           →
         </span>

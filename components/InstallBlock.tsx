@@ -30,9 +30,13 @@ function CopyRow({ command }: { command: string }) {
         type="button"
         onClick={copy}
         aria-label={`Copy: ${command}`}
-        className="text-mono-sm shrink-0 rounded-[6px] border border-border bg-surface px-2.5 py-1 text-on-surface-subtle transition-colors hover:border-border-strong hover:text-on-surface"
+        className={`text-mono-sm shrink-0 rounded-[6px] border px-2.5 py-1 transition-colors ${
+          copied
+            ? "border-success/40 bg-success-surface text-success"
+            : "border-border bg-surface text-on-surface-subtle hover:border-border-strong hover:text-on-surface"
+        }`}
       >
-        {copied ? "copied" : "copy"}
+        {copied ? "✓ copied" : "copy"}
       </button>
     </div>
   );

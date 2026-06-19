@@ -81,13 +81,13 @@ body {
 
 /* ── Type scale (verbatim from DESIGN.md typography tokens) ─────────────────── */
 .text-display-lg {
-  font-size: 52px;
+  font-size: clamp(2rem, 8vw, 52px); /* fluid: ~32px on small phones → 52px desktop */
   font-weight: 600;
   line-height: 1.05;
   letter-spacing: -0.035em;
 }
 .text-display-md {
-  font-size: 36px;
+  font-size: clamp(1.75rem, 5.5vw, 36px);
   font-weight: 600;
   line-height: 1.1;
   letter-spacing: -0.03em;
@@ -158,4 +158,53 @@ body {
   line-height: 1;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+
+/* ── Dot-grid texture (DESIGN.md: permitted behind the hero + as a cover ground) ── */
+.bg-dotgrid {
+  background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
+  background-size: 26px 26px;
+  background-position: -13px -13px;
+}
+/* Hero variant: faded from the top so it never competes with content. */
+.hero-grid {
+  background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(120% 85% at 28% -10%, #000 0%, transparent 68%);
+  mask-image: radial-gradient(120% 85% at 28% -10%, #000 0%, transparent 68%);
+}
+
+/* ── Motion (DESIGN.md: subtle, fast, ease-out; honor reduced-motion) ───────── */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-rise {
+  animation: rise 260ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.delay-1 {
+  animation-delay: 60ms;
+}
+.delay-2 {
+  animation-delay: 120ms;
+}
+.delay-3 {
+  animation-delay: 180ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
