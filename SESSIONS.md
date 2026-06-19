@@ -4,6 +4,49 @@ Human-readable handoff log. Newest first. Read this first in a new session.
 
 ---
 
+## 2026-06-16 → 19 — Grew the catalog to 6 plugins + bridge/capabilities split
+
+**Status: all shipped & live in production.** The marketplace went from 2 → **6 plugins**, plus SEO/OG
+infra and an information-architecture change. Each new plugin is its own public repo, referenced from
+`.claude-plugin/marketplace.json` via `git-subdir`, and follows the proven additive pattern
+(repo → marketplace entry → `PRESENTATION` row → `content/plugins/<slug>.mdx` → gate → push → `vercel --prod`).
+The site is data-driven, so grid/detail/OG/sitemap pick up new plugins automatically.
+
+**Site infra (one pass):** custom favicon (`app/icon.svg`, brand 2×2 mark) + site & per-plugin OG
+images (`next/og`, prerendered), `app/sitemap.ts` + `app/robots.ts`, and CI
+(`.github/workflows/ci.yml`: `pnpm install --frozen-lockfile` → build → `claude plugin validate . --strict`).
+Per-plugin "media": branded `PluginCover` on detail pages (drop a real screenshot into
+`public/plugins/<slug>.{png,jpg,webp}` to override). Note: `next-mdx-remote` was bumped 5→6 (Vercel's
+deploy security gate blocks v5).
+
+**New plugins (3rd–6th):**
+- **`tokens`** — extract design tokens + drift; bundles a self-contained `scan.js` (the designagent-old scanner, bun-built, postcss inlined). amber accent.
+- **`design-qa`** — build↔design QA: vision diff + computed-style-vs-DESIGN.md token check; bundles a Playwright MCP via `.mcp.json`. grey accent.
+- **`setup`** — onboarding scaffolder for the 3-file context (DESIGN.md/CLAUDE.md/DECISIONS.md); skill + bundled templates, no binary. green accent.
+- **`backgrounds`** — generative shader/dotgrid/ASCII; skill + dependency-free recipe assets it recolors from DESIGN.md. teal accent.
+- Pattern for "repackage" plugins (tokens/setup/backgrounds): pull working assets from `~/Public/designagent-old`.
+
+**Accent system:** grew from 4 → **6** (figma/review/tokens/community/setup/backgrounds). A new `AccentKey`
+must be added to ALL of: `globals.css` @theme, `lib/brand.ts` ACCENT_HEX, `lib/marketplace.ts`
+(AccentKey + PRESENTATION + accentFor), `components/CategoryIcon.tsx` (class map + glyph), and
+`components/PluginCover.tsx` COVER_BG — the build's TS check catches a missing one.
+
+**Bridge vs capabilities (IA):** added a `kind` field (`bridge`|`capability`) to the data model.
+`designagent` is the **bridge** (Claude Code ⇄ Figma); the other 5 are **capabilities**. Home + /plugins
+now render a "The bridge" section (full-width `components/BridgeCard.tsx`) then a "Capabilities" grid.
+
+**Verification rhythm used throughout:** `claude plugin validate --strict` on each plugin + the catalog;
+end-to-end `marketplace add` + `install <name>@designagent` (then uninstall + remove to keep env clean);
+`pnpm build`; Playwright screenshots (incl. a real shader render + computed-style extraction); `vercel --prod`.
+
+**Deferred / backlog:** `mobbin` (competitor analysis via the stable Mobbin MCP) parked; then `a11y`,
+`redlines`, `palette`. Fold UX-copywriting into `superdesigner`; heuristics dropped. (Mobbin MCP is
+stable — it was figma-console that was unstable and got replaced by the designagent-figma plugin.)
+
+**Next focus: frontend / UI.**
+
+---
+
 ## 2026-06-16 (later) — Reskin to DESIGN.md, deploy, merge superdesigner
 
 **Status: shipped & live.** designagent.dev is in production and both plugins are installable.
