@@ -6,8 +6,11 @@ import { InstallBlock } from "@/components/InstallBlock";
 import { CategoryIcon } from "@/components/CategoryIcon";
 import { StatusBadge } from "@/components/StatusBadge";
 import { PluginCover } from "@/components/PluginCover";
+import { FlowDiagram } from "@/components/FlowDiagram";
+import { Eyebrow } from "@/components/Eyebrow";
 import { getPlugin, getPlugins } from "@/lib/marketplace";
 import { getPluginDoc } from "@/lib/plugins";
+import { getFlow } from "@/lib/flows";
 import { mdxComponents } from "@/components/mdx";
 
 export function generateStaticParams() {
@@ -35,6 +38,7 @@ export default async function PluginPage({
   if (!plugin) notFound();
 
   const doc = getPluginDoc(slug);
+  const flow = getFlow(slug);
 
   return (
     <article className="mx-auto max-w-[760px] px-6 py-16 sm:px-10">
@@ -67,6 +71,15 @@ export default async function PluginPage({
       <div className="mt-8">
         <InstallBlock add={plugin.install.add} install={plugin.install.install} />
       </div>
+
+      {flow && (
+        <section className="mt-12">
+          <Eyebrow>How it works</Eyebrow>
+          <div className="mt-4">
+            <FlowDiagram flow={flow} accent={plugin.accent} />
+          </div>
+        </section>
+      )}
 
       {doc ? (
         <div className="mt-12">

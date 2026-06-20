@@ -578,6 +578,18 @@ are the structure.
 - Command chip: `step-command` token — inline mono text in a `#F8F8F8`
   pill with 6px radius
 
+### Flow Diagram
+
+A "how it works" pipeline on plugin detail pages: input → skill/agents →
+tools → output. Each stage is a node card (`#F8F8F8` background, 1px
+`border`, 12px radius): a **kind eyebrow** (uppercase, tinted with the
+plugin's `on-accent-*` so the flow coordinates with its icon), a
+`heading-sm` title, optional `body-sm` detail, and item **chips** (mono,
+pill, 1px border) listing the tools/agents/files. Nodes connect with a
+faint `→` (desktop, horizontal) that becomes `↓` (mobile, stacked) in
+`on-surface-faint`. Descriptive, not interactive — no zoom/pan. Same
+restraint: borders not shadows, mono for technical labels.
+
 ---
 
 ## Do's and Don'ts
