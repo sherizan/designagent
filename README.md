@@ -17,6 +17,9 @@ Inside Claude Code:
 
 Swap `designagent` for any plugin in the [catalog](#whats-in-the-marketplace).
 
+> **Already added the marketplace before?** `add` won't re-pull a cached copy — run
+> `/plugin marketplace update designagent` to refresh the catalog, then install.
+
 ## What's in the marketplace
 
 | Plugin | What it does | Source |

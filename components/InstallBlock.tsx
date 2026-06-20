@@ -58,6 +58,13 @@ export function InstallBlock({
       <p className="text-eyebrow mb-2.5 text-on-surface-faint">Quick install</p>
       <CopyRow command={add} />
       <CopyRow command={install} />
+      <p className="text-mono-sm mt-2.5 text-on-surface-faint">
+        Already added the marketplace?{" "}
+        <span className="text-on-surface-subtle">
+          /plugin marketplace update designagent
+        </span>{" "}
+        first.
+      </p>
     </div>
   );
 }
