@@ -15,7 +15,9 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/sherizan/designagent-figma.git",
-        "path": "claude-plugin"
+        "path": "claude-plugin",
+        "ref": "v0.14.13",
+        "sha": "f1c6ab5852d33183c02b031a49f9d52e61f8f8a6"
       },
       "description": "Claude Code's live two-way bridge to Figma — read, build, and edit the canvas in real time, then build production UI from a design-system-faithful DESIGN.md.",
       "category": "design",
@@ -27,7 +29,9 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/sherizan/designagent-setup.git",
-        "path": "claude-plugin"
+        "path": "claude-plugin",
+        "ref": "v0.1.0",
+        "sha": "240f8a30bdb680dc9df0f50eb9c99051cbf5cc0c"
       },
       "description": "Set up a project for design work in Claude Code — scaffold DESIGN.md (tokens), CLAUDE.md (design intelligence), and DECISIONS.md, tailored to your stack. The fastest on-ramp for designers new to Claude Code.",
       "category": "design",
@@ -39,7 +43,9 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/sherizan/superdesigner-ai.git",
-        "path": "claude-plugin"
+        "path": "claude-plugin",
+        "ref": "v0.1.0",
+        "sha": "c0ca59919ee2ad982889e0d6913ea953758626d2"
       },
       "description": "AI design review — connects PRD, research, Figma, and analytics to surface gaps and blind spots before handoff.",
       "category": "design",
@@ -51,7 +57,9 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/sherizan/designagent-tokens.git",
-        "path": "claude-plugin"
+        "path": "claude-plugin",
+        "ref": "v0.1.0",
+        "sha": "d84cc8c67eaa50cbc102f16c7d65e777c13679ad"
       },
       "description": "Extract your design tokens from code — colors, spacing, type, radius — with deterministic clustering and hardcoded-value drift detection, and keep DESIGN.md in sync.",
       "category": "design",
@@ -63,7 +71,9 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/sherizan/designagent-design-qa.git",
-        "path": "claude-plugin"
+        "path": "claude-plugin",
+        "ref": "v0.1.0",
+        "sha": "5e5bba5703f80ffb8cd7ca0928709f9a31fdcabb"
       },
       "description": "Does the build match the design? Screenshots your running UI, diffs it against the Figma frame / DESIGN.md, and reports layout, spacing, color, and type drift by severity.",
       "category": "design",
@@ -75,7 +85,9 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/sherizan/designagent-backgrounds.git",
-        "path": "claude-plugin"
+        "path": "claude-plugin",
+        "ref": "v0.1.0",
+        "sha": "765c3924128a5d72a8bd300c6e63ce400af3e522"
       },
       "description": "Generate self-contained, brand-aware background effects — animated WebGL shader, dot-grid, or ASCII art — recolored from your DESIGN.md, with reduced-motion and fallbacks baked in.",
       "category": "design",
