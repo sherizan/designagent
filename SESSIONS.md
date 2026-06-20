@@ -4,7 +4,9 @@ Human-readable handoff log. Newest first. Read this first in a new session.
 
 ---
 
-## 2026-06-20 — Pin plugin sources (de-risk installs) + papercut fixes
+## 2026-06-20 — Build guide + pin sources + papercut fixes
+
+- **"How to build a design plugin" guide** (the moat) — live at `/build`. `content/build.mdx` rendered by `app/build/page.tsx` (via `getContentDoc()` in `lib/plugins.ts`); "Build" added to nav; `/submit` links to it; in the sitemap. Covers the four plugin shapes (skill+assets / skill+binary / skill+MCP / command), the manifest, the design-intelligence layer, writing the skill's trigger description, and validate→ship→submit. Drawn from building the 6 marketplace plugins.
 
 - **Pinned all 6 plugin sources** in `marketplace.json` to `ref` + `sha` (was tracking each repo's `main`). Cut v-tags at the live HEADs: `designagent-figma` v0.14.13 (actively developed — its pin lags `main` by design), the other 5 v0.1.0. `sha` is the effective pin. **A WIP push to any plugin repo can no longer reach users.** New release flow documented in `RELEASING.md` (tag → bump `ref`+`sha` in marketplace.json → push → users `/plugin marketplace update`). Verified: validate `--strict`, build, and pinned install end-to-end from both local + live remote catalog.
 - **Install papercut:** a cached `/plugin marketplace add` doesn't re-pull — added a "run `/plugin marketplace update designagent`" tip to the detail-page InstallBlock + README.
