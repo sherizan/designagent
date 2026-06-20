@@ -44,4 +44,5 @@ Status: ▢ todo · ◐ in progress · ✓ done
 - ✓ Custom favicon + site OG image (brand 2×2 mark)
 - ✓ Mobile headline fixed (fluid `clamp()` on `display-lg`/`display-md`)
 - ✓ UI polish pass: faint hero dot-grid + tasteful motion (reduced-motion guarded), richer plugin covers, hover micro-interactions; DESIGN.md evolved a notch (texture + Motion section)
-- ▢ Bump CI actions for Node 24 (GitHub deprecating Node 20 action runtime)
+- ✓ Bumped CI actions to Node 24 (checkout@v5, setup-node@v6, pnpm/action-setup@v6) — Node-20 deprecation warning gone, CI green
+- ✓ Install tip: "already added? run `/plugin marketplace update designagent`" on detail-page InstallBlock + README (prevents the stale-cache papercut)
