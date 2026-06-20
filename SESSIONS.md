@@ -4,7 +4,9 @@ Human-readable handoff log. Newest first. Read this first in a new session.
 
 ---
 
-## 2026-06-20 — Build guide + pin sources + papercut fixes
+## 2026-06-20 — Flow diagrams + build guide + pin sources + papercut fixes
+
+- **Per-plugin flow diagram** on every detail page ("How it works", input → skill/agents → tools → output). Custom branded `components/FlowDiagram.tsx` fed by typed `lib/flows.ts` (6 flows). Responsive: horizontal pipeline with `→` on desktop, stacks with `↓` on mobile; kind eyebrow tinted by the plugin accent; item chips for tools/agents/files; accessible (`role=img` + summary label). `DESIGN.md` gained a "Flow Diagram" component note.
 
 - **"How to build a design plugin" guide** (the moat) — live at `/build`. `content/build.mdx` rendered by `app/build/page.tsx` (via `getContentDoc()` in `lib/plugins.ts`); "Build" added to nav; `/submit` links to it; in the sitemap. Covers the four plugin shapes (skill+assets / skill+binary / skill+MCP / command), the manifest, the design-intelligence layer, writing the skill's trigger description, and validate→ship→submit. Drawn from building the 6 marketplace plugins.
 

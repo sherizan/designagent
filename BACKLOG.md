@@ -27,6 +27,7 @@ Status: ▢ todo · ◐ in progress · ✓ done
 - ▢ Accept first external submissions; triage the submission issue label
 - ✓ Pinned all plugin sources to `ref` + `sha` (cut v-tags on all 6 repos; installs no longer track moving branches). Release flow in [RELEASING.md](RELEASING.md).
 - ✓ "How to build a design plugin" guide — live at [/build](https://designagent.dev/build) (MDX, nav-linked, in sitemap)
+- ✓ Per-plugin "How it works" **flow diagram** on every detail page (custom branded `FlowDiagram`, data-driven `lib/flows.ts`; horizontal pipeline → stacks on mobile)
 - ▢ Newsletter / changelog for new plugin drops
 - ✓ Per-plugin demo media — branded per-plugin OG social cards + detail-page covers; drop a real screenshot in `public/plugins/<slug>.{png,jpg,webp}` to override the branded cover
 
