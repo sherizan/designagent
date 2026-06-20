@@ -18,6 +18,14 @@ export function getPluginDoc(slug: string): PluginDoc | null {
   return { slug, frontmatter: data, body: content };
 }
 
+/** Load a standalone MDX doc from content/<name>.mdx (e.g. the build guide). */
+export function getContentDoc(name: string): PluginDoc | null {
+  const file = join(process.cwd(), "content", `${name}.mdx`);
+  if (!existsSync(file)) return null;
+  const { data, content } = matter(readFileSync(file, "utf8"));
+  return { slug: name, frontmatter: data, body: content };
+}
+
 export function getDocSlugs(): string[] {
   if (!existsSync(CONTENT_DIR)) return [];
   return readdirSync(CONTENT_DIR)

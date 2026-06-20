@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Eyebrow } from "@/components/Eyebrow";
 
 export const metadata: Metadata = {
@@ -38,6 +39,16 @@ export default function SubmitPage() {
         designagent is open. If you&apos;ve built a Claude Code plugin for
         designers, submit it and we&apos;ll review it. Submission opens a public
         GitHub issue — no account beyond GitHub, no form to chase.
+      </p>
+      <p className="text-body-md mt-3 max-w-[680px] text-on-surface-muted">
+        New to building plugins? Start with the{" "}
+        <Link
+          href="/build"
+          className="text-on-surface underline decoration-on-surface-faint underline-offset-4 hover:decoration-on-surface"
+        >
+          build guide
+        </Link>
+        .
       </p>
 
       <a
