@@ -25,7 +25,7 @@ Status: ▢ todo · ◐ in progress · ✓ done
 - ✓ **Differentiated the `designagent` Figma bridge from the capability plugins** — site shows "The bridge" section (full-width BridgeCard, Claude Code ⇄ Figma) then "Capabilities" grid; `kind` field in the data model. Live.
 - ▢ Plugin ideas backlog (ranked, build when ready): **`mobbin`** (competitor analysis via the stable Mobbin MCP — reuse designagent-old research-agent + competitor-benchmark), `a11y`, `redlines`, `palette`. Fold UX-copywriting into `superdesigner`; heuristics dropped.
 - ▢ Accept first external submissions; triage the submission issue label
-- ▢ Pin plugin sources to a `ref`/`sha` once each repo cuts a tagged release (currently tracking default branch)
+- ✓ Pinned all plugin sources to `ref` + `sha` (cut v-tags on all 6 repos; installs no longer track moving branches). Release flow in [RELEASING.md](RELEASING.md).
 - ▢ "How to build a design plugin" guide (the moat)
 - ▢ Newsletter / changelog for new plugin drops
 - ✓ Per-plugin demo media — branded per-plugin OG social cards + detail-page covers; drop a real screenshot in `public/plugins/<slug>.{png,jpg,webp}` to override the branded cover

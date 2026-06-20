@@ -4,6 +4,14 @@ Human-readable handoff log. Newest first. Read this first in a new session.
 
 ---
 
+## 2026-06-20 — Pin plugin sources (de-risk installs) + papercut fixes
+
+- **Pinned all 6 plugin sources** in `marketplace.json` to `ref` + `sha` (was tracking each repo's `main`). Cut v-tags at the live HEADs: `designagent-figma` v0.14.13 (actively developed — its pin lags `main` by design), the other 5 v0.1.0. `sha` is the effective pin. **A WIP push to any plugin repo can no longer reach users.** New release flow documented in `RELEASING.md` (tag → bump `ref`+`sha` in marketplace.json → push → users `/plugin marketplace update`). Verified: validate `--strict`, build, and pinned install end-to-end from both local + live remote catalog.
+- **Install papercut:** a cached `/plugin marketplace add` doesn't re-pull — added a "run `/plugin marketplace update designagent`" tip to the detail-page InstallBlock + README.
+- **CI:** bumped actions to Node 24 (checkout@v5, setup-node@v6, pnpm/action-setup@v6); green, no more Node-20 deprecation warning.
+
+---
+
 ## 2026-06-19 — Frontend/UI polish pass
 
 **Status: shipped & live.** A four-area UI pass, "evolve the spec a notch" (DESIGN.md updated to match).
