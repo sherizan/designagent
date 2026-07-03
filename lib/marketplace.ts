@@ -69,7 +69,7 @@ const PRESENTATION: Record<
   { status: PluginStatus; featured: boolean; accent: AccentKey; author: string; kind: PluginKind }
 > = {
   designagent: { status: "live", featured: true, accent: "figma", author: "@sherizan", kind: "bridge" },
-  superdesigner: { status: "new", featured: false, accent: "review", author: "@sherizan", kind: "capability" },
+  designreview: { status: "new", featured: false, accent: "review", author: "@sherizan", kind: "capability" },
   tokens: { status: "new", featured: false, accent: "tokens", author: "@sherizan", kind: "capability" },
   "design-qa": { status: "new", featured: false, accent: "community", author: "@sherizan", kind: "capability" },
   setup: { status: "new", featured: false, accent: "setup", author: "@sherizan", kind: "capability" },

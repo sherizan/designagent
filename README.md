@@ -25,7 +25,7 @@ Swap `designagent` for any plugin in the [catalog](#whats-in-the-marketplace).
 | Plugin | What it does | Source |
 | --- | --- | --- |
 | `designagent` | Claude Code's live two-way bridge to Figma — read, build, and edit the canvas, then build production UI from a `DESIGN.md` spec. | [designagent-figma](https://github.com/sherizan/designagent-figma) |
-| `superdesigner` | AI design review — connects PRD, research, Figma, and analytics to surface gaps before handoff. | [superdesigner-ai](https://github.com/sherizan/superdesigner-ai) |
+| `designreview` | AI design review — connects PRD, research, Figma, and analytics to review design intent (not pixels) and surface gaps before handoff. | [designagent-review](https://github.com/sherizan/designagent-review) |
 
 The catalog is [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
 It **references** each plugin's own repo (via `git-subdir`) rather than vendoring

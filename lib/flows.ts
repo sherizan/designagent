@@ -80,7 +80,7 @@ const FLOWS: Record<string, Flow> = {
   ],
 
   // Multi-agent design review.
-  superdesigner: [
+  designreview: [
     {
       kind: "input",
       title: "Context files",

@@ -16,8 +16,8 @@
         "source": "git-subdir",
         "url": "https://github.com/sherizan/designagent-figma.git",
         "path": "claude-plugin",
-        "ref": "v0.14.13",
-        "sha": "f1c6ab5852d33183c02b031a49f9d52e61f8f8a6"
+        "ref": "v0.17.2",
+        "sha": "063353de97abe47498b91e860e5f5082e944bb86"
       },
       "description": "Claude Code's live two-way bridge to Figma — read, build, and edit the canvas in real time, then build production UI from a design-system-faithful DESIGN.md.",
       "category": "design",
@@ -39,18 +39,18 @@
       "homepage": "https://designagent.dev/plugins/setup"
     },
     {
-      "name": "superdesigner",
+      "name": "designreview",
       "source": {
         "source": "git-subdir",
-        "url": "https://github.com/sherizan/superdesigner-ai.git",
+        "url": "https://github.com/sherizan/designagent-review.git",
         "path": "claude-plugin",
         "ref": "v0.1.0",
-        "sha": "c0ca59919ee2ad982889e0d6913ea953758626d2"
+        "sha": "5d3724af86637f8715b889dc1b20ac3143b49a43"
       },
-      "description": "AI design review — connects PRD, research, Figma, and analytics to surface gaps and blind spots before handoff.",
+      "description": "AI design review for Claude Code — connects PRD, research, Figma, and analytics to review design intent (not pixels) and surface gaps before handoff or launch. Reads and annotates Figma through the DesignAgent bridge. Run /new, /review, /annotate.",
       "category": "design",
       "tags": ["design-review", "ux", "critique", "qa"],
-      "homepage": "https://designagent.dev/plugins/superdesigner"
+      "homepage": "https://designagent.dev/plugins/designreview"
     },
     {
       "name": "tokens",
