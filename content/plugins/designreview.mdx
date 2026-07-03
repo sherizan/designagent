@@ -1,19 +1,19 @@
 ---
-title: superdesigner
-slug: superdesigner
+title: designreview
+slug: designreview
 description: AI design review for Claude Code.
 category: design
 author: Sherizan Sheikh
-repo: https://github.com/sherizan/superdesigner-ai
+repo: https://github.com/sherizan/designagent-review
 tags: [design-review, ux, critique, qa]
 status: published
 installMarketplace: sherizan/designagent
-installPlugin: superdesigner@designagent
+installPlugin: designreview@designagent
 ---
 
 ## What it does
 
-superdesigner runs a multi-agent design review inside Claude Code. It checks
+designreview runs a multi-agent design review inside Claude Code. It checks
 **intent, not pixels** — connecting your PRD, user research, Figma files,
 analytics, and content briefs to surface the gaps that usually slip through to
 handoff or launch.
@@ -38,13 +38,16 @@ screens and building starter prototypes (HTML or Figma frames) to react to.
 
 ## How it works
 
-The plugin bundles a `design-review` command that dispatches a panel of
-specialized agents (PRD, UX, content, analytics, and more) in parallel, then
-synthesizes their findings into a single review — a self-contained HTML report
-plus markdown comments ready to drop into Figma. A shared rubric defines what
-"good" means so reviews stay consistent across projects.
+The plugin dispatches a panel of specialized agents (PRD, UX, content,
+analytics, and more) in parallel, then synthesizes their findings into a single
+review — a self-contained HTML report plus markdown comments ready to drop into
+Figma. A shared rubric keeps reviews consistent across projects. It reads and
+annotates Figma through the DesignAgent bridge.
+
+Commands: `/designreview:new` (scaffold from a PRD), `/designreview:review`
+(run the review), `/designreview:annotate` (draft Figma comments).
 
 ## Install
 
 - Add the marketplace: `/plugin marketplace add sherizan/designagent`
-- Install: `/plugin install superdesigner@designagent`
+- Install: `/plugin install designreview@designagent`
