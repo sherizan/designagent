@@ -23,7 +23,7 @@ Status: ▢ todo · ◐ in progress · ✓ done
 - ✓ Shipped 5th plugin **`setup`** (github.com/sherizan/designagent-setup) — onboarding scaffolder for the 3-file design context; live. Added a 5th green accent.
 - ✓ Shipped 6th plugin **`backgrounds`** (github.com/sherizan/designagent-backgrounds) — generative shader/dotgrid/ASCII backgrounds (recipe-based, brand-aware); live. Added a 6th teal accent.
 - ✓ **Differentiated the `designagent` Figma bridge from the capability plugins** — site shows "The bridge" section (full-width BridgeCard, Claude Code ⇄ Figma) then "Capabilities" grid; `kind` field in the data model. Live.
-- ▢ Plugin ideas backlog (ranked, build when ready): **`mobbin`** (competitor analysis via the stable Mobbin MCP — reuse designagent-old research-agent + competitor-benchmark), `a11y`, `redlines`, `palette`. Fold UX-copywriting into `superdesigner`; heuristics dropped.
+- ▢ Plugin ideas backlog (ranked, build when ready): **`mobbin`** (competitor analysis via the stable Mobbin MCP — reuse designagent-old research-agent + competitor-benchmark), `a11y`, `redlines`, `palette`. Fold UX-copywriting into `designreview`; heuristics dropped.
 - ▢ Accept first external submissions; triage the submission issue label
 - ✓ Pinned all plugin sources to `ref` + `sha` (cut v-tags on all 6 repos; installs no longer track moving branches). Release flow in [RELEASING.md](RELEASING.md).
 - ✓ "How to build a design plugin" guide — live at [/build](https://designagent.dev/build) (MDX, nav-linked, in sitemap)
@@ -35,7 +35,7 @@ Status: ▢ todo · ◐ in progress · ✓ done
 
 - ▢ Plugin install/usage analytics surfaced to authors
 - ▢ "Verified" badge for plugins personally tested
-- ▢ Explore a paid tier if superdesigner gets traction
+- ▢ Explore a paid tier if designreview gets traction
 
 ## Tech debt / nice-to-have
 
