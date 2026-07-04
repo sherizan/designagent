@@ -1,6 +1,6 @@
 # designagent
 
-**Claude Code plugins for designers.** A curated third-party marketplace —
+**Claude Code plugins for designers.** A curated third-party marketplace for
 Figma, design review, and more. Find a plugin, install it in one command, and
 it just works.
 
@@ -17,19 +17,19 @@ Inside Claude Code:
 
 Swap `designagent` for any plugin in the [catalog](#whats-in-the-marketplace).
 
-> **Already added the marketplace before?** `add` won't re-pull a cached copy — run
+> **Already added the marketplace before?** `add` won't re-pull a cached copy, so run
 > `/plugin marketplace update designagent` to refresh the catalog, then install.
 
 ## What's in the marketplace
 
 | Plugin | What it does | Source |
 | --- | --- | --- |
-| `designagent` | Claude Code's live two-way bridge to Figma — read, build, and edit the canvas, then build production UI from a `DESIGN.md` spec. | [designagent-figma](https://github.com/sherizan/designagent-figma) |
-| `designreview` | AI design review — connects PRD, research, Figma, and analytics to review design intent (not pixels) and surface gaps before handoff. | [designagent-review](https://github.com/sherizan/designagent-review) |
+| `designagent` | Claude Code's live two-way bridge to Figma: read, build, and edit the canvas, then build production UI from a `DESIGN.md` spec. | [designagent-figma](https://github.com/sherizan/designagent-figma) |
+| `designreview` | AI design review that connects PRD, research, Figma, and analytics to review design intent (not pixels) and surface gaps before handoff. | [designagent-review](https://github.com/sherizan/designagent-review) |
 
 The catalog is [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
 It **references** each plugin's own repo (via `git-subdir`) rather than vendoring
-copies — one source of truth per plugin, no drift.
+copies. One source of truth per plugin, no drift.
 
 ## Submit a plugin
 
@@ -38,7 +38,7 @@ or see the criteria at [designagent.dev/submit](https://designagent.dev/submit).
 
 ## The website
 
-This repo also hosts the [designagent.dev](https://designagent.dev) site — a
+This repo also hosts the [designagent.dev](https://designagent.dev) site, a
 Next.js 16 (App Router) + Tailwind v4 app. The plugin grid is generated directly
 from `marketplace.json`; long-form plugin docs live in `content/plugins/*.mdx`.
 

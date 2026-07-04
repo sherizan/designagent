@@ -14,14 +14,14 @@ installPlugin: setup@designagent
 ## What it does
 
 setup is the fastest on-ramp for designers new to Claude Code. It scaffolds the **three-file design
-context** that makes Claude Code design-aware — tailored to your stack, in one conversation:
+context** that makes Claude Code design-aware, tailored to your stack, in one conversation:
 
-- **`DESIGN.md`** — machine-readable tokens (colors, type, spacing, radius, components), linted via `@google/design.md`.
-- **`CLAUDE.md`** — the design brain: principles, accessibility baseline, agent instructions, and a do/don't list.
-- **`DECISIONS.md`** — a running log of *why*, so context survives across sessions.
+- **`DESIGN.md`**: machine-readable tokens (colors, type, spacing, radius, components), linted via `@google/design.md`.
+- **`CLAUDE.md`**: the design brain: principles, accessibility baseline, agent instructions, and a do/don't list.
+- **`DECISIONS.md`**: a running log of *why*, so context survives across sessions.
 
 It's conversational, not a wizard: it reads your repo and asks only what it can't infer (project name,
-design system, framework, canvas). And it **augments, never clobbers** — an existing `CLAUDE.md` gets a
+design system, framework, canvas). And it **augments, never clobbers**: an existing `CLAUDE.md` gets a
 marked block appended, not overwritten.
 
 ## What you can do with it
@@ -36,7 +36,7 @@ setup bundles a set of proven starter templates (CLAUDE.md base + per-framework 
 SwiftUI / Compose, and DESIGN.md starters for Tailwind / shadcn / custom). The skill picks the right
 ones for your stack, fills them in, and writes the files. Working in an **existing codebase**? It points
 you to the **tokens** plugin to reverse-engineer `DESIGN.md` from your real code instead of starting
-from a template — then writes `CLAUDE.md` and `DECISIONS.md` around it. Coco's
+from a template, then writes `CLAUDE.md` and `DECISIONS.md` around it. Coco's
 one rule: leave a project better set up than you found it.
 
 ## Install

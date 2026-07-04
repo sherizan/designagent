@@ -22,7 +22,7 @@ const CRITERIA = [
   },
   {
     title: "Design-specific",
-    body: "Does design work — Figma, design systems, design review, prototyping, redlines. Not a general dev tool.",
+    body: "Does design work: Figma, design systems, design review, prototyping, redlines. Not a general dev tool.",
   },
   {
     title: "Public GitHub repo",
@@ -38,7 +38,7 @@ export default function SubmitPage() {
       <p className="text-body-lg mt-3 max-w-[680px] text-on-surface-muted">
         designagent is open. If you&apos;ve built a Claude Code plugin for
         designers, submit it and we&apos;ll review it. Submission opens a public
-        GitHub issue — no account beyond GitHub, no form to chase.
+        GitHub issue, no account beyond GitHub, no form to chase.
       </p>
       <p className="text-body-md mt-3 max-w-[680px] text-on-surface-muted">
         New to building plugins? Start with the{" "}
@@ -74,7 +74,7 @@ export default function SubmitPage() {
       </ul>
 
       <p className="text-body-sm mt-10 text-on-surface-subtle">
-        Review is manual for now — Coco reads every submission, and she has
+        Review is manual for now. Coco reads every submission, and she has
         opinions. Approved plugins get added to the{" "}
         <a
           href="https://github.com/sherizan/designagent/blob/main/.claude-plugin/marketplace.json"

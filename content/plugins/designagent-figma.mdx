@@ -14,7 +14,7 @@ installPlugin: designagent@designagent
 ## What it does
 
 Claude Code is a strong designer with one problem: it can't see your canvas.
-designagent fixes that. It opens a live, two-way bridge into Figma — Claude reads
+designagent fixes that. It opens a live, two-way bridge into Figma: Claude reads
 what's there, builds new frames and components, and edits existing ones in real
 time. The same bridge exports a design-system-faithful `DESIGN.md` you build
 production UI from.
@@ -23,7 +23,7 @@ Two halves of one loop:
 
 - **Canvas → code.** Export tokens, components, and layout as `DESIGN.md`, then
   let the bundled `design-to-code` skill build UI that respects your tokens and
-  component system — instead of hardcoding values Coco would immediately
+  component system, instead of hardcoding values Coco would immediately
   delete.
 - **Code → canvas.** Have Claude read the open file, annotate issues, create
   shapes and text, restyle layers, and render HTML straight onto the canvas.
@@ -39,15 +39,15 @@ Two halves of one loop:
 
 The plugin bundles an MCP server that talks to a companion Figma plugin over a
 local WebSocket bridge. Install it through Claude Code and the server wires
-itself up — Claude gets a toolset for reading and mutating the canvas
+itself up. Claude gets a toolset for reading and mutating the canvas
 (`get_design_md`, `create_frame`, `set_fill`, `instantiate_component`,
 `html_to_design`, and ~30 more). The `design-to-code` skill turns a `DESIGN.md`
-spec into framework-faithful UI code. No pixel-pushing by hand — which is exactly
+spec into framework-faithful UI code. No pixel-pushing by hand, which is exactly
 how Coco likes it.
 
 ## Install
 
-It's the flagship — its plugin name is simply `designagent`:
+It's the flagship, its plugin name is simply `designagent`:
 
 - Add the marketplace: `/plugin marketplace add sherizan/designagent`
 - Install: `/plugin install designagent@designagent`

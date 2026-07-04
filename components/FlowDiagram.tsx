@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import type { AccentKey } from "@/lib/marketplace";
 import { type Flow, type FlowStage, KIND_LABEL } from "@/lib/flows";
 
-/** Tint for the stage's kind label — coordinates the flow with the plugin's icon accent. */
+/** Tint for the stage's kind label; coordinates the flow with the plugin's icon accent. */
 const ACCENT_TEXT: Record<AccentKey, string> = {
   figma: "text-on-accent-figma",
   review: "text-on-accent-review",

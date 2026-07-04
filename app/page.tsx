@@ -24,7 +24,7 @@ export default function Home() {
           built for designers.
         </h1>
         <p className="text-body-lg animate-rise delay-1 mt-5 max-w-[680px] text-on-surface-muted">
-          Curated plugins that let you prompt Claude Code to do design work — in
+          Curated plugins that let you prompt Claude Code to do design work, in
           Figma, in design reviews, wherever the canvas lives. Install in one
           command.
         </p>
@@ -43,7 +43,7 @@ export default function Home() {
         </div>
       </Frame>
 
-      {/* The bridge — the connection to Figma */}
+      {/* The bridge: the connection to Figma */}
       {bridges.length > 0 && (
         <Frame className="animate-rise delay-2 pt-12 pb-12">
           <Eyebrow>The bridge</Eyebrow>
@@ -52,7 +52,7 @@ export default function Home() {
           </h2>
           <p className="text-body-md mb-6 max-w-[640px] text-on-surface-muted">
             Claude Code can't critique what it can't see. This is the plugin that
-            gives it eyes and hands inside Figma — everything else builds on it.
+            gives it eyes and hands inside Figma. Everything else builds on it.
           </p>
           <div className="flex flex-col gap-4">
             {bridges.map((plugin) => (
@@ -62,7 +62,7 @@ export default function Home() {
         </Frame>
       )}
 
-      {/* Capabilities — what Claude Code does */}
+      {/* Capabilities: what Claude Code does */}
       <Frame className="animate-rise delay-3 pt-12 pb-20">
         <Eyebrow>Capabilities</Eyebrow>
         <h2 className="text-heading-lg mt-3 mb-2 text-on-surface">
@@ -70,7 +70,7 @@ export default function Home() {
         </h2>
         <p className="text-body-md mb-6 max-w-[640px] text-on-surface-muted">
           Each does exactly one thing, and refuses to do a second. Set up,
-          extract, review, QA, generate — no kitchen sinks.
+          extract, review, QA, generate. No kitchen sinks.
         </p>
         <PluginGrid plugins={capabilities} />
         <div className="mt-4">

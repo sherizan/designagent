@@ -16,7 +16,7 @@ export interface FlowStage {
   kind: FlowKind;
   title: string;
   detail?: string;
-  /** Chips — the tools/agents/files involved in this stage. */
+  /** Chips: the tools/agents/files involved in this stage. */
   items?: string[];
 }
 
@@ -33,7 +33,7 @@ export const KIND_LABEL: Record<FlowKind, string> = {
 };
 
 const FLOWS: Record<string, Flow> = {
-  // Figma bridge — read/build the canvas, then build UI from the spec.
+  // Figma bridge: read/build the canvas, then build UI from the spec.
   "designagent-figma": [
     {
       kind: "input",
@@ -89,7 +89,7 @@ const FLOWS: Record<string, Flow> = {
     {
       kind: "command",
       title: "/review",
-      detail: "Orchestrates the panel — doesn't do their work.",
+      detail: "Orchestrates the panel; doesn't do their work.",
     },
     {
       kind: "agent",
@@ -114,7 +114,7 @@ const FLOWS: Record<string, Flow> = {
     {
       kind: "skill",
       title: "Run the scanner",
-      detail: "scan.js — a deterministic, bundled binary.",
+      detail: "scan.js, a deterministic, bundled binary.",
       items: ["10 readers", "analyzers"],
     },
     {

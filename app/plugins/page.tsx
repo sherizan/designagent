@@ -7,7 +7,7 @@ import { getPlugins, getBridges, getCapabilities } from "@/lib/marketplace";
 export const metadata: Metadata = {
   title: "Plugins",
   description:
-    "All Claude Code plugins for designers in the designagent marketplace — the Figma bridge plus capability plugins.",
+    "All Claude Code plugins for designers in the designagent marketplace: the Figma bridge plus capability plugins.",
 };
 
 export default function PluginsPage() {
@@ -22,7 +22,7 @@ export default function PluginsPage() {
         {total} {total === 1 ? "plugin" : "plugins"} for designers
       </h1>
       <p className="text-body-lg mt-3 max-w-[680px] text-on-surface-muted">
-        One bridge connects Claude Code to Figma; the rest are capabilities — one
+        One bridge connects Claude Code to Figma; the rest are capabilities, one
         thing each, installed through Claude Code&apos;s native plugin system.
       </p>
 

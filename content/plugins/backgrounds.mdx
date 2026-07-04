@@ -1,7 +1,7 @@
 ---
 title: backgrounds
 slug: backgrounds
-description: Generate brand-aware background effects — shader, dot-grid, ASCII.
+description: Generate brand-aware background effects (shader, dot-grid, ASCII).
 category: design
 author: Sherizan Sheikh
 repo: https://github.com/sherizan/designagent-backgrounds
@@ -13,15 +13,15 @@ installPlugin: backgrounds@designagent
 
 ## What it does
 
-backgrounds generates self-contained, **brand-aware background effects** — recolored from your
+backgrounds generates self-contained, **brand-aware background effects**, recolored from your
 `DESIGN.md` and shaped for your framework, with accessibility baked in:
 
-- **shader** — an animated, domain-warped fBm WebGL field. Calm, organic, one draw call, no deps.
-- **dotgrid** — a dot-matrix backdrop. Static CSS tile (free), or a canvas variant that reacts to the cursor.
-- **ascii** — an animated ASCII char-shader. Retro/terminal texture.
+- **shader**: an animated, domain-warped fBm WebGL field. Calm, organic, one draw call, no deps.
+- **dotgrid**: a dot-matrix backdrop. Static CSS tile (free), or a canvas variant that reacts to the cursor.
+- **ascii**: an animated ASCII char-shader. Retro/terminal texture.
 
 Every effect ships with a `prefers-reduced-motion` static frame, a graceful fallback (no WebGL → dark
-CSS background), a device-pixel-ratio cap, and a readability scrim — so it's decoration that never
+CSS background), a device-pixel-ratio cap, and a readability scrim, so it's decoration that never
 hurts your content.
 
 ## What you can do with it
@@ -33,10 +33,10 @@ hurts your content.
 ## How it works
 
 Rather than write fragile WebGL/canvas from scratch, the plugin bundles **proven, documented reference
-implementations** and the skill *recolors and reshapes* them — applying your `DESIGN.md` palette and
+implementations** and the skill *recolors and reshapes* them, applying your `DESIGN.md` palette and
 emitting a React component (if React is detected) or a self-contained HTML/canvas snippet. Everything
 is dependency-free: one `<canvas>`/`<div>` + inline JS. The shader is adapted from the brand shader
-running on sherizan.com. Decoration that never fights the content — the only kind
+running on sherizan.com. Decoration that never fights the content, the only kind
 Coco allows.
 
 ## Install

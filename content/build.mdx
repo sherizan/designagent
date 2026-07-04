@@ -1,28 +1,28 @@
 ---
 title: How to build a design plugin
-description: A practical guide to building a Claude Code plugin for designers — the shapes, the manifest, the design-intelligence layer, and how to ship it to the designagent marketplace.
+description: A practical guide to building a Claude Code plugin for designers. Covers the shapes, the manifest, the design-intelligence layer, and how to ship it to the designagent marketplace.
 ---
 
 A Claude Code plugin gives Claude a new, repeatable capability. A *design* plugin gives it a design
-capability — read a Figma frame, extract tokens, QA a build, scaffold a design system, generate a
+capability: read a Figma frame, extract tokens, QA a build, scaffold a design system, generate a
 background. This is how to build one, end to end, the way the plugins in this marketplace are built.
 
-You don't need to be an engineer. Most of a great design plugin is a well-written **skill** — plain
+You don't need to be an engineer. Most of a great design plugin is a well-written **skill**, plain
 markdown that tells Claude how to do the thing well. The hard part is taste and precision, which is
-exactly what you already have. Coco can't hand you the taste — that part's yours. The rest, this
+exactly what you already have. Coco can't hand you the taste. That part's yours. The rest, this
 guide covers.
 
 ## What a plugin is made of
 
 A plugin is a folder with a `.claude-plugin/plugin.json` manifest and any of these parts:
 
-- **Skill** — a `SKILL.md` whose description tells Claude *when* to use it and whose body tells it
+- **Skill**: a `SKILL.md` whose description tells Claude *when* to use it and whose body tells it
   *how*. This is the heart of most design plugins.
-- **Command** — a `/name` entry point (`commands/name.md`) that invokes the skill explicitly.
-- **Agent** — a specialized sub-assistant (`agents/*.md`) for multi-step or parallel work.
-- **MCP server** — a connection to an external surface or tool (Figma, a browser, an API).
-- **Hook** — code that runs automatically on an event (a commit, a tool call).
-- **Bundled assets** — templates, recipes, or a script your skill reads via `${CLAUDE_PLUGIN_ROOT}`.
+- **Command**: a `/name` entry point (`commands/name.md`) that invokes the skill explicitly.
+- **Agent**: a specialized sub-assistant (`agents/*.md`) for multi-step or parallel work.
+- **MCP server**: a connection to an external surface or tool (Figma, a browser, an API).
+- **Hook**: code that runs automatically on an event (a commit, a tool call).
+- **Bundled assets**: templates, recipes, or a script your skill reads via `${CLAUDE_PLUGIN_ROOT}`.
 
 Most design plugins are **one skill + a command + some bundled assets**. Start there.
 
@@ -41,7 +41,7 @@ Most design plugins are **one skill + a command + some bundled assets**. Start t
 }
 ```
 
-`name` is what people install (`/plugin install my-plugin@designagent`). `version` is required — it's
+`name` is what people install (`/plugin install my-plugin@designagent`). `version` is required, it's
 how Claude Code knows when to update. If your plugin ships an MCP server, add `"mcpServers": "./.mcp.json"`.
 
 ## Pick a shape
@@ -54,24 +54,24 @@ The skill reads bundled templates or reference files and adapts them. Best for *
 scaffolding, and generation**. Examples here: `setup` (bundles the CLAUDE.md/DESIGN.md templates),
 `backgrounds` (bundles working shader/dot-grid/ASCII recipes the skill recolors).
 
-The trick: **bundle proven assets and have the skill *adapt* them — never raw-paste.** A documented
+The trick: **bundle proven assets and have the skill *adapt* them, never raw-paste.** A documented
 reference the skill recolors to the user's brand beats fragile from-scratch generation every time.
 
 ### 2. Skill + bundled binary
 
-When you need **deterministic computation** Claude shouldn't do by hand — clustering colors,
+When you need **deterministic computation** Claude shouldn't do by hand: clustering colors,
 diffing values, parsing source. Ship a single self-contained script and have the skill run it:
 
 ```
 node "${CLAUDE_PLUGIN_ROOT}/scanner/scan.js" .
 ```
 
-`tokens` does this — a bundled scanner (build it once, commit the bundled file, zero install) that
+`tokens` does this: a bundled scanner (build it once, commit the bundled file, zero install) that
 extracts the real token system and reports drift. The skill runs it, then reasons about the output.
 
 ### 3. Skill + bundled MCP
 
-When you need to reach an **external surface** — the Figma canvas, a live browser, an API. Declare
+When you need to reach an **external surface**: the Figma canvas, a live browser, an API. Declare
 it in `.mcp.json`:
 
 ```json
@@ -79,7 +79,7 @@ it in `.mcp.json`:
 ```
 
 `design-qa` bundles a Playwright MCP to screenshot a running app; `designagent` bundles a Figma
-bridge. Keep the dependency soft where you can — degrade gracefully if it isn't connected.
+bridge. Keep the dependency soft where you can, degrade gracefully if it isn't connected.
 
 ### 4. Command only
 
@@ -91,29 +91,29 @@ add it to any of the above.
 A general dev tool isn't a design plugin. The design layer is what makes it yours:
 
 - **Work in tokens, not literals.** Read the project's `DESIGN.md` for colors, type, spacing; never
-  hardcode a value a token covers. (`DESIGN.md` is a machine-readable token spec — the same one
+  hardcode a value a token covers. (`DESIGN.md` is a machine-readable token spec, the same one
   `setup` scaffolds and `tokens` reverse-engineers.)
-- **Respect the system that's there** before adding to it — reuse a component or token before making
+- **Respect the system that's there** before adding to it: reuse a component or token before making
   a new one.
-- **Hold the line on craft** — hierarchy, restraint, accessibility (WCAG AA), the five states. Bake
+- **Hold the line on craft**: hierarchy, restraint, accessibility (WCAG AA), the five states. Bake
   your standards into the skill's instructions so every run meets them.
 
 ## Write the skill
 
-`skills/my-plugin/SKILL.md` — frontmatter, then the instructions:
+`skills/my-plugin/SKILL.md`, frontmatter, then the instructions:
 
 ```markdown
 ---
 name: my-plugin
-description: One or two sentences naming exactly when to use this — the phrases and
+description: One or two sentences naming exactly when to use this: the phrases and
   intents that should trigger it (e.g. "audit contrast", "check accessibility").
 ---
 
-# my-plugin — what it does
+# my-plugin: what it does
 
 Numbered steps: how to do the thing well, what to read, what to output,
 and the guardrails (what never to do). Reference bundled assets via
-${CLAUDE_PLUGIN_ROOT}. Be specific — this is the product.
+${CLAUDE_PLUGIN_ROOT}. Be specific. This is the product.
 ```
 
 The **description** is the most important line you'll write: it's how Claude decides to invoke your
@@ -121,24 +121,24 @@ skill at the right moment. Name the real phrases a designer would say.
 
 ## Validate, ship, submit
 
-1. **Validate** — `claude plugin validate ./your-plugin --strict`. Fix everything it flags.
+1. **Validate**: `claude plugin validate ./your-plugin --strict`. Fix everything it flags.
 2. **Test it** from your own repo:
    ```
    /plugin marketplace add you/your-repo
    /plugin install my-plugin@your-marketplace
    ```
    Run it on a real project. Iterate on the skill until it's reliable.
-3. **Submit to designagent** — open the [submission form](/submit). Your plugin needs a
+3. **Submit to designagent**: open the [submission form](/submit). Your plugin needs a
    `.claude-plugin/plugin.json`, the two-command install, a public repo, and a genuine design focus.
 
 ## A good-taste checklist
 
-- **One thing, done well** — a focused capability beats a Swiss-army plugin.
-- **Recolor, don't paste** — adapt to the user's brand and stack; a copy isn't the job.
-- **Deterministic where it counts** — bundle a script for anything Claude would do imprecisely by hand.
-- **Degrade gracefully** — missing MCP, missing `DESIGN.md`? Do the useful subset and say what you skipped.
+- **One thing, done well**: a focused capability beats a Swiss-army plugin.
+- **Recolor, don't paste**: adapt to the user's brand and stack; a copy isn't the job.
+- **Deterministic where it counts**: bundle a script for anything Claude would do imprecisely by hand.
+- **Degrade gracefully**: missing MCP, missing `DESIGN.md`? Do the useful subset and say what you skipped.
 - **Honor `prefers-reduced-motion`** and WCAG AA in anything you generate.
-- **Trigger precisely** — a sharp skill `description` so it fires when wanted, not when not.
+- **Trigger precisely**: a sharp skill `description` so it fires when wanted, not when not.
 
-That's the whole craft. The marketplace is small and curated on purpose — build something you'd want
+That's the whole craft. The marketplace is small and curated on purpose: build something you'd want
 to use, and [submit it](/submit).

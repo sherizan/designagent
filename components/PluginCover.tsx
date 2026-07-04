@@ -26,7 +26,7 @@ export function PluginCover({ plugin }: { plugin: Plugin }) {
     );
   }
 
-  // Branded fallback cover — no fake screenshot, just on-brand media.
+  // Branded fallback cover: no fake screenshot, just on-brand media.
   return (
     <div
       className={`relative flex aspect-[16/9] flex-col items-center justify-center gap-4 overflow-hidden rounded-xl border border-border ${COVER_BG[plugin.accent]}`}

@@ -9,7 +9,7 @@ import { getContentDoc } from "@/lib/plugins";
 export const metadata: Metadata = {
   title: "How to build a design plugin",
   description:
-    "A practical guide to building a Claude Code plugin for designers — the shapes, the manifest, the design-intelligence layer, and how to ship it to the designagent marketplace.",
+    "A practical guide to building a Claude Code plugin for designers: the shapes, the manifest, the design-intelligence layer, and how to ship it to the designagent marketplace.",
 };
 
 export default function BuildPage() {

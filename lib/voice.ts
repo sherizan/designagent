@@ -1,5 +1,5 @@
 /**
- * Coco's voice — the restraint-purist designer. Deadpan, folk-legend, precise.
+ * Coco's voice: the restraint-purist designer. Deadpan, folk-legend, precise.
  * Centralized so the character stays consistent (and renameable) across the site.
  */
 export const COCO = {

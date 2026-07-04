@@ -40,11 +40,11 @@ export type AccentKey =
   | "backgrounds";
 
 export interface Plugin {
-  /** Canonical plugin name (what you install — e.g. "designagent"). */
+  /** Canonical plugin name (what you install, e.g. "designagent"). */
   name: string;
   /** Display title shown in the UI (falls back to name). */
   title: string;
-  /** URL slug for /plugins/[slug] — derived from homepage, falls back to name. */
+  /** URL slug for /plugins/[slug], derived from homepage, falls back to name. */
   slug: string;
   description: string;
   category: string;
@@ -74,7 +74,7 @@ const PRESENTATION: Record<
   string,
   { status: PluginStatus; featured: boolean; accent: AccentKey; author: string; kind: PluginKind; title?: string }
 > = {
-  designagent: { status: "live", featured: true, accent: "figma", author: "@sherizan", kind: "bridge", title: "Design Agent — Claude Bridge" },
+  designagent: { status: "live", featured: true, accent: "figma", author: "@sherizan", kind: "bridge", title: "Design Agent - Claude Bridge" },
   designreview: { status: "new", featured: false, accent: "review", author: "@sherizan", kind: "capability" },
   tokens: { status: "new", featured: false, accent: "tokens", author: "@sherizan", kind: "capability" },
   "design-qa": { status: "new", featured: false, accent: "community", author: "@sherizan", kind: "capability" },

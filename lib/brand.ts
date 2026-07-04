@@ -1,6 +1,6 @@
 import type { AccentKey } from "./marketplace";
 
-/** Raw DESIGN.md hex values — for contexts that can't use CSS vars (next/og ImageResponse). */
+/** Raw DESIGN.md hex values, for contexts that can't use CSS vars (next/og ImageResponse). */
 export const BRAND = {
   surface: "#FFFFFF",
   surfaceSecondary: "#F8F8F8",

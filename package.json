@@ -2,7 +2,7 @@
   "name": "designagent",
   "version": "0.1.0",
   "private": true,
-  "description": "Claude Code plugins for designers — the designagent marketplace front door (designagent.dev).",
+  "description": "Claude Code plugins for designers, the designagent marketplace front door (designagent.dev).",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

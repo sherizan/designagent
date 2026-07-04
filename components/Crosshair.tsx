@@ -1,4 +1,4 @@
-/** A blueprint `+` mark — sits at the intersections of the ruled frame. */
+/** A blueprint `+` mark that sits at the intersections of the ruled frame. */
 export function Crosshair({ className = "" }: { className?: string }) {
   return (
     <svg

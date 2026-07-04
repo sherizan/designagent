@@ -1,5 +1,5 @@
 /**
- * Coco — the designagent mascot. A restraint-purist designer: bob in a bun, round
+ * Coco, the designagent mascot. A restraint-purist designer: bob in a bun, round
  * glasses, black turtleneck; says nothing, deletes your drop shadows. The
  * illustration lives at /public/turtleneck.svg (156×126, black on white).
  */

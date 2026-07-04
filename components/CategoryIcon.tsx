@@ -22,7 +22,7 @@ function Glyph({ accent, px = 20 }: { accent: AccentKey; px?: number }) {
   };
   switch (accent) {
     case "figma":
-      // stacked layers — canvas / design
+      // stacked layers: canvas / design
       return (
         <svg {...common}>
           <path d="M12 2 2 7l10 5 10-5-10-5Z" />
@@ -31,7 +31,7 @@ function Glyph({ accent, px = 20 }: { accent: AccentKey; px?: number }) {
         </svg>
       );
     case "review":
-      // eye — design review
+      // eye: design review
       return (
         <svg {...common}>
           <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" />
@@ -48,7 +48,7 @@ function Glyph({ accent, px = 20 }: { accent: AccentKey; px?: number }) {
         </svg>
       );
     case "backgrounds":
-      // stacked waves — generative background
+      // stacked waves: generative background
       return (
         <svg {...common}>
           <path d="M2 6c3 0 3 2 5 2s2-2 5-2 3 2 5 2 3-2 5-2" />
@@ -57,7 +57,7 @@ function Glyph({ accent, px = 20 }: { accent: AccentKey; px?: number }) {
         </svg>
       );
     case "setup":
-      // sparkles / wand — scaffold & start
+      // sparkles / wand: scaffold & start
       return (
         <svg {...common}>
           <path d="M5 3v4" />

@@ -22,13 +22,13 @@ const dmMono = DM_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://designagent.dev"),
   title: {
-    default: "designagent — Claude Code plugins for designers",
-    template: "%s — designagent",
+    default: "designagent: Claude Code plugins for designers",
+    template: "%s | designagent",
   },
   description:
-    "A curated marketplace of Claude Code plugins built for designers. Figma, design review, and more — install in one command.",
+    "A curated marketplace of Claude Code plugins built for designers. Figma, design review, and more. Install in one command.",
   openGraph: {
-    title: "designagent — Claude Code plugins for designers",
+    title: "designagent: Claude Code plugins for designers",
     description:
       "A curated marketplace of Claude Code plugins built for designers.",
     url: "https://designagent.dev",
@@ -68,7 +68,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        {/* One framed column — vertical rules run the full height, header + footer
+        {/* One framed column: vertical rules run the full height, header + footer
             rules close the corners against them. */}
         <div className="mx-auto flex min-h-dvh max-w-[760px] flex-col border-x border-border">
           <header className="sticky top-0 z-40 border-b border-border bg-surface/85 backdrop-blur-md">
@@ -107,7 +107,7 @@ export default function RootLayout({
                   <div>
                     <p className="text-label-md text-on-surface">designagent</p>
                     <p className="text-body-sm mt-1 max-w-[260px] text-on-surface-subtle">
-                      Curated Claude Code plugins for designers — Figma, design
+                      Curated Claude Code plugins for designers: Figma, design
                       review, and more.
                     </p>
                   </div>

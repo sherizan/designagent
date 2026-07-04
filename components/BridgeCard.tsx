@@ -5,7 +5,7 @@ import { StatusBadge } from "./StatusBadge";
 import { CardInstall } from "./CardInstall";
 
 /**
- * Full-width card for a `bridge` plugin — the connection between Claude Code and an
+ * Full-width card for a `bridge` plugin: the connection between Claude Code and an
  * external surface. Visually distinct from the capability grid: wider, with the
  * "Claude Code ⇄ Figma" framing that says "integration", not "tool".
  */

@@ -17,8 +17,8 @@ design-qa answers the question that usually gets answered by eye, late, in a rev
 built UI actually match the design?** Point it at your running app and it captures the screen, then
 compares it to the design two ways and reports the drift:
 
-- **Vision diff** — what *looks* wrong: layout and alignment, spacing rhythm, type hierarchy, color usage, component fidelity, and missing states (empty / loading / error).
-- **Token check** — what's *provably* wrong: it reads the live DOM's computed styles and flags any color, spacing, font, or radius that doesn't match a `DESIGN.md` token, with the nearest token suggested.
+- **Vision diff**: what *looks* wrong: layout and alignment, spacing rhythm, type hierarchy, color usage, component fidelity, and missing states (empty / loading / error).
+- **Token check**: what's *provably* wrong: it reads the live DOM's computed styles and flags any color, spacing, font, or radius that doesn't match a `DESIGN.md` token, with the nearest token suggested.
 
 Findings are grouped by category and tagged **blocker / warning / nit**, so handoff QA stops being a
 vibe check. Coco can spot a one-pixel drift across the room; now Claude Code can too.
@@ -33,10 +33,10 @@ vibe check. Coco can spot a one-pixel drift across the room; now Claude Code can
 ## How it works
 
 The plugin bundles a **Playwright** browser to navigate, screenshot, and read computed styles from the
-running app — no setup beyond a dev-server URL. For the design side it uses the **designagent** Figma
+running app, no setup beyond a dev-server URL. For the design side it uses the **designagent** Figma
 plugin if it's connected (frame screenshot + spec), otherwise your project's `DESIGN.md`, otherwise a
 design image you provide. The token check normalizes the rendered values and matches them against your
-tokens, so "used `#777` instead of the muted token" gets caught precisely — not just noticed.
+tokens, so "used `#777` instead of the muted token" gets caught precisely, not just noticed.
 
 ## Install
 

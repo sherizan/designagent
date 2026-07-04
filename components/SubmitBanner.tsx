@@ -9,7 +9,7 @@ export function SubmitBanner() {
           Built a Claude Code plugin for designers?
         </h3>
         <p className="text-body-sm text-[#777777]">
-          Submit it — review is manual and fast. Public repos only.
+          Submit it. Review is manual and fast. Public repos only.
         </p>
       </div>
       <Link

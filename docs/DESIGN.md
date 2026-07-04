@@ -1,7 +1,7 @@
 ---
 version: alpha
 name: DesignAgent
-description: Design system for designagent.dev — a curated Claude Code plugin marketplace for designers.
+description: Design system for designagent.dev, a curated Claude Code plugin marketplace for designers.
 
 colors:
   # Surface
@@ -23,7 +23,7 @@ colors:
   primary: "#0F0F0F"
   on-primary: "#FFFFFF"
 
-  # Category accents — used on plugin icon backgrounds only
+  # Category accents: used on plugin icon backgrounds only
   accent-figma: "#E8F4FF"
   on-accent-figma: "#1A6FAD"
 
@@ -122,7 +122,7 @@ typography:
     fontWeight: 500
     lineHeight: 1
 
-  # Mono — install commands, code, metadata
+  # Mono: install commands, code, metadata
   mono-md:
     fontFamily: DM Mono
     fontSize: 13px
@@ -135,7 +135,7 @@ typography:
     fontWeight: 400
     lineHeight: 1.5
 
-  # Eyebrow — section labels, categories
+  # Eyebrow: section labels, categories
   eyebrow:
     fontFamily: Inter
     fontSize: 12px
@@ -321,16 +321,16 @@ components:
     textTransform: uppercase
 ---
 
-# DesignAgent — Design System
+# DesignAgent Design System
 
 ## Overview
 
 DesignAgent is a curated plugin marketplace for Claude Code, built specifically
-for designers. The audience is practitioners — people who think visually, have
+for designers. The audience is practitioners, people who think visually, have
 strong opinions about craft, and will immediately judge the site by how it
 looks. The site earns trust through restraint and precision, not decoration.
 
-**Personality:** Clean, confident, tool-like — but not faceless. The site feels
+**Personality:** Clean, confident, tool-like, but not faceless. The site feels
 like a well-designed developer tool *with a point of view*. Functional beauty (the
 aesthetic that makes Figma's own UI credible to designers) plus a dry sense of
 humor that never gets in the way of the work.
@@ -340,12 +340,12 @@ presentation; Figma Community in the plugin card pattern; the "Frame" wireframe
 template for the blueprint rule system.
 
 **Emotional response:** A designer landing here should feel they've found the
-right place — authoritative, curated, and made by someone who understands
+right place: authoritative, curated, and made by someone who understands
 their workflow. Not a side project that accidentally works. A deliberate tool.
 
-**Voice — Coco.** The site is narrated by a character: **Coco**, a restraint-purist
+**Voice, Coco.** The site is narrated by a character: **Coco**, a restraint-purist
 designer (round glasses, black turtleneck) who deletes more than she adds and
-rarely explains why. Her voice is **deadpan, dry, and precise** — one or two winks
+rarely explains why. Her voice is **deadpan, dry, and precise**, one or two winks
 per surface, never a paragraph of jokes. Copy is in Coco's voice **everywhere**
 (hero, plugin docs, empty states, 404, footer), with one hard rule: **the joke
 wraps the facts, never changes them.** Install commands, plugin ids, tool names,
@@ -358,7 +358,7 @@ She wears a turtleneck; she is not named Turtleneck.
 
 The palette is built on high-contrast neutrals with a pure white surface.
 Color is used functionally, not decoratively. The only place multi-color
-appears is plugin category icons — a deliberate nod to Figma's own four-color
+appears is plugin category icons, a deliberate nod to Figma's own four-color
 identity.
 
 - **Surface (`#FFFFFF`):** Pure white canvas. Every section sits on this.
@@ -374,7 +374,7 @@ identity.
 - **Border-strong (`#D0D0D0`):** Hover state borders on cards.
 - **Primary (`#0F0F0F`):** The single action color. Used for the logo mark,
   primary buttons, the submit banner background, and the featured card border.
-  This keeps the palette disciplined — black is the brand color.
+  This keeps the palette disciplined: black is the brand color.
 - **Category accents:** Light tinted backgrounds for plugin icon containers
   only. Figma plugins use `#E8F4FF` (blue), review plugins use `#F0EBFF`
   (purple). Never used on large surfaces.
@@ -385,12 +385,12 @@ identity.
 
 Two typefaces only. Inter handles everything structural. DM Mono handles
 everything code-adjacent. The pairing is clean and widely used in developer
-tooling — it reads as familiar to the audience without being generic.
+tooling. It reads as familiar to the audience without being generic.
 
-**Inter** is the workhorse — headings, body, labels, nav, buttons, eyebrows.
+**Inter** is the workhorse: headings, body, labels, nav, buttons, eyebrows.
 Tight negative tracking on display sizes (`-0.035em` at 52px) gives headlines
 authority. Weight range is 400 (body), 500 (labels, nav), 600 (headings,
-buttons). Never use 700 or 800 — it tips into heavy.
+buttons). Never use 700 or 800; it tips into heavy.
 
 **DM Mono** is used exclusively for: install commands, code snippets, step
 command chips, plugin author handles, and the eyebrow label inside the install
@@ -398,7 +398,7 @@ block. Mono in these contexts signals precision and makes copy-paste moments
 feel like product affordances.
 
 **Scale:** 13 levels, from `display-lg` at 52px down to `mono-sm` at 12px.
-Display sizes are used once each — headline and section title. The rest of the
+Display sizes are used once each: headline and section title. The rest of the
 type scale handles the repeating components.
 
 **Sentence case everywhere.** No ALL CAPS except `eyebrow` labels (nav
@@ -409,7 +409,7 @@ section labels, install block label). No Title Case in body copy.
 ## Layout
 
 The layout is a centered single-column structure with a fixed content width.
-Sections breathe — 64px vertical padding minimum between sections. The hero
+Sections breathe: 64px vertical padding minimum between sections. The hero
 gets 80px top padding.
 
 **Content width:** 680px for hero text and body copy. The plugin grid and
@@ -417,7 +417,7 @@ submit banner span the full section width (minus 40px gutters each side).
 
 **Grid:** The plugin grid uses a 2-column layout with 16px gap. On narrower
 viewports, it collapses to 1 column at 640px. The install block is
-`display: inline-block` — it sizes to its content, not the full column.
+`display: inline-block`; it sizes to its content, not the full column.
 
 **Spacing scale:** Built on an 8px base. All component padding, gap, and
 margin values are multiples of 8px. The 4px half-step (`xs`) is used only
@@ -443,30 +443,30 @@ shadows. No `box-shadow` on any surface in the default state.
 - **Featured card:** White background + 1px `#0F0F0F` border. The stronger
   border is the only elevation signal needed to mark hierarchy.
 - **Hover state:** Border color shifts from `#EBEBEB` → `#D0D0D0`. No
-  shadow added — the border movement is enough.
+  shadow added; the border movement is enough.
 - **Install block:** `#F8F8F8` background + 1px `#EBEBEB` border. Same
-  treatment as cards — consistent tonal layer system.
+  treatment as cards: consistent tonal layer system.
 - **Submit banner:** Inverted surface (`#0F0F0F` background). Elevation
   through contrast inversion, not depth.
 
 ### The blueprint frame (the brand pattern)
 
-Structure comes from a **blueprint rule system** — the site's signature pattern.
+Structure comes from a **blueprint rule system**, the site's signature pattern.
 The whole page sits in one **framed column** (`max-w-[1200px]`, 1px `border` on
-the left/right edges) whose vertical rules run the full height — header through
-sections to footer — as one continuous frame. The header's bottom rule and the
+the left/right edges) whose vertical rules run the full height (header through
+sections to footer) as one continuous frame. The header's bottom rule and the
 footer's top rule stop at the column edges (not the viewport), so they **close the
 corners** against the verticals. Each section is a `Frame`: a full-column-width
 block with a 1px top rule and the standard gutters.
 
-At every intersection where a rule meets another — the four page corners and each
-section boundary — sits a small **`+` crosshair** (`on-surface-faint`), centered on
+At every intersection where a rule meets another (the four page corners and each
+section boundary) sits a small **`+` crosshair** (`on-surface-faint`), centered on
 the line (nudged `0.5px` outward so it lands on the 1px rule, not the padding box).
 The same mark tiles into a faint **crosshair grid** (`+` on a ~26px pitch in the
 `border` tint) allowed in two places only: **behind the hero** (masked so it fades
 before the headline) and as the **ground of a plugin cover**. Everywhere else the
 surface stays pure white. Still **no gradients, no section color-tints, no
-shadows** — the rules and crosshairs carry all the structure.
+shadows**. The rules and crosshairs carry all the structure.
 
 Components: `Frame` (section wrapper) and `Crosshair` (the `+` mark); grid utility
 `.bg-crosshair` / `.hero-crosshair`.
@@ -475,16 +475,16 @@ Components: `Frame` (section wrapper) and `Crosshair` (the `+` mark); grid utili
 
 ## Motion
 
-Motion is subtle, fast, and purposeful — it confirms an action or eases an
+Motion is subtle, fast, and purposeful: it confirms an action or eases an
 entrance; it never performs.
 
 - **Speed:** ≤ 260ms, `ease-out` (or a gentle `cubic-bezier(0.16, 1, 0.3, 1)`).
 - **Entrance:** content may fade + rise ~8px on load (`animate-rise`), lightly
-  staggered between sections. Once only — no looping, no scroll-jacking.
-- **Hover:** small, legible nudges — a card's `→` shifts a few px, a border or
+  staggered between sections. Once only: no looping, no scroll-jacking.
+- **Hover:** small, legible nudges: a card's `→` shifts a few px, a border or
   text color transitions. No scale-pops, no bounce.
 - **Feedback:** the install copy button flips to a `✓ copied` success state.
-- **Always honor `prefers-reduced-motion: reduce`** — a global guard drops all
+- **Always honor `prefers-reduced-motion: reduce`**: a global guard drops all
   animation and transition durations to ~0. The site must be fully usable, and
   look intentional, with motion off.
 - **Don't:** parallax, auto-playing loops, spinners-as-decoration, or motion on
@@ -507,7 +507,7 @@ element has a consistent radius that signals its affordance level.
   radius on each square.
 
 Never mix `full` (pill) and `none` (sharp) in the same component. The only
-sharp element in the system is the rule/divider — a 1px horizontal line.
+sharp element in the system is the rule/divider: a 1px horizontal line.
 
 ---
 
@@ -517,7 +517,7 @@ sharp element in the system is the rule/divider — a 1px horizontal line.
 
 Top nav bar. 60px tall, sticky, with a 1px bottom rule that meets the frame's
 vertical rules at the top corners. Left: logo mark + wordmark. Center: the nav
-links (Home, Plugins, Build, Submit) **grouped in a single rounded-full capsule** —
+links (Home, Plugins, Build, Submit) **grouped in a single rounded-full capsule**,
 a borderless `surface-secondary` pill; each link is `label-md` Inter at
 `on-surface-subtle` and gets its own white pill on hover. Right: "Submit a plugin"
 button in `button-primary` pill style.
@@ -528,18 +528,18 @@ no border on the capsule, no active indicator beyond color.
 ### Mascot (Coco)
 
 The site's character (see Overview → Voice). Coco renders as a **monoline black
-portrait on white** — round glasses, hair in a bun, turtleneck — from
+portrait on white** (round glasses, hair in a bun, turtleneck) from
 `/public/turtleneck.svg` via `components/Coco.tsx` (`size` sets the width; the
 156×126 aspect is preserved). Placements: the **hero** aside (name + one-line
 tagline), the **footer** (small, beside a Coco line), and the **404**. She sits on
 white surfaces only (the asset has a baked white ground). Her lines are centralized
-in `lib/voice.ts` (`COCO`). Don't overuse her — she's punctuation, not wallpaper.
+in `lib/voice.ts` (`COCO`). Don't overuse her; she's punctuation, not wallpaper.
 
 ### Eyebrow Labels
 
 Short uppercase section labels that precede every heading. `eyebrow`
 typography token: 12px Inter 500, `on-surface-subtle`, `letter-spacing:
-0.04em`. Used before section headings only — not inside cards or components.
+0.04em`. Used before section headings only, not inside cards or components.
 
 Example usage: "Plugins", "How it works", "For builders"
 
@@ -557,7 +557,7 @@ Structure:
 - Copy button: white background, 1px border, 6px radius, 11px DM Mono
 
 Never truncate the install commands. They must be readable in full.
-The block is `display: inline-block` — it does not stretch to full width.
+The block is `display: inline-block`; it does not stretch to full width.
 
 ### Plugin Cards
 
@@ -587,9 +587,9 @@ Never use category accent colors outside of icon containers.
 ### Status Badges
 
 Pill-shaped (full radius). Three variants:
-- **Live:** `badge-live` — green tint, green text
-- **New:** `badge-new` — purple tint, purple text
-- **Soon:** `badge-soon` — grey tint, grey text
+- **Live:** `badge-live`, green tint, green text
+- **New:** `badge-new`, purple tint, purple text
+- **Soon:** `badge-soon`, grey tint, grey text
 
 Font: 11px Inter 500. Padding: 4px 10px. No uppercase.
 
@@ -607,13 +607,13 @@ text stack on the left, white pill button on the right.
 ### Steps (How It Works)
 
 Numbered list with `01 / 02 / 03` step numbers in `mono-sm` `on-surface-faint`.
-Each step separated by 1px `border` divider. No card container — the dividers
+Each step separated by 1px `border` divider. No card container; the dividers
 are the structure.
 
 - Step number: left column, 28px min-width
 - Title: `heading-sm` `on-surface`
 - Description: `body-sm` `on-surface-muted`
-- Command chip: `step-command` token — inline mono text in a `#F8F8F8`
+- Command chip: `step-command` token, inline mono text in a `#F8F8F8`
   pill with 6px radius
 
 ### Flow Diagram
@@ -625,7 +625,7 @@ plugin's `on-accent-*` so the flow coordinates with its icon), a
 `heading-sm` title, optional `body-sm` detail, and item **chips** (mono,
 pill, 1px border) listing the tools/agents/files. Nodes connect with a
 faint `→` (desktop, horizontal) that becomes `↓` (mobile, stacked) in
-`on-surface-faint`. Descriptive, not interactive — no zoom/pan. Same
+`on-surface-faint`. Descriptive, not interactive: no zoom/pan. Same
 restraint: borders not shadows, mono for technical labels.
 
 ---
@@ -638,7 +638,7 @@ section. One primary button per visible area.
 **Don't** use category accent colors (`accent-figma`, `accent-review`, etc.)
 on any surface larger than the 40×40px icon container.
 
-**Do** use DM Mono for any text the user might copy — install commands,
+**Do** use DM Mono for any text the user might copy: install commands,
 plugin skill invocations, author handles.
 
 **Don't** use font weights above 600. The type scale caps at semi-bold.
@@ -655,23 +655,23 @@ deliberately to control the break point.
 (`#0F0F0F`). The eyebrow label provides the color accent.
 
 **Do** left-align everything. The only centered element is the bottom CTA
-section (if added in a future phase). Hero, cards, steps, nav — all left.
+section (if added in a future phase). Hero, cards, steps, nav: all left.
 
 **Don't** add more than two typefaces. Inter + DM Mono is the complete set.
 No additional display fonts.
 
 **Do** maintain WCAG AA contrast (4.5:1) for all text. The `on-surface-faint`
 (`#CCCCCC`) token is for decorative elements only (arrows, step numbers,
-prompt glyphs) — never for readable text content.
+prompt glyphs), never for readable text content.
 
 **Don't** use the plugin grid at more than 2 columns on desktop. 3-column
 grids reduce the card breathing room and compress descriptions.
 
-**Do** write copy in Coco's voice everywhere — one or two dry winks per surface.
+**Do** write copy in Coco's voice everywhere: one or two dry winks per surface.
 Keep every install command, plugin id, and version literally correct; the joke
 wraps the facts, it never changes them.
 
-**Don't** let the crosshair grid or `+` marks compete with content — they're
+**Don't** let the crosshair grid or `+` marks compete with content; they're
 `on-surface-faint` texture at the rules only, never darker, never mid-surface.
 
 **Don't** call the mascot "Turtleneck." She wears one; her name is Coco.

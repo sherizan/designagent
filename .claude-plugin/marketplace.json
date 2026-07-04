@@ -19,7 +19,7 @@
         "ref": "v0.17.2",
         "sha": "063353de97abe47498b91e860e5f5082e944bb86"
       },
-      "description": "Claude Code's live two-way bridge to Figma — read, build, and edit the canvas in real time, then build production UI from a design-system-faithful DESIGN.md.",
+      "description": "Claude Code's live two-way bridge to Figma: read, build, and edit the canvas in real time, then build production UI from a design-system-faithful DESIGN.md.",
       "category": "design",
       "tags": ["figma", "design-to-code", "canvas", "design-system"],
       "homepage": "https://designagent.dev/plugins/designagent-figma"
@@ -33,7 +33,7 @@
         "ref": "v0.1.0",
         "sha": "240f8a30bdb680dc9df0f50eb9c99051cbf5cc0c"
       },
-      "description": "Set up a project for design work in Claude Code — scaffold DESIGN.md (tokens), CLAUDE.md (design intelligence), and DECISIONS.md, tailored to your stack. The fastest on-ramp for designers new to Claude Code.",
+      "description": "Set up a project for design work in Claude Code: scaffold DESIGN.md (tokens), CLAUDE.md (design intelligence), and DECISIONS.md, tailored to your stack. The fastest on-ramp for designers new to Claude Code.",
       "category": "design",
       "tags": ["setup", "onboarding", "design-system", "claude-md"],
       "homepage": "https://designagent.dev/plugins/setup"
@@ -47,7 +47,7 @@
         "ref": "v0.1.0",
         "sha": "5d3724af86637f8715b889dc1b20ac3143b49a43"
       },
-      "description": "AI design review for Claude Code — connects PRD, research, Figma, and analytics to review design intent (not pixels) and surface gaps before handoff or launch. Reads and annotates Figma through the DesignAgent bridge. Run /new, /review, /annotate.",
+      "description": "AI design review for Claude Code: connects PRD, research, Figma, and analytics to review design intent (not pixels) and surface gaps before handoff or launch. Reads and annotates Figma through the DesignAgent bridge. Run /new, /review, /annotate.",
       "category": "design",
       "tags": ["design-review", "ux", "critique", "qa"],
       "homepage": "https://designagent.dev/plugins/designreview"
@@ -61,7 +61,7 @@
         "ref": "v0.1.0",
         "sha": "d84cc8c67eaa50cbc102f16c7d65e777c13679ad"
       },
-      "description": "Extract your design tokens from code — colors, spacing, type, radius — with deterministic clustering and hardcoded-value drift detection, and keep DESIGN.md in sync.",
+      "description": "Extract your design tokens from code (colors, spacing, type, radius) with deterministic clustering and hardcoded-value drift detection, and keep DESIGN.md in sync.",
       "category": "design",
       "tags": ["design-tokens", "design-system", "drift", "tailwind"],
       "homepage": "https://designagent.dev/plugins/tokens"
@@ -89,7 +89,7 @@
         "ref": "v0.1.0",
         "sha": "765c3924128a5d72a8bd300c6e63ce400af3e522"
       },
-      "description": "Generate self-contained, brand-aware background effects — animated WebGL shader, dot-grid, or ASCII art — recolored from your DESIGN.md, with reduced-motion and fallbacks baked in.",
+      "description": "Generate self-contained, brand-aware background effects (animated WebGL shader, dot-grid, or ASCII art) recolored from your DESIGN.md, with reduced-motion and fallbacks baked in.",
       "category": "design",
       "tags": ["background", "shader", "generative", "ascii"],
       "homepage": "https://designagent.dev/plugins/backgrounds"
