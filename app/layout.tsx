@@ -3,7 +3,7 @@ import { Inter, DM_Mono } from "next/font/google";
 import Link from "next/link";
 import { Coco } from "@/components/Coco";
 import { Crosshair } from "@/components/Crosshair";
-import { COCO } from "@/lib/voice";
+import { NavLinks } from "@/components/NavLinks";
 import "./globals.css";
 
 const inter = Inter({
@@ -36,11 +36,6 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
-
-const NAV = [
-  { href: "/plugins", label: "Plugins" },
-  { href: "/build", label: "Build" },
-];
 
 function LogoMark() {
   return (
@@ -85,17 +80,7 @@ export default function RootLayout({
                 </span>
               </Link>
 
-              <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-0.5 rounded-full bg-surface-secondary p-1 sm:flex">
-                {NAV.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="text-label-md rounded-full px-3.5 py-1.5 text-on-surface-subtle transition-colors hover:bg-surface hover:text-on-surface"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
+              <NavLinks />
 
               <Link
                 href="/submit"
@@ -115,14 +100,15 @@ export default function RootLayout({
             {/* corners where the footer rule meets the vertical rules */}
             <Crosshair className="absolute left-[-0.5px] top-0 -translate-x-1/2 -translate-y-1/2" />
             <Crosshair className="absolute right-[-0.5px] top-0 -translate-y-1/2 translate-x-1/2" />
-            <div className="flex flex-col gap-8 px-6 py-10 sm:px-10">
+            <div className="px-6 pt-10 pb-8 sm:px-10">
               <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
                 <div className="flex items-start gap-3">
                   <Coco size={30} className="text-on-surface" />
                   <div>
                     <p className="text-label-md text-on-surface">designagent</p>
                     <p className="text-body-sm mt-1 max-w-[260px] text-on-surface-subtle">
-                      {COCO.footer}
+                      Curated Claude Code plugins for designers — Figma, design
+                      review, and more.
                     </p>
                   </div>
                 </div>
@@ -162,12 +148,16 @@ export default function RootLayout({
                       rel="noreferrer"
                       className="transition-colors hover:text-on-surface"
                     >
-                      Contact — @sherizan
+                      Contact
                     </a>
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col gap-1 border-t border-border pt-6 text-body-sm text-on-surface-subtle sm:flex-row sm:items-center sm:justify-between">
+            </div>
+            <div className="relative border-t border-border px-6 py-5 sm:px-10">
+              <Crosshair className="absolute left-[-0.5px] top-0 -translate-x-1/2 -translate-y-1/2" />
+              <Crosshair className="absolute right-[-0.5px] top-0 -translate-y-1/2 translate-x-1/2" />
+              <div className="flex flex-col gap-1 text-body-sm text-on-surface-subtle sm:flex-row sm:items-center sm:justify-between">
                 <p>© {new Date().getFullYear()} designagent</p>
                 <p>
                   Built by{" "}
