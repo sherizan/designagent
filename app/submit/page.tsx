@@ -74,7 +74,8 @@ export default function SubmitPage() {
       </ul>
 
       <p className="text-body-sm mt-10 text-on-surface-subtle">
-        Review is manual for now. Approved plugins get added to the{" "}
+        Review is manual for now — Coco reads every submission, and she has
+        opinions. Approved plugins get added to the{" "}
         <a
           href="https://github.com/sherizan/designagent/blob/main/.claude-plugin/marketplace.json"
           className="text-on-surface underline decoration-on-surface-faint underline-offset-4 hover:decoration-on-surface"

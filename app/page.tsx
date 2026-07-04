@@ -2,19 +2,21 @@ import { PluginGrid } from "@/components/PluginGrid";
 import { BridgeCard } from "@/components/BridgeCard";
 import { SubmitBanner } from "@/components/SubmitBanner";
 import { Eyebrow } from "@/components/Eyebrow";
-import { getBridges, getCapabilities } from "@/lib/marketplace";
+import { Frame } from "@/components/Frame";
+import { InstallBlock } from "@/components/InstallBlock";
+import { getBridges, getCapabilities, MARKETPLACE_REPO } from "@/lib/marketplace";
 
 export default function Home() {
   const bridges = getBridges();
   const capabilities = getCapabilities();
 
   return (
-    <div className="mx-auto max-w-[1200px] px-6 sm:px-10">
+    <>
       {/* Hero */}
-      <section className="relative isolate pt-16 pb-12 sm:pt-20">
+      <Frame top={false} className="relative isolate pt-16 pb-14 sm:pt-20">
         <div
           aria-hidden
-          className="hero-grid pointer-events-none absolute inset-x-0 -top-20 bottom-0 -z-10"
+          className="hero-crosshair pointer-events-none absolute inset-x-0 -top-20 bottom-0 -z-10"
         />
         <h1 className="text-display-lg animate-rise max-w-[680px] text-balance text-on-surface">
           Claude Code plugins,
@@ -26,41 +28,55 @@ export default function Home() {
           Figma, in design reviews, wherever the canvas lives. Install in one
           command.
         </p>
-      </section>
+        <div className="animate-rise delay-2 mt-8">
+          <InstallBlock
+            add={`/plugin marketplace add ${MARKETPLACE_REPO}`}
+            label="Add the marketplace"
+          />
+          <p className="text-body-sm mt-3 max-w-[440px] text-on-surface-subtle">
+            Add it once, then install any plugin below with{" "}
+            <code className="text-mono-sm text-on-surface-muted">
+              /plugin install …@designagent
+            </code>
+            .
+          </p>
+        </div>
+      </Frame>
 
       {/* The bridge — the connection to Figma */}
       {bridges.length > 0 && (
-        <section className="animate-rise delay-2 pb-12">
+        <Frame className="animate-rise delay-2 pt-12 pb-12">
           <Eyebrow>The bridge</Eyebrow>
           <h2 className="text-heading-lg mt-3 mb-2 text-on-surface">
             Connect Claude Code to your canvas
           </h2>
           <p className="text-body-md mb-6 max-w-[640px] text-on-surface-muted">
-            The integration that gives Claude Code hands and eyes in Figma —
-            everything else builds on what it can see.
+            Claude Code can't critique what it can't see. This is the plugin that
+            gives it eyes and hands inside Figma — everything else builds on it.
           </p>
           <div className="flex flex-col gap-4">
             {bridges.map((plugin) => (
               <BridgeCard key={plugin.slug} plugin={plugin} />
             ))}
           </div>
-        </section>
+        </Frame>
       )}
 
       {/* Capabilities — what Claude Code does */}
-      <section className="animate-rise delay-3 pb-20">
+      <Frame className="animate-rise delay-3 pt-12 pb-20">
         <Eyebrow>Capabilities</Eyebrow>
         <h2 className="text-heading-lg mt-3 mb-2 text-on-surface">
           What Claude Code can do
         </h2>
         <p className="text-body-md mb-6 max-w-[640px] text-on-surface-muted">
-          Each does one thing well — set up, extract, review, QA, generate.
+          Each does exactly one thing, and refuses to do a second. Set up,
+          extract, review, QA, generate — no kitchen sinks.
         </p>
         <PluginGrid plugins={capabilities} />
         <div className="mt-4">
           <SubmitBanner />
         </div>
-      </section>
-    </div>
+      </Frame>
+    </>
   );
 }

@@ -45,26 +45,31 @@ function CopyRow({ command }: { command: string }) {
 export function InstallBlock({
   add,
   install,
+  label = "Quick install",
   className = "",
 }: {
   add: string;
-  install: string;
+  /** Optional plugin-install line. Omit on the marketplace-level block (e.g. the hero). */
+  install?: string;
+  label?: string;
   className?: string;
 }) {
   return (
     <div
       className={`inline-block max-w-full rounded-xl border border-border bg-surface-secondary px-6 py-5 ${className}`}
     >
-      <p className="text-eyebrow mb-2.5 text-on-surface-faint">Quick install</p>
+      <p className="text-eyebrow mb-2.5 text-on-surface-faint">{label}</p>
       <CopyRow command={add} />
-      <CopyRow command={install} />
-      <p className="text-mono-sm mt-2.5 text-on-surface-faint">
-        Already added the marketplace?{" "}
-        <span className="text-on-surface-subtle">
-          /plugin marketplace update designagent
-        </span>{" "}
-        first.
-      </p>
+      {install && <CopyRow command={install} />}
+      {install && (
+        <p className="text-mono-sm mt-2.5 text-on-surface-faint">
+          Already added the marketplace?{" "}
+          <span className="text-on-surface-subtle">
+            /plugin marketplace update designagent
+          </span>{" "}
+          first.
+        </p>
+      )}
     </div>
   );
 }

@@ -110,6 +110,17 @@ body {
   line-height: 1.4;
   letter-spacing: -0.01em;
 }
+
+/* Headings use Geist Pixel (bitmap/pixel display face) — single weight, relaxed tracking. */
+.text-display-lg,
+.text-display-md,
+.text-heading-lg,
+.text-heading-md,
+.text-heading-sm {
+  font-family: "Geist Pixel", var(--font-sans);
+  font-weight: 400;
+  letter-spacing: normal;
+}
 .text-body-lg {
   font-size: 16px;
   font-weight: 400;
@@ -160,15 +171,14 @@ body {
   text-transform: uppercase;
 }
 
-/* ── Dot-grid texture (DESIGN.md: permitted behind the hero + as a cover ground) ── */
-.bg-dotgrid {
-  background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
+/* ── Crosshair grid (DESIGN.md: the blueprint texture — `+` marks on a 26px pitch) ── */
+.bg-crosshair {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cpath d='M13 10v6M10 13h6' stroke='%23ebebeb' stroke-width='1'/%3E%3C/svg%3E");
   background-size: 26px 26px;
-  background-position: -13px -13px;
 }
 /* Hero variant: faded from the top so it never competes with content. */
-.hero-grid {
-  background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
+.hero-crosshair {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cpath d='M13 10v6M10 13h6' stroke='%23ebebeb' stroke-width='1'/%3E%3C/svg%3E");
   background-size: 26px 26px;
   -webkit-mask-image: radial-gradient(120% 85% at 28% -10%, #000 0%, transparent 68%);
   mask-image: radial-gradient(120% 85% at 28% -10%, #000 0%, transparent 68%);

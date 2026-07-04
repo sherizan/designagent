@@ -1,5 +1,3 @@
-import { existsSync } from "node:fs";
-import { join } from "node:path";
 import Image from "next/image";
 import type { Plugin } from "@/lib/marketplace";
 import { CategoryIcon } from "./CategoryIcon";
@@ -13,27 +11,13 @@ const COVER_BG: Record<Plugin["accent"], string> = {
   backgrounds: "bg-accent-backgrounds",
 };
 
-const EXTS = ["png", "jpg", "jpeg", "webp"] as const;
-
-/** Returns the public path of a real cover image if one was dropped in /public/plugins. */
-function findCover(slug: string): string | null {
-  for (const ext of EXTS) {
-    if (existsSync(join(process.cwd(), "public", "plugins", `${slug}.${ext}`))) {
-      return `/plugins/${slug}.${ext}`;
-    }
-  }
-  return null;
-}
-
 export function PluginCover({ plugin }: { plugin: Plugin }) {
-  const real = findCover(plugin.slug);
-
-  if (real) {
+  if (plugin.banner) {
     return (
       <div className="relative aspect-[16/9] overflow-hidden rounded-xl border border-border">
         <Image
-          src={real}
-          alt={`${plugin.name} preview`}
+          src={plugin.banner}
+          alt={`${plugin.title} preview`}
           fill
           sizes="(max-width: 760px) 100vw, 760px"
           className="object-cover"
@@ -49,13 +33,13 @@ export function PluginCover({ plugin }: { plugin: Plugin }) {
     >
       <div
         aria-hidden
-        className="bg-dotgrid pointer-events-none absolute inset-0 opacity-50"
+        className="bg-crosshair pointer-events-none absolute inset-0 opacity-60"
       />
       <div className="relative flex items-center justify-center rounded-2xl border border-border bg-surface p-5">
         <CategoryIcon accent={plugin.accent} size={64} />
       </div>
       <span className="text-mono-sm relative text-on-surface-muted">
-        {plugin.name}
+        {plugin.title}
       </span>
     </div>
   );

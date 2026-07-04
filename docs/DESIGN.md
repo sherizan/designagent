@@ -330,16 +330,27 @@ for designers. The audience is practitioners — people who think visually, have
 strong opinions about craft, and will immediately judge the site by how it
 looks. The site earns trust through restraint and precision, not decoration.
 
-**Personality:** Clean, confident, tool-like. The site should feel like a
-well-designed developer tool, not a marketing page. Functional beauty — the
-same aesthetic that makes Figma's own UI credible to designers.
+**Personality:** Clean, confident, tool-like — but not faceless. The site feels
+like a well-designed developer tool *with a point of view*. Functional beauty (the
+aesthetic that makes Figma's own UI credible to designers) plus a dry sense of
+humor that never gets in the way of the work.
 
 **Reference:** Chatbase.co in structure and rhythm; shadcn/ui in code
-presentation; Figma Community in the plugin card pattern.
+presentation; Figma Community in the plugin card pattern; the "Frame" wireframe
+template for the blueprint rule system.
 
 **Emotional response:** A designer landing here should feel they've found the
 right place — authoritative, curated, and made by someone who understands
 their workflow. Not a side project that accidentally works. A deliberate tool.
+
+**Voice — Coco.** The site is narrated by a character: **Coco**, a restraint-purist
+designer (round glasses, black turtleneck) who deletes more than she adds and
+rarely explains why. Her voice is **deadpan, dry, and precise** — one or two winks
+per surface, never a paragraph of jokes. Copy is in Coco's voice **everywhere**
+(hero, plugin docs, empty states, 404, footer), with one hard rule: **the joke
+wraps the facts, never changes them.** Install commands, plugin ids, tool names,
+and versions stay literally correct. When in doubt, cut the wink, not the fact.
+She wears a turtleneck; she is not named Turtleneck.
 
 ---
 
@@ -438,13 +449,27 @@ shadows. No `box-shadow` on any surface in the default state.
 - **Submit banner:** Inverted surface (`#0F0F0F` background). Elevation
   through contrast inversion, not depth.
 
-### Texture (the one permitted exception)
+### The blueprint frame (the brand pattern)
 
-A single, **very faint dot-grid** is allowed in two places only: **behind the
-hero** (masked so it fades before it reaches the headline) and as the **ground
-of a plugin cover**. Dots are 1px on a ~26px grid in the `border` tint
-(`#EBEBEB`) — texture, not decoration. Everywhere else the surface stays pure
-white. Still **no gradients, no section color-tints, no shadows.**
+Structure comes from a **blueprint rule system** — the site's signature pattern.
+The whole page sits in one **framed column** (`max-w-[1200px]`, 1px `border` on
+the left/right edges) whose vertical rules run the full height — header through
+sections to footer — as one continuous frame. The header's bottom rule and the
+footer's top rule stop at the column edges (not the viewport), so they **close the
+corners** against the verticals. Each section is a `Frame`: a full-column-width
+block with a 1px top rule and the standard gutters.
+
+At every intersection where a rule meets another — the four page corners and each
+section boundary — sits a small **`+` crosshair** (`on-surface-faint`), centered on
+the line (nudged `0.5px` outward so it lands on the 1px rule, not the padding box).
+The same mark tiles into a faint **crosshair grid** (`+` on a ~26px pitch in the
+`border` tint) allowed in two places only: **behind the hero** (masked so it fades
+before the headline) and as the **ground of a plugin cover**. Everywhere else the
+surface stays pure white. Still **no gradients, no section color-tints, no
+shadows** — the rules and crosshairs carry all the structure.
+
+Components: `Frame` (section wrapper) and `Crosshair` (the `+` mark); grid utility
+`.bg-crosshair` / `.hero-crosshair`.
 
 ---
 
@@ -490,12 +515,25 @@ sharp element in the system is the rule/divider — a 1px horizontal line.
 
 ### Navigation
 
-Top nav bar. 60px tall. Left: logo mark + wordmark. Center: three text links
-(Plugins, Docs, Submit) in `label-md` Inter at `on-surface-subtle`. Right:
-"Submit a plugin" button in `button-primary` pill style.
+Top nav bar. 60px tall, sticky, with a 1px bottom rule that meets the frame's
+vertical rules at the top corners. Left: logo mark + wordmark. Center: the nav
+links (Home, Plugins, Build, Submit) **grouped in a single rounded-full capsule** —
+a borderless `surface-secondary` pill; each link is `label-md` Inter at
+`on-surface-subtle` and gets its own white pill on hover. Right: "Submit a plugin"
+button in `button-primary` pill style.
 
-On hover, nav links shift to `on-surface`. Active page link uses `on-surface`
-at rest. No underline, no active indicator beyond color.
+On hover, links shift to `on-surface` (lifting onto a white pill). No underline,
+no border on the capsule, no active indicator beyond color.
+
+### Mascot (Coco)
+
+The site's character (see Overview → Voice). Coco renders as a **monoline black
+portrait on white** — round glasses, hair in a bun, turtleneck — from
+`/public/turtleneck.svg` via `components/Coco.tsx` (`size` sets the width; the
+156×126 aspect is preserved). Placements: the **hero** aside (name + one-line
+tagline), the **footer** (small, beside a Coco line), and the **404**. She sits on
+white surfaces only (the asset has a baked white ground). Her lines are centralized
+in `lib/voice.ts` (`COCO`). Don't overuse her — she's punctuation, not wallpaper.
 
 ### Eyebrow Labels
 
@@ -628,3 +666,12 @@ prompt glyphs) — never for readable text content.
 
 **Don't** use the plugin grid at more than 2 columns on desktop. 3-column
 grids reduce the card breathing room and compress descriptions.
+
+**Do** write copy in Coco's voice everywhere — one or two dry winks per surface.
+Keep every install command, plugin id, and version literally correct; the joke
+wraps the facts, it never changes them.
+
+**Don't** let the crosshair grid or `+` marks compete with content — they're
+`on-surface-faint` texture at the rules only, never darker, never mid-surface.
+
+**Don't** call the mascot "Turtleneck." She wears one; her name is Coco.

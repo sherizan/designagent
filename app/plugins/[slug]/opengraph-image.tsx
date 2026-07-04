@@ -19,6 +19,7 @@ export default async function Image({
   const plugin = getPlugin(slug);
 
   const name = plugin?.name ?? slug;
+  const title = plugin?.title ?? name;
   const description = plugin?.description ?? "A Claude Code plugin for designers.";
   const accent = ACCENT_HEX[plugin?.accent ?? "community"];
 
@@ -62,7 +63,7 @@ export default async function Image({
               color: accent.fg,
             }}
           >
-            {name.charAt(0).toUpperCase()}
+            {title.charAt(0).toUpperCase()}
           </div>
         </div>
 
@@ -75,9 +76,10 @@ export default async function Image({
               fontWeight: 600,
               letterSpacing: -2,
               color: BRAND.onSurface,
+              maxWidth: 1040,
             }}
           >
-            {name}
+            {title}
           </div>
           <div style={{ display: "flex", fontSize: 32, lineHeight: 1.4, color: BRAND.onSurfaceMuted, maxWidth: 1000 }}>
             {description}

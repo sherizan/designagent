@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { Plugin } from "@/lib/marketplace";
-import { CategoryIcon } from "./CategoryIcon";
+import { PluginLogo } from "./PluginLogo";
 import { StatusBadge } from "./StatusBadge";
+import { CardInstall } from "./CardInstall";
 
 export function PluginCard({ plugin }: { plugin: Plugin }) {
   const base =
@@ -13,14 +14,16 @@ export function PluginCard({ plugin }: { plugin: Plugin }) {
   return (
     <Link href={`/plugins/${plugin.slug}`} className={`${base} ${variant}`}>
       <div className="flex items-start justify-between">
-        <CategoryIcon accent={plugin.accent} />
+        <PluginLogo plugin={plugin} />
         <StatusBadge status={plugin.status} />
       </div>
 
-      <h3 className="text-heading-sm mt-4 text-on-surface">{plugin.name}</h3>
+      <h3 className="text-heading-sm mt-4 text-on-surface">{plugin.title}</h3>
       <p className="text-body-sm mt-1.5 text-on-surface-muted">
         {plugin.description}
       </p>
+
+      <CardInstall command={plugin.install.install} />
 
       <div className="mt-5 flex items-center justify-between border-t border-border pt-3.5">
         <span className="text-mono-sm text-on-surface-faint">

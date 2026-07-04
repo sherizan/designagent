@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
 /** The marketplace name users type after `@` when installing. */
@@ -40,8 +40,10 @@ export type AccentKey =
   | "backgrounds";
 
 export interface Plugin {
-  /** Canonical plugin name (what you install). */
+  /** Canonical plugin name (what you install — e.g. "designagent"). */
   name: string;
+  /** Display title shown in the UI (falls back to name). */
+  title: string;
   /** URL slug for /plugins/[slug] — derived from homepage, falls back to name. */
   slug: string;
   description: string;
@@ -58,6 +60,10 @@ export interface Plugin {
   accent: AccentKey;
   author: string;
   kind: PluginKind;
+  /** Public path to a per-plugin square logo, if dropped in /public/plugins/<slug>/. */
+  logo: string | null;
+  /** Public path to a per-plugin 16:9 banner, if dropped in /public/plugins/<slug>/. */
+  banner: string | null;
 }
 
 /**
@@ -66,9 +72,9 @@ export interface Plugin {
  */
 const PRESENTATION: Record<
   string,
-  { status: PluginStatus; featured: boolean; accent: AccentKey; author: string; kind: PluginKind }
+  { status: PluginStatus; featured: boolean; accent: AccentKey; author: string; kind: PluginKind; title?: string }
 > = {
-  designagent: { status: "live", featured: true, accent: "figma", author: "@sherizan", kind: "bridge" },
+  designagent: { status: "live", featured: true, accent: "figma", author: "@sherizan", kind: "bridge", title: "Design Agent — Claude Bridge" },
   designreview: { status: "new", featured: false, accent: "review", author: "@sherizan", kind: "capability" },
   tokens: { status: "new", featured: false, accent: "tokens", author: "@sherizan", kind: "capability" },
   "design-qa": { status: "new", featured: false, accent: "community", author: "@sherizan", kind: "capability" },
@@ -85,6 +91,17 @@ function accentFor(p: { tags: string[]; category: string }): AccentKey {
   if (hay.includes("shader") || hay.includes("background") || hay.includes("generative") || hay.includes("ascii")) return "backgrounds";
   if (hay.includes("setup") || hay.includes("onboarding") || hay.includes("scaffold")) return "setup";
   return "community";
+}
+
+const ASSET_EXTS = ["png", "jpg", "jpeg", "webp"];
+
+/** Public path of a per-plugin asset (banner|logo) if present in /public/plugins/<slug>/. */
+function findAsset(slug: string, kind: "banner" | "logo"): string | null {
+  for (const ext of ASSET_EXTS) {
+    const rel = `plugins/${slug}/${slug}-${kind}.${ext}`;
+    if (existsSync(join(process.cwd(), "public", rel))) return `/${rel}`;
+  }
+  return null;
 }
 
 function slugFromHomepage(homepage: string | undefined, name: string): string {
@@ -116,9 +133,11 @@ export function getMarketplace() {
     const tags = p.tags ?? [];
     const category = p.category ?? "design";
     const pres = PRESENTATION[p.name];
+    const slug = slugFromHomepage(p.homepage, p.name);
     return {
       name: p.name,
-      slug: slugFromHomepage(p.homepage, p.name),
+      title: pres?.title ?? p.name,
+      slug,
       description: p.description,
       category,
       tags,
@@ -133,6 +152,8 @@ export function getMarketplace() {
       accent: pres?.accent ?? accentFor({ tags, category }),
       author: pres?.author ?? "@sherizan",
       kind: pres?.kind ?? "capability",
+      logo: findAsset(slug, "logo"),
+      banner: findAsset(slug, "banner"),
     };
   });
 

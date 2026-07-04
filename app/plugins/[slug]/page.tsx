@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { InstallBlock } from "@/components/InstallBlock";
-import { CategoryIcon } from "@/components/CategoryIcon";
+import { PluginLogo } from "@/components/PluginLogo";
 import { StatusBadge } from "@/components/StatusBadge";
 import { PluginCover } from "@/components/PluginCover";
 import { FlowDiagram } from "@/components/FlowDiagram";
@@ -25,7 +25,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const plugin = getPlugin(slug);
   if (!plugin) return {};
-  return { title: plugin.name, description: plugin.description };
+  return { title: plugin.title, description: plugin.description };
 }
 
 export default async function PluginPage({
@@ -51,10 +51,10 @@ export default async function PluginPage({
 
       <header className="mt-6">
         <div className="flex items-start justify-between">
-          <CategoryIcon accent={plugin.accent} />
+          <PluginLogo plugin={plugin} />
           <StatusBadge status={plugin.status} />
         </div>
-        <h1 className="text-display-md mt-5 text-on-surface">{plugin.name}</h1>
+        <h1 className="text-display-md mt-5 text-on-surface">{plugin.title}</h1>
         <p className="text-body-lg mt-3 text-on-surface-muted">
           {plugin.description}
         </p>

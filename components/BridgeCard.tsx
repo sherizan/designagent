@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { Plugin } from "@/lib/marketplace";
-import { CategoryIcon } from "./CategoryIcon";
+import { PluginLogo } from "./PluginLogo";
 import { StatusBadge } from "./StatusBadge";
+import { CardInstall } from "./CardInstall";
 
 /**
  * Full-width card for a `bridge` plugin — the connection between Claude Code and an
@@ -16,9 +17,9 @@ export function BridgeCard({ plugin }: { plugin: Plugin }) {
     >
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-4">
-          <CategoryIcon accent={plugin.accent} size={48} />
+          <PluginLogo plugin={plugin} size={48} />
           <div className="flex flex-col gap-1.5">
-            <h3 className="text-heading-md text-on-surface">{plugin.name}</h3>
+            <h3 className="text-heading-md text-on-surface">{plugin.title}</h3>
             <p className="text-mono-sm flex items-center gap-2 text-on-surface-subtle">
               <span>Claude&nbsp;Code</span>
               <span aria-hidden className="text-on-surface">⇄</span>
@@ -32,6 +33,10 @@ export function BridgeCard({ plugin }: { plugin: Plugin }) {
       <p className="text-body-lg mt-5 max-w-[640px] text-on-surface-muted">
         {plugin.description}
       </p>
+
+      <div className="max-w-[420px]">
+        <CardInstall command={plugin.install.install} />
+      </div>
 
       <div className="mt-6 flex items-center justify-between border-t border-border pt-4">
         <span className="text-mono-sm text-on-surface-faint">{plugin.author}</span>

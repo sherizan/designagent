@@ -31,6 +31,19 @@ Status: ▢ todo · ◐ in progress · ✓ done
 - ▢ Newsletter / changelog for new plugin drops
 - ✓ Per-plugin demo media — branded per-plugin OG social cards + detail-page covers; drop a real screenshot in `public/plugins/<slug>.{png,jpg,webp}` to override the branded cover
 
+## Rebrand & growth (queued 2026-07-04)
+
+- ✓ **Header menu** — removed "Home" and "Submit" from the nav capsule (Home = logo click; Submit stays as the CTA button). Leaves Plugins + Build.
+- ▢ **GSAP** — add GSAP for stronger overall animation (scroll-driven, entrance, hover); still honor `prefers-reduced-motion`.
+- ▢ **Categorise plugins by how designers work** — group by workflow stage (research, UX, copy, visual, motion, …) instead of / alongside the current bridge-vs-capability split.
+- ▢ **Proper logo** — replace the 2×2 placeholder mark with a real brand logo/wordmark.
+- ▢ **New quality visuals** — design higher-craft visuals for the plugin cards and the copy/install command box.
+- ▢ **Google Analytics** — add GA.
+- ▢ **GEO / SEO** — optimise for generative-engine optimisation + traditional SEO.
+- ▢ **Demo videos** — add a demo video per plugin.
+- ✓ **Clean up footer** — restructured into brand + Explore/Connect columns + a copyright/built-by bottom bar.
+- ✓ **Contact** — direct link to reach Sherizan on [x.com/sherizan](https://x.com/sherizan) (footer Connect column + built-by line).
+
 ## Phase 3 — Platform
 
 - ▢ Plugin install/usage analytics surfaced to authors
