@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export function SubmitBanner() {
   return (
-    <div className="flex flex-col gap-5 rounded-xl bg-primary px-9 py-8 sm:flex-row sm:items-center sm:justify-between">
-      <div className="flex flex-col gap-1.5">
+    <div className="flex flex-col gap-6 rounded-xl bg-primary p-8 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
+      <div className="flex flex-col gap-2">
         <p className="text-eyebrow text-on-surface-muted">For builders</p>
         <h3 className="text-heading-sm text-on-primary">
           Built a Claude Code plugin for designers?
