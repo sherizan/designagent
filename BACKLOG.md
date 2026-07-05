@@ -35,7 +35,7 @@ Status: ▢ todo · ◐ in progress · ✓ done
 
 - ✓ **Header menu** — removed "Home" and "Submit" from the nav capsule (Home = logo click; Submit stays as the CTA button). Leaves Plugins + Build.
 - ▢ **GSAP** — add GSAP for stronger overall animation (scroll-driven, entrance, hover); still honor `prefers-reduced-motion`.
-- ▢ **Categorise plugins by how designers work** — group by workflow stage (research, UX, copy, visual, motion, …) instead of / alongside the current bridge-vs-capability split. Target buckets = the ecosystem map in "Brand context stack" below.
+- ✓ **Categorise plugins by how designers work** — home + `/plugins` now group capabilities by workflow category (Brand & context · Visual & build · Review & QA; bridge stays featured). `group` field + `getCapabilityGroups()` + `CapabilityGroups` component; only non-empty categories render. Target buckets = the ecosystem map in "Brand context stack" below.
 - ▢ **Proper logo** — replace the 2×2 placeholder mark with a real brand logo/wordmark.
 - ▢ **New quality visuals** — design higher-craft visuals for the plugin cards and the copy/install command box.
 - ▢ **Google Analytics** — add GA.

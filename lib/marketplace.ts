@@ -60,6 +60,8 @@ export interface Plugin {
   accent: AccentKey;
   author: string;
   kind: PluginKind;
+  /** Workflow category for site grouping (how designers work, e.g. "Visual & build"). */
+  group: string;
   /** Public path to a per-plugin square logo, if dropped in /public/plugins/<slug>/. */
   logo: string | null;
   /** Public path to a per-plugin 16:9 banner, if dropped in /public/plugins/<slug>/. */
@@ -72,14 +74,14 @@ export interface Plugin {
  */
 const PRESENTATION: Record<
   string,
-  { status: PluginStatus; featured: boolean; accent: AccentKey; author: string; kind: PluginKind; title?: string }
+  { status: PluginStatus; featured: boolean; accent: AccentKey; author: string; kind: PluginKind; group: string; title?: string }
 > = {
-  designagent: { status: "live", featured: true, accent: "figma", author: "@sherizan", kind: "bridge", title: "Design Agent - Claude Bridge" },
-  designreview: { status: "new", featured: false, accent: "review", author: "@sherizan", kind: "capability" },
-  tokens: { status: "new", featured: false, accent: "tokens", author: "@sherizan", kind: "capability" },
-  "design-qa": { status: "new", featured: false, accent: "community", author: "@sherizan", kind: "capability" },
-  setup: { status: "new", featured: false, accent: "setup", author: "@sherizan", kind: "capability" },
-  backgrounds: { status: "new", featured: false, accent: "backgrounds", author: "@sherizan", kind: "capability" },
+  designagent: { status: "live", featured: true, accent: "figma", author: "@sherizan", kind: "bridge", group: "Visual & build", title: "Design Agent - Claude Bridge" },
+  designreview: { status: "new", featured: false, accent: "review", author: "@sherizan", kind: "capability", group: "Review & QA" },
+  tokens: { status: "new", featured: false, accent: "tokens", author: "@sherizan", kind: "capability", group: "Visual & build" },
+  "design-qa": { status: "new", featured: false, accent: "community", author: "@sherizan", kind: "capability", group: "Review & QA" },
+  setup: { status: "new", featured: false, accent: "setup", author: "@sherizan", kind: "capability", group: "Brand & context" },
+  backgrounds: { status: "new", featured: false, accent: "backgrounds", author: "@sherizan", kind: "capability", group: "Visual & build" },
 };
 
 /** Best-effort accent from tags/category when a plugin isn't in PRESENTATION. */
@@ -152,6 +154,7 @@ export function getMarketplace() {
       accent: pres?.accent ?? accentFor({ tags, category }),
       author: pres?.author ?? "@sherizan",
       kind: pres?.kind ?? "capability",
+      group: pres?.group ?? "Visual & build",
       logo: findAsset(slug, "logo"),
       banner: findAsset(slug, "banner"),
     };
@@ -181,6 +184,22 @@ export function getBridges(): Plugin[] {
 /** The capability plugins (things Claude Code does). */
 export function getCapabilities(): Plugin[] {
   return getPlugins().filter((p) => p.kind === "capability");
+}
+
+/** Workflow categories (how designers work), in display order. */
+export const CAPABILITY_GROUPS = [
+  "Brand & context",
+  "Visual & build",
+  "Review & QA",
+] as const;
+
+/** Capability plugins bucketed by workflow category; only non-empty groups, in order. */
+export function getCapabilityGroups(): { group: string; plugins: Plugin[] }[] {
+  const caps = getCapabilities();
+  return CAPABILITY_GROUPS.map((group) => ({
+    group,
+    plugins: caps.filter((p) => p.group === group),
+  })).filter((g) => g.plugins.length > 0);
 }
 
 export function getCategories(): string[] {

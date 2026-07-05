@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { PluginGrid } from "@/components/PluginGrid";
+import { CapabilityGroups } from "@/components/CapabilityGroups";
 import { BridgeCard } from "@/components/BridgeCard";
 import { Eyebrow } from "@/components/Eyebrow";
-import { getPlugins, getBridges, getCapabilities } from "@/lib/marketplace";
+import { getPlugins, getBridges } from "@/lib/marketplace";
 
 export const metadata: Metadata = {
   title: "Plugins",
@@ -13,7 +13,6 @@ export const metadata: Metadata = {
 export default function PluginsPage() {
   const total = getPlugins().length;
   const bridges = getBridges();
-  const capabilities = getCapabilities();
 
   return (
     <div className="mx-auto max-w-[1200px] px-6 py-16 sm:px-10">
@@ -39,8 +38,11 @@ export default function PluginsPage() {
 
       <section className="mt-12">
         <Eyebrow>Capabilities</Eyebrow>
-        <div className="mt-4">
-          <PluginGrid plugins={capabilities} />
+        <p className="text-body-sm mt-2 text-on-surface-subtle">
+          Grouped by how designers work.
+        </p>
+        <div className="mt-6">
+          <CapabilityGroups />
         </div>
       </section>
     </div>

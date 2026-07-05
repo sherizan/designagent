@@ -1,14 +1,13 @@
-import { PluginGrid } from "@/components/PluginGrid";
+import { CapabilityGroups } from "@/components/CapabilityGroups";
 import { BridgeCard } from "@/components/BridgeCard";
 import { SubmitBanner } from "@/components/SubmitBanner";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Frame } from "@/components/Frame";
 import { InstallBlock } from "@/components/InstallBlock";
-import { getBridges, getCapabilities, MARKETPLACE_REPO } from "@/lib/marketplace";
+import { getBridges, MARKETPLACE_REPO } from "@/lib/marketplace";
 
 export default function Home() {
   const bridges = getBridges();
-  const capabilities = getCapabilities();
 
   return (
     <>
@@ -68,11 +67,11 @@ export default function Home() {
         <h2 className="text-heading-lg mt-3 mb-2 text-on-surface">
           What Claude Code can do
         </h2>
-        <p className="text-body-md mb-6 max-w-[640px] text-on-surface-muted">
-          Each does exactly one thing, and refuses to do a second. Set up,
-          extract, review, QA, generate. No kitchen sinks.
+        <p className="text-body-md mb-8 max-w-[640px] text-on-surface-muted">
+          Each does exactly one thing, grouped by how designers work. No kitchen
+          sinks.
         </p>
-        <PluginGrid plugins={capabilities} />
+        <CapabilityGroups />
         <div className="mt-4">
           <SubmitBanner />
         </div>
