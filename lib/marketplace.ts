@@ -37,7 +37,10 @@ export type AccentKey =
   | "tokens"
   | "community"
   | "setup"
-  | "backgrounds";
+  | "backgrounds"
+  | "voice"
+  | "brand"
+  | "design";
 
 export interface Plugin {
   /** Canonical plugin name (what you install, e.g. "designagent"). */
@@ -82,6 +85,9 @@ const PRESENTATION: Record<
   "design-qa": { status: "new", featured: false, accent: "community", author: "@sherizan", kind: "capability", group: "Review & QA" },
   setup: { status: "new", featured: false, accent: "setup", author: "@sherizan", kind: "capability", group: "Brand & context" },
   backgrounds: { status: "new", featured: false, accent: "backgrounds", author: "@sherizan", kind: "capability", group: "Visual & build" },
+  brand: { status: "new", featured: false, accent: "brand", author: "@sherizan", kind: "capability", group: "Brand & context", title: "BRAND.md" },
+  voice: { status: "new", featured: false, accent: "voice", author: "@sherizan", kind: "capability", group: "Copy", title: "VOICE.md" },
+  design: { status: "new", featured: false, accent: "design", author: "@sherizan", kind: "capability", group: "Brand & context", title: "DESIGN.md" },
 };
 
 /** Best-effort accent from tags/category when a plugin isn't in PRESENTATION. */
@@ -122,6 +128,7 @@ function repoFromSource(source: RawSource): string | null {
   return null;
 }
 
+// marketplace catalog cache (per server process)
 let cache: { name: string; description: string; plugins: Plugin[] } | null = null;
 
 export function getMarketplace() {
@@ -190,6 +197,7 @@ export function getCapabilities(): Plugin[] {
 export const CAPABILITY_GROUPS = [
   "Brand & context",
   "Visual & build",
+  "Copy",
   "Review & QA",
 ] as const;
 

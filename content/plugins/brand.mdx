@@ -1,0 +1,40 @@
+---
+title: BRAND.md
+slug: brand
+description: Your brand's identity and mascot, in one file.
+category: design
+author: Sherizan Sheikh
+repo: https://github.com/sherizan/designagent-brand
+tags: [brand, identity, mascot, voice]
+status: published
+installMarketplace: sherizan/designagent
+installPlugin: brand@designagent
+---
+
+## What it does
+
+brand is where a project's identity starts. It interviews you (name, audience,
+personality, the promise, the character), writes a `BRAND.md`, and draws you a
+mascot: a single clean monoline SVG derived from the personality. `BRAND.md` is
+the root of the context stack, so `VOICE.md` and `DESIGN.md` read from it.
+
+## What you can do with it
+
+- "Set up the brand for this project."
+- "Give us a mascot."
+- "Define our personality and positioning."
+- "Seed a voice and a design direction from the brand."
+
+## How it works
+
+`/brand` asks only what it can't infer, writes `BRAND.md`, then generates a monoline
+SVG character (`currentColor`, one stroke weight, reads at 24px) with two or three
+traits pulled from the personality. It offers to seed starting points for `VOICE.md`
+and `DESIGN.md`, pointing to the `voice` and `design` plugins to go deeper. It
+augments existing files; it never clobbers them.
+
+## Install
+
+- Add the marketplace: `/plugin marketplace add sherizan/designagent`
+- Install: `/plugin install brand@designagent`
+- Run: `/brand` to define the brand and draw the mascot.

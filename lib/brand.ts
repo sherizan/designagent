@@ -21,4 +21,7 @@ export const ACCENT_HEX: Record<AccentKey, { bg: string; fg: string }> = {
   community: { bg: "#F5F5F5", fg: "#999999" },
   setup: { bg: "#E8FAF0", fg: "#1A8A4A" },
   backgrounds: { bg: "#E6FBFA", fg: "#0E7C86" },
+  brand: { bg: "#ECEBFF", fg: "#4B45C6" },
+  voice: { bg: "#FDECF2", fg: "#B43E6E" },
+  design: { bg: "#EEF2F7", fg: "#3F5673" },
 };

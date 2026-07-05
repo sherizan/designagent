@@ -44,7 +44,10 @@ Status: ▢ todo · ◐ in progress · ✓ done
 - ✓ **Clean up footer** — restructured into brand + Explore/Connect columns + a copyright/built-by bottom bar.
 - ✓ **Contact** — direct link to reach Sherizan on [x.com/sherizan](https://x.com/sherizan) (footer Connect column + built-by line).
 
-## Brand context stack (plugin family) — planned 2026-07-05
+## Brand context stack (plugin family) — SHIPPED 2026-07-05
+
+**✓ All three built, published, and live:** `voice` (github.com/sherizan/designagent-voice), `brand` (designagent-brand), `design` (designagent-design), each a validated plugin pinned at v0.1.0 in the marketplace, with its own accent + glyph, `title` (`VOICE.md`/`BRAND.md`/`DESIGN.md`), doc page, and workflow category (Copy / Brand & context). The design below is the spec they were built from.
+
 
 A family of thin, single-purpose plugins named after the artifact file each owns,
 marketed as `NAME.md` (instantly legible = the file it produces) but each a full

@@ -93,6 +93,48 @@
       "category": "design",
       "tags": ["background", "shader", "generative", "ascii"],
       "homepage": "https://designagent.dev/plugins/backgrounds"
+    },
+    {
+      "name": "brand",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/sherizan/designagent-brand.git",
+        "path": "claude-plugin",
+        "ref": "v0.1.0",
+        "sha": "c4fbaf141782b97cccbbaf09533b184fac1c1462"
+      },
+      "description": "BRAND.md: your brand's identity and mascot as a Claude Code plugin. Interview to a BRAND.md, generate a monoline SVG mascot, and seed VOICE.md and DESIGN.md.",
+      "category": "design",
+      "tags": ["brand", "identity", "mascot", "voice"],
+      "homepage": "https://designagent.dev/plugins/brand"
+    },
+    {
+      "name": "voice",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/sherizan/designagent-voice.git",
+        "path": "claude-plugin",
+        "ref": "v0.1.0",
+        "sha": "bcb9f69cbfb5731551ba50cc388783adee152475"
+      },
+      "description": "VOICE.md: proofread copy against a house voice and strip the AI tells (em dashes, hype, filler), keeping commands, ids, and code literally unchanged.",
+      "category": "design",
+      "tags": ["voice", "tone", "copy", "proofread"],
+      "homepage": "https://designagent.dev/plugins/voice"
+    },
+    {
+      "name": "design",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/sherizan/designagent-design.git",
+        "path": "claude-plugin",
+        "ref": "v0.1.0",
+        "sha": "ebaed2ded1bf3dc3861a95260c75ed6332ba30ce"
+      },
+      "description": "DESIGN.md: scaffold and sync your design system, then lint the code against its own rules (borders vs shadows, off-grid spacing, extra typefaces, over-cap weights).",
+      "category": "design",
+      "tags": ["design-system", "lint", "rules", "tokens"],
+      "homepage": "https://designagent.dev/plugins/design"
     }
   ]
 }

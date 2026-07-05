@@ -1,0 +1,48 @@
+---
+title: DESIGN.md
+slug: design
+description: Your design system, and code that obeys it.
+category: design
+author: Sherizan Sheikh
+repo: https://github.com/sherizan/designagent-design
+tags: [design-system, lint, rules, tokens]
+status: published
+installMarketplace: sherizan/designagent
+installPlugin: design@designagent
+---
+
+## What it does
+
+design owns your `DESIGN.md`, the design system, and does the thing a spec usually
+can't: it **checks that the code actually follows the rules.** It scaffolds and
+syncs `DESIGN.md` (tokens, type, components, and a Do's and Don'ts list), then lints
+your code against that list.
+
+What the lint catches:
+
+- Shadows where the spec says borders.
+- Spacing off the base grid (a 36px pad on an 8px system).
+- More typefaces than the spec allows.
+- Font weights above the cap.
+- Accent colours on surfaces they aren't allowed on.
+
+## What you can do with it
+
+- "Set up DESIGN.md for this project."
+- "Does the code follow our design system?"
+- "Lint this for anything off the 8px grid."
+- "Find shadows where we should be using borders."
+
+## How it works
+
+`/design` scaffolds or syncs `DESIGN.md`. For an existing codebase it points you at
+the `tokens` plugin to extract the real tokens instead of hand-writing them.
+`/design-lint` reads the Do's and Don'ts, turns them into checks, scans the code,
+and reports each hit with `file:line`, the rule it breaks, and the fix, grouped by
+severity. It reports; it fixes only when you ask.
+
+## Install
+
+- Add the marketplace: `/plugin marketplace add sherizan/designagent`
+- Install: `/plugin install design@designagent`
+- Run: `/design` to set up the system, then `/design-lint` on your code.

@@ -1,0 +1,49 @@
+---
+title: VOICE.md
+slug: voice
+description: Proofread copy against a house voice, minus the AI tells.
+category: design
+author: Sherizan Sheikh
+repo: https://github.com/sherizan/designagent-voice
+tags: [voice, tone, copy, proofread]
+status: published
+installMarketplace: sherizan/designagent
+installPlugin: voice@designagent
+---
+
+## What it does
+
+voice is your project's **voice and tone**, as a file the machine can read. It
+writes a `VOICE.md` (personality, banned words, punctuation, examples), then
+proofreads copy against it: stripping the tells that give away AI-written text
+and matching the way you actually sound.
+
+The tells it removes:
+
+- Em dashes used as connectors.
+- Hype words: seamless, effortless, delve, elevate, unlock.
+- Hedging filler: "it's worth noting", "simply", "just", "very".
+- The flat, same-length sentence rhythm.
+
+The rule that keeps it safe: **the voice wraps the facts, it never changes them.**
+Install commands, ids, tool names, versions, and code stay frozen.
+
+## What you can do with it
+
+- "Set up a VOICE.md for this project."
+- "Proofread this page and remove the AI tells."
+- "Make this sound like us, not like a robot."
+- "Clean up the copy before I ship, but don't touch the commands."
+
+## How it works
+
+`/voice` reads your repo and any existing copy and writes a `VOICE.md` ruleset from
+a bundled template. `/proofread` reads that ruleset, rewrites the prose to match,
+and reports what changed by kind, confirming no command, id, or line of code moved.
+No `VOICE.md` yet? It uses sensible defaults and offers to scaffold one.
+
+## Install
+
+- Add the marketplace: `/plugin marketplace add sherizan/designagent`
+- Install: `/plugin install voice@designagent`
+- Run: `/voice` to set up the ruleset, then `/proofread` on your copy.

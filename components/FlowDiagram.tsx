@@ -10,6 +10,9 @@ const ACCENT_TEXT: Record<AccentKey, string> = {
   community: "text-on-surface-subtle",
   setup: "text-on-accent-setup",
   backgrounds: "text-on-accent-backgrounds",
+  brand: "text-on-accent-brand",
+  voice: "text-on-accent-voice",
+  design: "text-on-accent-design",
 };
 
 function Node({ stage, accent }: { stage: FlowStage; accent: AccentKey }) {

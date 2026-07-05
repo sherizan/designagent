@@ -9,6 +9,9 @@ const COVER_BG: Record<Plugin["accent"], string> = {
   community: "bg-accent-community",
   setup: "bg-accent-setup",
   backgrounds: "bg-accent-backgrounds",
+  brand: "bg-accent-brand",
+  voice: "bg-accent-voice",
+  design: "bg-accent-design",
 };
 
 export function PluginCover({ plugin }: { plugin: Plugin }) {

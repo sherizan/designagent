@@ -35,6 +35,12 @@
   --color-on-accent-setup: #1a8a4a;
   --color-accent-backgrounds: #e6fbfa;
   --color-on-accent-backgrounds: #0e7c86;
+  --color-accent-brand: #ecebff;
+  --color-on-accent-brand: #4b45c6;
+  --color-accent-voice: #fdecf2;
+  --color-on-accent-voice: #b43e6e;
+  --color-accent-design: #eef2f7;
+  --color-on-accent-design: #3f5673;
 
   /* Semantic */
   --color-success: #1a8a4a;

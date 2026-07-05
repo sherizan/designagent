@@ -7,6 +7,9 @@ const ACCENT: Record<AccentKey, string> = {
   community: "bg-accent-community text-on-accent-community",
   setup: "bg-accent-setup text-on-accent-setup",
   backgrounds: "bg-accent-backgrounds text-on-accent-backgrounds",
+  brand: "bg-accent-brand text-on-accent-brand",
+  voice: "bg-accent-voice text-on-accent-voice",
+  design: "bg-accent-design text-on-accent-design",
 };
 
 function Glyph({ accent, px = 20 }: { accent: AccentKey; px?: number }) {
@@ -65,6 +68,28 @@ function Glyph({ accent, px = 20 }: { accent: AccentKey; px?: number }) {
           <path d="M6 17v4" />
           <path d="M4 19h4" />
           <path d="M13 3l2.5 6.5L22 12l-6.5 2.5L13 21l-2.5-6.5L4 12l6.5-2.5L13 3Z" />
+        </svg>
+      );
+    case "brand":
+      // star: brand identity
+      return (
+        <svg {...common}>
+          <path d="M12 2.5 15 9l7 .6-5.3 4.6 1.6 6.9L12 17.8 5.7 21l1.6-6.9L2 9.6 9 9l3-6.5Z" />
+        </svg>
+      );
+    case "voice":
+      // speech bubble: voice & tone
+      return (
+        <svg {...common}>
+          <path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.5 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 17 0Z" />
+        </svg>
+      );
+    case "design":
+      // ruler: design system
+      return (
+        <svg {...common}>
+          <rect x="2.5" y="8.5" width="19" height="7" rx="1.5" />
+          <path d="M6.5 8.5v2.5M10.5 8.5v3.5M14.5 8.5v2.5M18.5 8.5v3.5" />
         </svg>
       );
     default:
