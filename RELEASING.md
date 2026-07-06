@@ -25,7 +25,7 @@ guarantee (it's the effective pin even if the tag moves); `ref` is the human-rea
 
 | Plugin | Repo | Pin |
 | --- | --- | --- |
-| `designagent` | designagent-figma | `v0.17.3` |
+| `designagent` | designagent-figma | `v0.18.0` |
 | `setup` | designagent-setup | `v0.1.0` |
 | `designreview` | designagent-review | `v0.1.0` |
 | `tokens` | designagent-tokens | `v0.1.0` |
