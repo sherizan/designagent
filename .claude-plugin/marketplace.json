@@ -16,12 +16,17 @@
         "source": "git-subdir",
         "url": "https://github.com/sherizan/designagent-figma.git",
         "path": "claude-plugin",
-        "ref": "v0.17.2",
-        "sha": "063353de97abe47498b91e860e5f5082e944bb86"
+        "ref": "v0.17.3",
+        "sha": "fbcb66ce06d19294e8093b9bcba27c5c01fa9fca"
       },
       "description": "Claude Code's live two-way bridge to Figma: read, build, and edit the canvas in real time, then build production UI from a design-system-faithful DESIGN.md.",
       "category": "design",
-      "tags": ["figma", "design-to-code", "canvas", "design-system"],
+      "tags": [
+        "figma",
+        "design-to-code",
+        "canvas",
+        "design-system"
+      ],
       "homepage": "https://designagent.dev/plugins/designagent-figma"
     },
     {
@@ -35,7 +40,12 @@
       },
       "description": "Set up a project for design work in Claude Code: scaffold DESIGN.md (tokens), CLAUDE.md (design intelligence), and DECISIONS.md, tailored to your stack. The fastest on-ramp for designers new to Claude Code.",
       "category": "design",
-      "tags": ["setup", "onboarding", "design-system", "claude-md"],
+      "tags": [
+        "setup",
+        "onboarding",
+        "design-system",
+        "claude-md"
+      ],
       "homepage": "https://designagent.dev/plugins/setup"
     },
     {
@@ -49,7 +59,12 @@
       },
       "description": "AI design review for Claude Code: connects PRD, research, Figma, and analytics to review design intent (not pixels) and surface gaps before handoff or launch. Reads and annotates Figma through the DesignAgent bridge. Run /new, /review, /annotate.",
       "category": "design",
-      "tags": ["design-review", "ux", "critique", "qa"],
+      "tags": [
+        "design-review",
+        "ux",
+        "critique",
+        "qa"
+      ],
       "homepage": "https://designagent.dev/plugins/designreview"
     },
     {
@@ -63,7 +78,12 @@
       },
       "description": "Extract your design tokens from code (colors, spacing, type, radius) with deterministic clustering and hardcoded-value drift detection, and keep DESIGN.md in sync.",
       "category": "design",
-      "tags": ["design-tokens", "design-system", "drift", "tailwind"],
+      "tags": [
+        "design-tokens",
+        "design-system",
+        "drift",
+        "tailwind"
+      ],
       "homepage": "https://designagent.dev/plugins/tokens"
     },
     {
@@ -77,7 +97,12 @@
       },
       "description": "Does the build match the design? Screenshots your running UI, diffs it against the Figma frame / DESIGN.md, and reports layout, spacing, color, and type drift by severity.",
       "category": "design",
-      "tags": ["design-qa", "visual-regression", "figma", "qa"],
+      "tags": [
+        "design-qa",
+        "visual-regression",
+        "figma",
+        "qa"
+      ],
       "homepage": "https://designagent.dev/plugins/design-qa"
     },
     {
@@ -91,7 +116,12 @@
       },
       "description": "Generate self-contained, brand-aware background effects (animated WebGL shader, dot-grid, or ASCII art) recolored from your DESIGN.md, with reduced-motion and fallbacks baked in.",
       "category": "design",
-      "tags": ["background", "shader", "generative", "ascii"],
+      "tags": [
+        "background",
+        "shader",
+        "generative",
+        "ascii"
+      ],
       "homepage": "https://designagent.dev/plugins/backgrounds"
     },
     {
@@ -105,7 +135,12 @@
       },
       "description": "BRAND.md: your brand's identity and mascot as a Claude Code plugin. Interview to a BRAND.md, generate a monoline SVG mascot, and seed VOICE.md and DESIGN.md.",
       "category": "design",
-      "tags": ["brand", "identity", "mascot", "voice"],
+      "tags": [
+        "brand",
+        "identity",
+        "mascot",
+        "voice"
+      ],
       "homepage": "https://designagent.dev/plugins/brand"
     },
     {
@@ -119,7 +154,12 @@
       },
       "description": "VOICE.md: proofread copy against a house voice and strip the AI tells (em dashes, hype, filler), keeping commands, ids, and code literally unchanged.",
       "category": "design",
-      "tags": ["voice", "tone", "copy", "proofread"],
+      "tags": [
+        "voice",
+        "tone",
+        "copy",
+        "proofread"
+      ],
       "homepage": "https://designagent.dev/plugins/voice"
     },
     {
@@ -133,7 +173,12 @@
       },
       "description": "DESIGN.md: scaffold and sync your design system, then lint the code against its own rules (borders vs shadows, off-grid spacing, extra typefaces, over-cap weights).",
       "category": "design",
-      "tags": ["design-system", "lint", "rules", "tokens"],
+      "tags": [
+        "design-system",
+        "lint",
+        "rules",
+        "tokens"
+      ],
       "homepage": "https://designagent.dev/plugins/design"
     }
   ]
