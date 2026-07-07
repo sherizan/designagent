@@ -16,12 +16,13 @@ export function ToolsSection({ groups }: { groups: ToolGroup[] }) {
                 {group.tools.length}
               </span>
             </div>
-            <ul className="grid gap-x-6 gap-y-3 sm:grid-cols-2">
+            <ul className="grid gap-2 sm:grid-cols-2">
               {group.tools.map((tool) => (
-                <li key={tool.name} className="flex flex-col items-start gap-1">
-                  <span className="text-mono-sm rounded-full border border-border bg-surface px-2 py-0.5 text-on-surface">
-                    {tool.name}
-                  </span>
+                <li
+                  key={tool.name}
+                  className="flex flex-col gap-1 rounded-lg border border-border bg-surface-secondary p-3"
+                >
+                  <span className="text-mono-sm text-on-surface">{tool.name}</span>
                   <p className="text-body-sm text-on-surface-muted">
                     {tool.blurb}
                   </p>
