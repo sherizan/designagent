@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { playCopyBlip } from "@/lib/click-sound";
 
 function CopyRow({ command }: { command: string }) {
   const [copied, setCopied] = useState(false);
@@ -8,6 +9,7 @@ function CopyRow({ command }: { command: string }) {
   async function copy() {
     try {
       await navigator.clipboard.writeText(command);
+      playCopyBlip();
       setCopied(true);
       setTimeout(() => setCopied(false), 1600);
     } catch {
@@ -56,7 +58,7 @@ export function InstallBlock({
 }) {
   return (
     <div
-      className={`card inline-block max-w-full px-6 py-5 ${className}`}
+      className={`copy-box inline-block max-w-full px-6 py-5 ${className}`}
     >
       <p className="text-eyebrow mb-2.5 text-on-surface-faint">{label}</p>
       <CopyRow command={add} />

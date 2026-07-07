@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { playCopyBlip } from "@/lib/click-sound";
 
 /**
  * Compact click-to-copy install command for plugin cards. Lives inside the card's
@@ -15,6 +16,7 @@ export function CardInstall({ command }: { command: string }) {
     navigator.clipboard
       .writeText(command)
       .then(() => {
+        playCopyBlip();
         setCopied(true);
         setTimeout(() => setCopied(false), 1600);
       })
@@ -25,7 +27,7 @@ export function CardInstall({ command }: { command: string }) {
     <div
       onClick={copy}
       title="Click to copy"
-      className="mt-4 flex cursor-copy items-center gap-2 rounded-md border border-border bg-surface px-2.5 py-1.5"
+      className="copy-box mt-4 flex cursor-copy items-center gap-2 rounded-md px-2.5 py-1.5"
     >
       <code className="text-mono-sm min-w-0 flex-1 truncate text-on-surface-subtle">
         {command}

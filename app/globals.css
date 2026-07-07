@@ -200,8 +200,22 @@ body {
     isolation: isolate;
     border: 1px solid var(--card-border, var(--color-border));
     border-radius: var(--radius-xl);
-    background: var(--card-bg, var(--color-surface-secondary));
+    background-color: var(--card-bg, var(--color-surface-secondary));
+    /* Blueprint hatching: barely-there 135° hairlines; drifts on hover. */
+    background-image: repeating-linear-gradient(
+      135deg,
+      transparent 0 7px,
+      rgba(15, 15, 15, 0.015) 7px 8px
+    );
     transition: border-color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+.card-interactive:hover {
+  animation: hatch-drift 1.4s linear infinite;
+}
+@keyframes hatch-drift {
+  to {
+    background-position: 11.31px 0;
   }
 }
 .card::before,
@@ -270,6 +284,77 @@ body {
 .card-interactive:hover .card-chip:nth-child(4) { transition-delay: 90ms; }
 .card-interactive:hover .card-chip:nth-child(5) { transition-delay: 120ms; }
 .card-interactive:hover .card-chip:nth-child(n + 6) { transition-delay: 150ms; }
+
+/* ── The terminal (copy/install boxes): a comet runs the border and a soft
+   graphite aura breathes behind it on hover. The one glow the system allows —
+   it marks "this is the thing you copy", nowhere else. ── */
+@property --comet {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.copy-box {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-surface-secondary);
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent 0 7px,
+    rgba(15, 15, 15, 0.015) 7px 8px
+  );
+  transition: border-color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.copy-box::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(70% 90% at 50% 50%, rgba(15, 15, 15, 0.07), transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.copy-box::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--comet),
+    transparent 0deg 300deg,
+    var(--color-primary) 350deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.copy-box:hover::before,
+.copy-box:focus-within::before {
+  opacity: 1;
+}
+.copy-box:hover::after,
+.copy-box:focus-within::after {
+  opacity: 1;
+  animation: comet-run 1.6s linear infinite;
+}
+@keyframes comet-run {
+  to {
+    --comet: 360deg;
+  }
+}
 
 /* ── Motion (DESIGN.md: subtle, fast, ease-out; honor reduced-motion) ───────── */
 @keyframes rise {

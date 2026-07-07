@@ -22,6 +22,7 @@ export function BridgeCard({ plugin }: { plugin: Plugin }) {
         } as React.CSSProperties
       }
       data-reveal
+      data-tilt
     >
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-4">

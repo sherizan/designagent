@@ -491,7 +491,13 @@ entrance; it never performs.
   once (see `components/ScrollMotion.tsx` and `.claude/skills/gsap`). No
   looping, no scroll-jacking.
 - **Hover:** small, legible nudges: a card's `→` shifts a few px, a border or
-  text color transitions. No scale-pops, no bounce.
+  text color transitions; card hatching may drift and the big link cards tilt
+  ≤2.5° toward the cursor (`data-tilt`). No scale-pops, no bounce.
+- **The terminal exception:** copy/install boxes (`.copy-box`) are the one
+  surface allowed a glow — a soft graphite aura plus a comet tracing the
+  border on hover — because they mark the site's core action. A short
+  synthesized blip (~90ms, `lib/click-sound.ts`) confirms a copy; sound only
+  ever fires on an explicit click.
 - **Feedback:** the install copy button flips to a `✓ copied` success state.
 - **Always honor `prefers-reduced-motion: reduce`**: a global guard drops all
   animation and transition durations to ~0. The site must be fully usable, and

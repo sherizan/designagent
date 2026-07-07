@@ -20,6 +20,7 @@ export function PluginCard({ plugin }: { plugin: Plugin }) {
       className={base}
       style={cardVars}
       data-reveal
+      data-tilt
     >
       <div className="flex items-start justify-between">
         <PluginLogo plugin={plugin} />
