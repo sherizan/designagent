@@ -491,8 +491,13 @@ entrance; it never performs.
   once (see `components/ScrollMotion.tsx` and `.claude/skills/gsap`). No
   looping, no scroll-jacking.
 - **Hover:** small, legible nudges: a card's `→` shifts a few px, a border or
-  text color transitions; card hatching may drift and the big link cards tilt
-  ≤2.5° toward the cursor (`data-tilt`). No scale-pops, no bounce.
+  text color transitions; the card's accent mesh deepens and the big link
+  cards tilt ≤2.5° toward the cursor (`data-tilt`). No scale-pops, no bounce.
+- **Texture:** every card carries a whisper-level accent mesh (stacked radial
+  gradients off `--card-accent`, ≤7% mix) plus film grain (`--grain`, tiled
+  SVG turbulence). Cover banners use the full-strength version (`.cover-mesh`,
+  `--grain-strong`) — ElevenLabs-style grain-mesh in the plugin's accent pair.
+  Body text never sits on a mesh stronger than the card whisper.
 - **The terminal exception:** copy/install boxes (`.copy-box`) are the one
   surface allowed a glow — a soft graphite aura plus a comet tracing the
   border on hover — because they mark the site's core action. A short
