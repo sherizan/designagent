@@ -13,7 +13,15 @@ export function BridgeCard({ plugin }: { plugin: Plugin }) {
   return (
     <Link
       href={`/plugins/${plugin.slug}`}
-      className="group block rounded-xl border border-primary bg-surface p-6 transition-colors hover:border-primary sm:p-8"
+      className="card card-interactive group block p-6 sm:p-8"
+      style={
+        {
+          "--card-accent": `var(--color-on-accent-${plugin.accent})`,
+          "--card-border": "var(--color-primary)",
+          "--card-bg": "var(--color-surface)",
+        } as React.CSSProperties
+      }
+      data-reveal
     >
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-4">

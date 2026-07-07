@@ -17,7 +17,11 @@ const ACCENT_TEXT: Record<AccentKey, string> = {
 
 function Node({ stage, accent }: { stage: FlowStage; accent: AccentKey }) {
   return (
-    <div className="flex flex-1 flex-col gap-2 rounded-lg border border-border bg-surface-secondary p-4">
+    <div
+      className="card card-interactive flex flex-1 flex-col gap-2 rounded-lg p-4"
+      style={{ "--card-accent": `var(--color-on-accent-${accent})` } as React.CSSProperties}
+      data-reveal
+    >
       <span className={`text-eyebrow ${ACCENT_TEXT[accent]}`}>
         {KIND_LABEL[stage.kind]}
       </span>
@@ -30,7 +34,7 @@ function Node({ stage, accent }: { stage: FlowStage; accent: AccentKey }) {
           {stage.items.map((item) => (
             <span
               key={item}
-              className="text-mono-sm rounded-full border border-border bg-surface px-2 py-0.5 text-on-surface-muted"
+              className="card-chip text-mono-sm rounded-full border border-border bg-surface px-2 py-0.5 text-on-surface-muted"
             >
               {item}
             </span>

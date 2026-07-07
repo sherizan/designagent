@@ -190,6 +190,87 @@ body {
   mask-image: radial-gradient(120% 85% at 28% -10%, #000 0%, transparent 68%);
 }
 
+/* ── Blueprint cards (DESIGN.md: depth from borders, life from the hover — no
+   shadows, no scale). One shared recipe: corner crosshairs draw outward, the
+   border sweeps to the card's accent, and a faint +-grid ground fades in. ── */
+@layer components {
+  .card {
+    --card-accent: var(--color-border-strong);
+    position: relative;
+    isolation: isolate;
+    border: 1px solid var(--card-border, var(--color-border));
+    border-radius: var(--radius-xl);
+    background: var(--card-bg, var(--color-surface-secondary));
+    transition: border-color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+.card::before,
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 260ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-position 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* Four + marks that ease outward into the corners as they appear. */
+.card::before {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9'%3E%3Cpath d='M4.5 0v9M0 4.5h9' stroke='%23d0d0d0' stroke-width='1'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9'%3E%3Cpath d='M4.5 0v9M0 4.5h9' stroke='%23d0d0d0' stroke-width='1'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9'%3E%3Cpath d='M4.5 0v9M0 4.5h9' stroke='%23d0d0d0' stroke-width='1'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9'%3E%3Cpath d='M4.5 0v9M0 4.5h9' stroke='%23d0d0d0' stroke-width='1'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position:
+    12px 12px,
+    calc(100% - 12px) 12px,
+    12px calc(100% - 12px),
+    calc(100% - 12px) calc(100% - 12px);
+}
+/* The blueprint ground: same 26px +-grid as the hero, faded from the top. */
+.card::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cpath d='M13 10v6M10 13h6' stroke='%23ebebeb' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(140% 120% at 50% -20%, #000 0%, transparent 72%);
+  mask-image: radial-gradient(140% 120% at 50% -20%, #000 0%, transparent 72%);
+}
+.card-interactive:hover,
+.card-interactive:focus-visible {
+  border-color: var(--card-accent);
+}
+.card-interactive:hover::before,
+.card-interactive:focus-visible::before {
+  opacity: 1;
+  background-position:
+    5px 5px,
+    calc(100% - 5px) 5px,
+    5px calc(100% - 5px),
+    calc(100% - 5px) calc(100% - 5px);
+}
+.card-interactive:hover::after,
+.card-interactive:focus-visible::after {
+  opacity: 0.8;
+}
+/* Chips inside a card catch the accent in a 30ms cascade. */
+.card-chip {
+  transition:
+    border-color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-interactive:hover .card-chip {
+  border-color: var(--card-accent);
+  color: var(--color-on-surface);
+}
+.card-interactive:hover .card-chip:nth-child(2) { transition-delay: 30ms; }
+.card-interactive:hover .card-chip:nth-child(3) { transition-delay: 60ms; }
+.card-interactive:hover .card-chip:nth-child(4) { transition-delay: 90ms; }
+.card-interactive:hover .card-chip:nth-child(5) { transition-delay: 120ms; }
+.card-interactive:hover .card-chip:nth-child(n + 6) { transition-delay: 150ms; }
+
 /* ── Motion (DESIGN.md: subtle, fast, ease-out; honor reduced-motion) ───────── */
 @keyframes rise {
   from {

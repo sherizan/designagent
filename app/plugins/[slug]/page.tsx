@@ -85,7 +85,7 @@ export default async function PluginPage({
       )}
 
       {doc ? (
-        <div className="mt-12">
+        <div className="mt-12" data-reveal>
           <MDXRemote source={doc.body} components={mdxComponents} />
         </div>
       ) : (
@@ -105,7 +105,7 @@ export default async function PluginPage({
         </p>
       )}
 
-      {tools && <ToolsSection groups={tools} />}
+      {tools && <ToolsSection groups={tools} accent={plugin.accent} />}
 
       <footer className="text-body-sm mt-14 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-border pt-6 text-on-surface-subtle">
         {plugin.repo && (

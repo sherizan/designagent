@@ -442,8 +442,13 @@ shadows. No `box-shadow` on any surface in the default state.
   slightly above the white page by contrast.
 - **Featured card:** White background + 1px `#0F0F0F` border. The stronger
   border is the only elevation signal needed to mark hierarchy.
-- **Hover state:** Border color shifts from `#EBEBEB` → `#D0D0D0`. No
-  shadow added; the border movement is enough.
+- **Hover state (blueprint cards):** the shared `.card` recipe
+  (`app/globals.css`). On `.card-interactive` hover/focus-visible: the border
+  sweeps to the card's accent (`--card-accent`, a per-plugin `on-accent-*`
+  color; `#D0D0D0` where no accent applies), four corner `+` marks draw
+  outward into the corners, and a faint 26px `+`-grid ground fades in from the
+  top. Chips inside cascade to the accent 30ms apart. Still no shadow — the
+  border movement and crosshair reveals are the affordance.
 - **Install block:** `#F8F8F8` background + 1px `#EBEBEB` border. Same
   treatment as cards: consistent tonal layer system.
 - **Submit banner:** Inverted surface (`#0F0F0F` background). Elevation
@@ -478,9 +483,13 @@ Components: `Frame` (section wrapper) and `Crosshair` (the `+` mark); grid utili
 Motion is subtle, fast, and purposeful: it confirms an action or eases an
 entrance; it never performs.
 
-- **Speed:** ≤ 260ms, `ease-out` (or a gentle `cubic-bezier(0.16, 1, 0.3, 1)`).
-- **Entrance:** content may fade + rise ~8px on load (`animate-rise`), lightly
-  staggered between sections. Once only: no looping, no scroll-jacking.
+- **Speed:** ≤ 260ms, `ease-out` (or a gentle `cubic-bezier(0.16, 1, 0.3, 1)`;
+  `power3.out` in GSAP).
+- **Entrance:** above-the-fold content fades + rises on load via CSS
+  (`animate-rise`); below-the-fold cards and sections reveal on scroll via
+  GSAP ScrollTrigger — opt in with `data-reveal`, batched with a 60ms stagger,
+  once (see `components/ScrollMotion.tsx` and `.claude/skills/gsap`). No
+  looping, no scroll-jacking.
 - **Hover:** small, legible nudges: a card's `→` shifts a few px, a border or
   text color transitions. No scale-pops, no bounce.
 - **Feedback:** the install copy button flips to a `✓ copied` success state.

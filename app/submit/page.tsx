@@ -63,10 +63,7 @@ export default function SubmitPage() {
       </h2>
       <ul className="mt-6 grid gap-4 sm:grid-cols-2">
         {CRITERIA.map((c) => (
-          <li
-            key={c.title}
-            className="rounded-xl border border-border bg-surface-secondary p-6"
-          >
+          <li key={c.title} className="card card-interactive p-6" data-reveal>
             <p className="text-heading-sm text-on-surface">{c.title}</p>
             <p className="text-body-sm mt-2 text-on-surface-muted">{c.body}</p>
           </li>

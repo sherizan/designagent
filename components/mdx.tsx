@@ -46,7 +46,7 @@ export const mdxComponents = {
   ),
   pre: (props: HTMLAttributes<HTMLPreElement>) => (
     <pre
-      className="text-mono-sm my-5 overflow-x-auto rounded-xl border border-border bg-surface-secondary p-4 text-on-surface [&_code]:bg-transparent [&_code]:p-0"
+      className="card text-mono-sm my-5 overflow-x-auto p-4 text-on-surface [&_code]:bg-transparent [&_code]:p-0"
       {...props}
     />
   ),

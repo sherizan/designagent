@@ -5,14 +5,22 @@ import { StatusBadge } from "./StatusBadge";
 import { CardInstall } from "./CardInstall";
 
 export function PluginCard({ plugin }: { plugin: Plugin }) {
-  const base =
-    "group flex flex-col rounded-xl border p-6 transition-colors";
-  const variant = plugin.featured
-    ? "border-primary bg-surface hover:border-primary"
-    : "border-border bg-surface-secondary hover:border-border-strong";
+  const base = "card card-interactive group flex flex-col p-6";
+  const cardVars = {
+    "--card-accent": `var(--color-on-accent-${plugin.accent})`,
+    ...(plugin.featured && {
+      "--card-border": "var(--color-primary)",
+      "--card-bg": "var(--color-surface)",
+    }),
+  } as React.CSSProperties;
 
   return (
-    <Link href={`/plugins/${plugin.slug}`} className={`${base} ${variant}`}>
+    <Link
+      href={`/plugins/${plugin.slug}`}
+      className={base}
+      style={cardVars}
+      data-reveal
+    >
       <div className="flex items-start justify-between">
         <PluginLogo plugin={plugin} />
         <StatusBadge status={plugin.status} />

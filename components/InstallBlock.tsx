@@ -56,7 +56,7 @@ export function InstallBlock({
 }) {
   return (
     <div
-      className={`inline-block max-w-full rounded-xl border border-border bg-surface-secondary px-6 py-5 ${className}`}
+      className={`card inline-block max-w-full px-6 py-5 ${className}`}
     >
       <p className="text-eyebrow mb-2.5 text-on-surface-faint">{label}</p>
       <CopyRow command={add} />

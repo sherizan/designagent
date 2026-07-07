@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Coco } from "@/components/Coco";
 import { Crosshair } from "@/components/Crosshair";
 import { NavLinks } from "@/components/NavLinks";
+import { ScrollMotion } from "@/components/ScrollMotion";
 import "./globals.css";
 
 const inter = Inter({
@@ -68,6 +69,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
+        <ScrollMotion />
         {/* One framed column: vertical rules run the full height, header + footer
             rules close the corners against them. */}
         <div className="mx-auto flex min-h-dvh max-w-[760px] flex-col border-x border-border">
