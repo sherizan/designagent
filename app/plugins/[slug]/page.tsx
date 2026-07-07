@@ -8,9 +8,11 @@ import { StatusBadge } from "@/components/StatusBadge";
 import { PluginCover } from "@/components/PluginCover";
 import { FlowDiagram } from "@/components/FlowDiagram";
 import { Eyebrow } from "@/components/Eyebrow";
+import { ToolsSection } from "@/components/ToolsSection";
 import { getPlugin, getPlugins } from "@/lib/marketplace";
 import { getPluginDoc } from "@/lib/plugins";
 import { getFlow } from "@/lib/flows";
+import { getTools } from "@/lib/tools";
 import { mdxComponents } from "@/components/mdx";
 
 export function generateStaticParams() {
@@ -39,6 +41,7 @@ export default async function PluginPage({
 
   const doc = getPluginDoc(slug);
   const flow = getFlow(slug);
+  const tools = getTools(slug);
 
   return (
     <article className="mx-auto max-w-[760px] px-6 py-16 sm:px-10">
@@ -101,6 +104,8 @@ export default async function PluginPage({
           .
         </p>
       )}
+
+      {tools && <ToolsSection groups={tools} />}
 
       <footer className="text-body-sm mt-14 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-border pt-6 text-on-surface-subtle">
         {plugin.repo && (

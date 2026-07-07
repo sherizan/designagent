@@ -1,0 +1,36 @@
+import { Eyebrow } from "./Eyebrow";
+import type { ToolGroup } from "@/lib/tools";
+
+/** Full MCP tool reference for a plugin, grouped by category. */
+export function ToolsSection({ groups }: { groups: ToolGroup[] }) {
+  const total = groups.reduce((n, g) => n + g.tools.length, 0);
+  return (
+    <section className="mt-12">
+      <Eyebrow>Tools · {total}</Eyebrow>
+      <div className="mt-4 flex flex-col gap-8">
+        {groups.map((group) => (
+          <div key={group.label}>
+            <div className="mb-3 flex items-baseline justify-between border-b border-border pb-2.5">
+              <p className="text-label-md text-on-surface">{group.label}</p>
+              <span className="text-mono-sm text-on-surface-faint">
+                {group.tools.length}
+              </span>
+            </div>
+            <ul className="grid gap-x-6 gap-y-3 sm:grid-cols-2">
+              {group.tools.map((tool) => (
+                <li key={tool.name} className="flex flex-col items-start gap-1">
+                  <span className="text-mono-sm rounded-full border border-border bg-surface px-2 py-0.5 text-on-surface">
+                    {tool.name}
+                  </span>
+                  <p className="text-body-sm text-on-surface-muted">
+                    {tool.blurb}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
