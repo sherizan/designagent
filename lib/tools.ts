@@ -24,6 +24,7 @@ const TOOLS: Record<string, ToolGroup[]> = {
         { name: "export_tokens", blurb: "Resolved Figma variables as CSS, W3C JSON, Tailwind, or SCSS." },
         { name: "list_page_nodes", blurb: "Top-level nodes on the current page — find frames by name or position." },
         { name: "take_screenshot", blurb: "Render the selection or page to a PNG so Claude can see the result." },
+        { name: "export_asset", blurb: "Write nodes to real SVG/PNG files in the project — icons, logos, illustrations, even inside nested instances." },
         { name: "console_logs", blurb: "The plugin's captured console output, for debugging." },
       ],
     },
