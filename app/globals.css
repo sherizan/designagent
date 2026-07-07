@@ -213,12 +213,12 @@ body {
       var(--grain),
       radial-gradient(
         90% 90% at 12% 0%,
-        color-mix(in oklab, var(--card-accent) 7%, transparent),
+        rgb(from var(--card-accent) r g b / 0.07),
         transparent 60%
       ),
       radial-gradient(
         90% 100% at 100% 100%,
-        color-mix(in oklab, var(--card-accent) 5%, transparent),
+        rgb(from var(--card-accent) r g b / 0.05),
         transparent 55%
       );
     transition: border-color 200ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -257,12 +257,12 @@ body {
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cpath d='M13 10v6M10 13h6' stroke='%23ebebeb' stroke-width='1'/%3E%3C/svg%3E"),
     radial-gradient(
       80% 80% at 18% 0%,
-      color-mix(in oklab, var(--card-accent) 13%, transparent),
+      rgb(from var(--card-accent) r g b / 0.13),
       transparent 62%
     ),
     radial-gradient(
       90% 90% at 100% 100%,
-      color-mix(in oklab, var(--card-accent) 9%, transparent),
+      rgb(from var(--card-accent) r g b / 0.09),
       transparent 58%
     );
   background-size: 26px 26px, auto, auto;
@@ -318,7 +318,7 @@ body {
     var(--grain),
     radial-gradient(
       100% 130% at 15% 0%,
-      color-mix(in oklab, var(--color-primary) 4%, transparent),
+      rgb(from var(--color-primary) r g b / 0.04),
       transparent 60%
     );
   transition: border-color 200ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -382,20 +382,69 @@ body {
     var(--grain-strong),
     radial-gradient(
       75% 95% at 12% 8%,
-      color-mix(in oklab, var(--mesh-deep) 55%, transparent),
+      rgb(from var(--mesh-deep) r g b / 0.55),
       transparent 62%
     ),
     radial-gradient(
       70% 80% at 88% 12%,
-      color-mix(in oklab, var(--mesh-deep) 26%, transparent),
+      rgb(from var(--mesh-deep) r g b / 0.26),
       transparent 58%
     ),
     radial-gradient(
       85% 95% at 72% 100%,
-      color-mix(in oklab, var(--mesh-deep) 42%, transparent),
+      rgb(from var(--mesh-deep) r g b / 0.42),
       transparent 66%
     ),
     radial-gradient(60% 70% at 34% 88%, rgba(255, 255, 255, 0.55), transparent 60%);
+}
+
+/* ── Hero mesh: a multi-accent grain-mesh that dissolves into the paper ────── */
+.hero-mesh {
+  background-image:
+    var(--grain-strong),
+    radial-gradient(
+      55% 60% at 18% 8%,
+      rgb(from var(--color-on-accent-figma) r g b / 0.3),
+      transparent 62%
+    ),
+    radial-gradient(
+      50% 55% at 78% 0%,
+      rgb(from var(--color-on-accent-voice) r g b / 0.24),
+      transparent 58%
+    ),
+    radial-gradient(
+      60% 65% at 55% 30%,
+      rgb(from var(--color-on-accent-tokens) r g b / 0.22),
+      transparent 60%
+    ),
+    radial-gradient(
+      45% 50% at 92% 45%,
+      rgb(from var(--color-on-accent-setup) r g b / 0.16),
+      transparent 55%
+    );
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 35%, transparent 92%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 35%, transparent 92%);
+}
+
+/* The hero install card: same hues, whisper-plus level. */
+.copy-box-mesh {
+  background-image:
+    var(--grain),
+    radial-gradient(
+      80% 100% at 10% 0%,
+      rgb(from var(--color-on-accent-figma) r g b / 0.18),
+      transparent 60%
+    ),
+    radial-gradient(
+      70% 90% at 95% 20%,
+      rgb(from var(--color-on-accent-voice) r g b / 0.15),
+      transparent 58%
+    ),
+    radial-gradient(
+      80% 100% at 60% 100%,
+      rgb(from var(--color-on-accent-tokens) r g b / 0.15),
+      transparent 62%
+    );
 }
 
 /* ── Motion (DESIGN.md: subtle, fast, ease-out; honor reduced-motion) ───────── */

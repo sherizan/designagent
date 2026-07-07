@@ -15,6 +15,10 @@ export default function Home() {
       <Frame top={false} className="relative isolate pt-16 pb-14 sm:pt-20">
         <div
           aria-hidden
+          className="hero-mesh pointer-events-none absolute inset-x-0 -top-20 bottom-0 -z-10"
+        />
+        <div
+          aria-hidden
           className="hero-crosshair pointer-events-none absolute inset-x-0 -top-20 bottom-0 -z-10"
         />
         <h1 className="text-display-lg animate-rise max-w-[680px] text-balance text-on-surface">
@@ -31,6 +35,7 @@ export default function Home() {
           <InstallBlock
             add={`/plugin marketplace add ${MARKETPLACE_REPO}`}
             label="Add the marketplace"
+            className="copy-box-mesh"
           />
           <p className="text-body-sm mt-3 max-w-[440px] text-on-surface-subtle">
             Add it once, then install any plugin below with{" "}
