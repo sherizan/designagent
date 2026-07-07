@@ -52,3 +52,28 @@ It's the flagship, its plugin name is simply `designagent`:
 
 - Add the marketplace: `/plugin marketplace add sherizan/designagent`
 - Install: `/plugin install designagent@designagent`
+
+## Release notes
+
+### v0.20.0
+
+- **New: `export_asset`** — Claude exports icons, logos, images, and illustrations
+  straight from the design into real SVG/PNG files in your project, including
+  assets inside nested component instances. Vectors come out as clean SVG,
+  images as PNG with transparency intact. No more screenshots-as-assets or
+  rebuilt wordmarks.
+- Lookups on nested-instance layers fail fast with a clear message instead of
+  hanging for 20 seconds.
+- Heavy exports are queued, so bursts of screenshots no longer drop the bridge.
+
+### v0.19.0
+
+- New collapsible **Update** card in the panel with the exact update steps
+  (`/plugins` → designagent → Update now, then `/reload-plugins`).
+- The connected-project state got a proper card treatment.
+
+### v0.18.0
+
+- Anonymous usage telemetry: the MCP server counts tool-call names (never
+  design content or parameters) so we know which tools earn their keep.
+  Opt out with `DESIGNAGENT_TELEMETRY=0`.
