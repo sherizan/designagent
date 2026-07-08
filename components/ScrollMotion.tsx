@@ -55,8 +55,29 @@ export function ScrollMotion() {
         ScrollTrigger.refresh();
       }
 
-      // Perspective tilt (≤2.5°) toward the cursor for [data-tilt] cards.
+      // Magnetic pull (a few px toward the cursor) for [data-magnetic] buttons.
       const cleanups: Array<() => void> = [];
+      for (const el of gsap.utils.toArray<HTMLElement>("[data-magnetic]")) {
+        const xTo = gsap.quickTo(el, "x", { duration: 0.35, ease: "power3.out" });
+        const yTo = gsap.quickTo(el, "y", { duration: 0.35, ease: "power3.out" });
+        const move = (e: PointerEvent) => {
+          const r = el.getBoundingClientRect();
+          xTo((e.clientX - (r.left + r.width / 2)) * 0.15);
+          yTo((e.clientY - (r.top + r.height / 2)) * 0.25);
+        };
+        const leave = () => {
+          xTo(0);
+          yTo(0);
+        };
+        el.addEventListener("pointermove", move);
+        el.addEventListener("pointerleave", leave);
+        cleanups.push(() => {
+          el.removeEventListener("pointermove", move);
+          el.removeEventListener("pointerleave", leave);
+        });
+      }
+
+      // Perspective tilt (≤2.5°) toward the cursor for [data-tilt] cards.
       for (const el of gsap.utils.toArray<HTMLElement>("[data-tilt]")) {
         gsap.set(el, { transformPerspective: 700 });
         const rx = gsap.quickTo(el, "rotationX", { duration: 0.4, ease: "power2.out" });

@@ -86,6 +86,7 @@ export default function RootLayout({
 
               <Link
                 href="/submit"
+                data-magnetic
                 className="text-label-lg rounded-full bg-primary px-[18px] py-2.5 text-on-primary transition-colors hover:bg-primary-hover"
               >
                 Submit a plugin

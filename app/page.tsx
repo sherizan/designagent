@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <Frame top={false} className="relative isolate pt-16 pb-14 sm:pt-20">
+      <Frame top={false} className="relative isolate pt-20 pb-14 sm:pt-28">
         <div
           aria-hidden
           className="hero-mesh pointer-events-none absolute inset-x-0 -top-20 bottom-0 -z-10"
