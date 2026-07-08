@@ -77,16 +77,16 @@ export interface Plugin {
  */
 const PRESENTATION: Record<
   string,
-  { status: PluginStatus; featured: boolean; accent: AccentKey; author: string; kind: PluginKind; group: string; title?: string }
+  { status: PluginStatus; featured: boolean; accent: AccentKey; author: string; kind: PluginKind; group: string; title?: string; hidden?: boolean }
 > = {
   designagent: { status: "live", featured: true, accent: "figma", author: "@sherizan", kind: "bridge", group: "Visual & build", title: "Design Agent - Claude Bridge" },
   designreview: { status: "new", featured: false, accent: "review", author: "@sherizan", kind: "capability", group: "Review & QA" },
   tokens: { status: "new", featured: false, accent: "tokens", author: "@sherizan", kind: "capability", group: "Visual & build" },
   "design-qa": { status: "new", featured: false, accent: "community", author: "@sherizan", kind: "capability", group: "Review & QA" },
-  setup: { status: "new", featured: false, accent: "setup", author: "@sherizan", kind: "capability", group: "Brand & context" },
+  setup: { status: "new", featured: false, accent: "setup", author: "@sherizan", kind: "capability", group: "Brand & context", hidden: true },
   backgrounds: { status: "new", featured: false, accent: "backgrounds", author: "@sherizan", kind: "capability", group: "Visual & build" },
   brand: { status: "new", featured: false, accent: "brand", author: "@sherizan", kind: "capability", group: "Brand & context", title: "BRAND.md" },
-  voice: { status: "new", featured: false, accent: "voice", author: "@sherizan", kind: "capability", group: "Copy", title: "VOICE.md" },
+  voice: { status: "new", featured: false, accent: "voice", author: "@sherizan", kind: "capability", group: "Brand & context", title: "VOICE.md" },
   design: { status: "new", featured: false, accent: "design", author: "@sherizan", kind: "capability", group: "Brand & context", title: "DESIGN.md" },
 };
 
@@ -138,7 +138,9 @@ export function getMarketplace() {
     readFileSync(join(process.cwd(), ".claude-plugin", "marketplace.json"), "utf8"),
   ) as RawMarketplace;
 
-  const plugins: Plugin[] = raw.plugins.map((p) => {
+  const plugins: Plugin[] = raw.plugins
+    .filter((p) => !PRESENTATION[p.name]?.hidden)
+    .map((p) => {
     const tags = p.tags ?? [];
     const category = p.category ?? "design";
     const pres = PRESENTATION[p.name];
@@ -197,7 +199,6 @@ export function getCapabilities(): Plugin[] {
 export const CAPABILITY_GROUPS = [
   "Brand & context",
   "Visual & build",
-  "Copy",
   "Review & QA",
 ] as const;
 
