@@ -4,6 +4,35 @@ Human-readable handoff log. Newest first. Read this first in a new session.
 
 ---
 
+## 2026-07-06 → 07-08 — telemetry endpoint, bridge-page depth, blueprint+GSAP visual system, catalog trim
+
+- **`POST /api/telemetry`** — anonymous tool-usage counts from the DesignAgent MCP bridge, tallied
+  into Upstash Redis via plain REST (no client dep). Provisioned via
+  `vercel integration add upstash/upstash-kv` (resource `upstash-kv-red-globe`, `KV_*` env).
+  Keys: `tools:total` + `tools:YYYY-MM` hashes, `users:YYYY-MM` HLL. Returns 503 harmlessly if
+  env is missing. **Trim review 2026-07-13** → read `tools:2026-07`, cut tools in the plugin
+  repo, then update `lib/tools.ts` here.
+- **Bridge detail page** — full tool reference (43 tools, 8 groups: `lib/tools.ts` +
+  `ToolsSection`, per-slug like `flows.ts`) and a **Release notes** MDX section (v0.18–0.20).
+  Source of truth for the tool list is the plugin repo's `server.ts` — hand-sync on releases.
+- **Blueprint + GSAP visual system** (closes two backlog items). Shared `.card` recipe: accent
+  border sweep, corner crosshairs drawing in, +grid ground; whisper-level **grain-mesh** texture
+  on every card, full-strength `.cover-mesh` on fallback covers, hero mesh dissolving into the
+  paper (gotcha: `color-mix(…, transparent)` muddies to black — use `rgb(from … / a)`).
+  `.copy-box` terminal treatment (border comet + aura, the one allowed glow) + WebAudio copy
+  blip. GSAP 3.15 via ONE client entry point `components/ScrollMotion.tsx`: `data-reveal` scroll
+  stagger, `data-tilt` ≤2.5° card tilt, `data-magnetic` CTA pull. Header is transparent at top
+  and surfaces on scroll; nav has a single GSAP pill gliding between links. Conventions codified
+  in `.claude/skills/gsap` + DESIGN.md (elevation/motion/texture sections updated).
+- **Catalog** — `setup` hidden (presentation flag; unhide by deleting it), `VOICE.md` moved to
+  Brand & context, Copy group removed. designagent pin bumped v0.17.3 → **v0.20.0**
+  (telemetry / Update card / `export_asset` releases — see the plugin repo's SESSIONS.md).
+
+**Open:** author-facing analytics surfacing (collection now exists); retune mesh/glow/blip by
+taste; the Figma Community publish of the plugin is pending in the other repo.
+
+---
+
 ## 2026-06-20 — Flow diagrams + build guide + pin sources + papercut fixes
 
 - **Per-plugin flow diagram** on every detail page ("How it works", input → skill/agents → tools → output). Custom branded `components/FlowDiagram.tsx` fed by typed `lib/flows.ts` (6 flows). Responsive: horizontal pipeline with `→` on desktop, stacks with `↓` on mobile; kind eyebrow tinted by the plugin accent; item chips for tools/agents/files; accessible (`role=img` + summary label). `DESIGN.md` gained a "Flow Diagram" component note.

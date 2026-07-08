@@ -34,10 +34,12 @@ Status: ▢ todo · ◐ in progress · ✓ done
 ## Rebrand & growth (queued 2026-07-04)
 
 - ✓ **Header menu** — removed "Home" and "Submit" from the nav capsule (Home = logo click; Submit stays as the CTA button). Leaves Plugins + Build.
-- ▢ **GSAP** — add GSAP for stronger overall animation (scroll-driven, entrance, hover); still honor `prefers-reduced-motion`.
+- ✓ **GSAP** — shipped 2026-07-07/08: GSAP 3.15 via one client entry point (`components/ScrollMotion.tsx`) — `data-reveal` scroll-staggered entrances, `data-tilt` card perspective, `data-magnetic` CTA pull, sliding nav pill, header surfacing on scroll. Reduced-motion honored (`gsap.matchMedia` + global guard). House rules in `.claude/skills/gsap`.
 - ✓ **Categorise plugins by how designers work** — home + `/plugins` now group capabilities by workflow category (Brand & context · Visual & build · Review & QA; bridge stays featured). `group` field + `getCapabilityGroups()` + `CapabilityGroups` component; only non-empty categories render. Target buckets = the ecosystem map in "Brand context stack" below.
 - ▢ **Proper logo** — replace the 2×2 placeholder mark with a real brand logo/wordmark.
-- ▢ **New quality visuals** — design higher-craft visuals for the plugin cards and the copy/install command box.
+- ✓ **New quality visuals** — shipped 2026-07-07/08: blueprint `.card` system (accent border sweep, corner crosshairs, +grid ground), grain-mesh textures (whisper on cards, full-strength `.cover-mesh` covers, hero mesh), `.copy-box` terminal treatment (border comet + aura) with a WebAudio copy blip.
+- ✓ **Bridge page depth** — full 43-tool reference (`lib/tools.ts` + `ToolsSection`) + Release notes section on `/plugins/designagent-figma` (2026-07-07).
+- ✓ **Catalog trim (2026-07-08)** — `setup` hidden for now (presentation flag), `VOICE.md` → Brand & context, Copy group removed. Unhide setup when its story is ready.
 - ▢ **Google Analytics** — add GA.
 - ▢ **GEO / SEO** — optimise for generative-engine optimisation + traditional SEO.
 - ▢ **Demo videos** — add a demo video per plugin.
@@ -115,7 +117,7 @@ intentionally span two buckets (they define a file AND enforce it).
 
 ## Phase 3 — Platform
 
-- ▢ Plugin install/usage analytics surfaced to authors
+- ◐ Plugin install/usage analytics surfaced to authors — **collection shipped 2026-07-06**: `/api/telemetry` tallies anonymous per-tool bridge usage into Upstash (`tools:total`, `tools:YYYY-MM`, `users:YYYY-MM`); first trim review 2026-07-13. Remaining: an author-facing surface.
 - ▢ "Verified" badge for plugins personally tested
 - ▢ Explore a paid tier if designreview gets traction
 
