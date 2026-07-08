@@ -426,23 +426,24 @@ body {
   mask-image: linear-gradient(to bottom, #000 0%, #000 35%, transparent 92%);
 }
 
-/* The hero install card: same hues, whisper-plus level. */
+/* The hero install card: light surface, same hues at a whisper. */
 .copy-box-mesh {
+  background-color: var(--color-surface);
   background-image:
     var(--grain),
     radial-gradient(
       80% 100% at 10% 0%,
-      rgb(from var(--color-on-accent-figma) r g b / 0.18),
+      rgb(from var(--color-on-accent-figma) r g b / 0.1),
       transparent 60%
     ),
     radial-gradient(
       70% 90% at 95% 20%,
-      rgb(from var(--color-on-accent-voice) r g b / 0.15),
+      rgb(from var(--color-on-accent-voice) r g b / 0.08),
       transparent 58%
     ),
     radial-gradient(
       80% 100% at 60% 100%,
-      rgb(from var(--color-on-accent-tokens) r g b / 0.15),
+      rgb(from var(--color-on-accent-tokens) r g b / 0.08),
       transparent 62%
     );
 }
