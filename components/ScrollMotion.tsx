@@ -20,6 +20,19 @@ export function ScrollMotion() {
 
   useIsomorphicLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
+
+    // Header surfaces once the page scrolls — a state, not a flourish, so it
+    // lives outside the reduced-motion gate (the CSS transition is what the
+    // global guard zeroes).
+    const header = document.querySelector<HTMLElement>("[data-header]");
+    const headerTrigger = header
+      ? ScrollTrigger.create({
+          start: 12,
+          end: "max",
+          onToggle: (self) => header.classList.toggle("is-scrolled", self.isActive),
+        })
+      : null;
+
     const mm = gsap.matchMedia();
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
@@ -67,7 +80,10 @@ export function ScrollMotion() {
       return () => cleanups.forEach((fn) => fn());
     });
 
-    return () => mm.revert();
+    return () => {
+      headerTrigger?.kill();
+      mm.revert();
+    };
   }, [pathname]);
 
   return null;

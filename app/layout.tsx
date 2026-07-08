@@ -73,7 +73,7 @@ export default function RootLayout({
         {/* One framed column: vertical rules run the full height, header + footer
             rules close the corners against them. */}
         <div className="mx-auto flex min-h-dvh max-w-[760px] flex-col border-x border-border">
-          <header className="sticky top-0 z-40 border-b border-border bg-surface/85 backdrop-blur-md">
+          <header className="site-header sticky top-0 z-40" data-header>
             <nav className="relative flex h-[60px] items-center justify-between px-6 sm:px-10">
               <Link href="/" className="flex items-center gap-2.5">
                 <LogoMark />
@@ -92,8 +92,8 @@ export default function RootLayout({
               </Link>
             </nav>
             {/* corners where the nav rule meets the vertical rules */}
-            <Crosshair className="absolute bottom-0 left-[-0.5px] -translate-x-1/2 translate-y-1/2" />
-            <Crosshair className="absolute bottom-0 right-[-0.5px] translate-x-1/2 translate-y-1/2" />
+            <Crosshair className="header-crosshair absolute bottom-0 left-[-0.5px] -translate-x-1/2 translate-y-1/2" />
+            <Crosshair className="header-crosshair absolute bottom-0 right-[-0.5px] translate-x-1/2 translate-y-1/2" />
           </header>
 
           <main className="flex-1">{children}</main>
