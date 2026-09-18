@@ -16,8 +16,8 @@
         "source": "git-subdir",
         "url": "https://github.com/sherizan/designagent-figma.git",
         "path": "claude-plugin",
-        "ref": "v0.22.0",
-        "sha": "bb81aad63c0d9cd57d4e7d11c5ee7f6eb1a9ecb8"
+        "ref": "v0.22.1",
+        "sha": "a0aa1ffdf0f93506b823a71c92a46ce222a5d44f"
       },
       "description": "Claude Code's live two-way bridge to Figma: read, build, and edit the canvas in real time, then build production UI from a design-system-faithful DESIGN.md.",
       "category": "design",
