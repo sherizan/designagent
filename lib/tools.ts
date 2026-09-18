@@ -20,7 +20,7 @@ const TOOLS: Record<string, ToolGroup[]> = {
       tools: [
         { name: "status", blurb: "Bridge check — connected file, current page, and what's selected." },
         { name: "get_spec", blurb: "Structured UI spec (hierarchy, tokens, layout, text) of the selection as JSON — or of any nodeId, capped by depth." },
-        { name: "list_variables_and_styles", blurb: "The file's variable collections, modes, and paint/text/effect styles — the vocabulary to reuse." },
+        { name: "list_variables_and_styles", blurb: "The file's variable collections (with default values), modes, and paint/text/effect styles — the vocabulary to reuse." },
         { name: "get_design_md", blurb: "Export the selection as a DESIGN.md spec, ready to build from." },
         { name: "export_tokens", blurb: "Resolved Figma variables as CSS, W3C JSON, Tailwind, or SCSS." },
         { name: "list_page_nodes", blurb: "Top-level nodes on the current page — find frames by name or position." },
@@ -43,7 +43,7 @@ const TOOLS: Record<string, ToolGroup[]> = {
         { name: "create_text", blurb: "Create a text node — font loading handled automatically." },
         { name: "create_rectangle", blurb: "Create a rectangle." },
         { name: "create_ellipse", blurb: "Create an ellipse." },
-        { name: "html_to_design", blurb: "Render HTML into real Figma layers — flex and grid become Auto Layout and grid frames." },
+        { name: "html_to_design", blurb: "Render HTML into real Figma layers — flex and grid become Auto Layout and grid frames; matching colors and text bind to your variables and styles." },
       ],
     },
     {

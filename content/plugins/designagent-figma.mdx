@@ -34,6 +34,8 @@ Two halves of one loop:
 - "Create a pricing section on the canvas with three tiers and a featured plan."
 - "Audit this screen for spacing and contrast issues and annotate them in place."
 - "Turn this HTML into Figma frames."
+- "Put my Claude Design export into Figma." — the `claude-design-to-figma` skill renders each
+  artboard as an editable frame, bound to your file's variables and styles.
 
 ## How it works
 
@@ -43,7 +45,8 @@ itself up. Claude gets a toolset for reading and mutating the canvas
 (`get_design_md`, `create_frame`, `set_fill`, `instantiate_component`,
 `html_to_design` — the full tool reference is at the bottom of this page).
 The `design-to-code` skill turns a `DESIGN.md`
-spec into framework-faithful UI code. No pixel-pushing by hand, which is exactly
+spec into framework-faithful UI code; `claude-design-to-figma` walks a Claude Design export
+or a `/design` canvas into Figma frames; `figma-effects` handles gradients, noise, and glass. No pixel-pushing by hand, which is exactly
 how Coco likes it.
 
 ## Install
@@ -54,6 +57,30 @@ It's the flagship, its plugin name is simply `designagent`:
 - Install: `/plugin install designagent@designagent`
 
 ## Release notes
+
+### v0.22.0
+
+- **New: `claude-design-to-figma` skill** — Claude Design exports HTML but has no Figma
+  export. This skill renders each artboard (a `.zip`/standalone export, or a `/design`
+  canvas's `.dc.html` files) into editable Figma frames and verifies them by screenshot.
+- **`html_to_design` binds to your design system** — solid colors and text that exactly
+  match a local color variable, paint style, or text style come out bound to it.
+  `useDesignSystem: false` keeps literal values.
+- **`html_to_design { path }` inlines relative assets** — `<img src>` and CSS `url()` paths
+  resolve against the HTML file's folder.
+- `list_variables_and_styles` now returns each variable's default-mode value.
+- Onboarding: the Figma panel's Setup card explains what's missing and has copy buttons for the
+  two install commands; the session hook links the Community plugin.
+
+### v0.21.0
+
+- `html_to_design`: CSS grid → native Figma grid, `space-around`/`space-evenly`,
+  `text-wrap: balance|pretty`, variable-font axes; wrapped text keeps its container width.
+- `batch { screenshot }` returns a PNG in the same call; `get_spec { nodeId, depth }`.
+- New tools: `rename`, `set_auto_layout`, `set_instance_property`, `create_component`,
+  `list_variables_and_styles`; `set_text_style { wrap, variation }`; native fills and effects
+  (`set_gradient`, `set_noise`, `set_pattern`, `set_effect`) with the `figma-effects` skill.
+- Removed `set_shader`, `list_shaders`, `set_grid`, `apply_fix` (near-zero usage).
 
 ### v0.20.0
 
