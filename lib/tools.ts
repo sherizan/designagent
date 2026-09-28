@@ -64,10 +64,14 @@ const TOOLS: Record<string, ToolGroup[]> = {
       ],
     },
     {
-      label: "Images",
+      label: "Images & assets",
       tools: [
         { name: "set_image", blurb: "Fill a node with an image from a URL, file, or base64." },
         { name: "place_image", blurb: "Place a new image node on the canvas." },
+        { name: "place_svg", blurb: "Paste any SVG as native, editable vectors." },
+        { name: "place_icon", blurb: "Drop a Lucide or Material Symbols icon by name, recolored and sized." },
+        { name: "place_lottie", blurb: "Place one frame of a Lottie animation as vectors." },
+        { name: "capture_simulator", blurb: "Screenshot the booted iOS Simulator into Figma at point size (macOS)." },
       ],
     },
     {

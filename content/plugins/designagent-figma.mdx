@@ -36,6 +36,8 @@ Two halves of one loop:
 - "Turn this HTML into Figma frames."
 - "Put my Claude Design export into Figma." — the `claude-design-to-figma` skill renders each
   artboard as an editable frame, bound to your file's variables and styles.
+- "Drop a Lucide `arrow-right` icon into the button, then put my Simulator screen next to
+  the design." One of them is lying; now you can see which.
 
 ## How it works
 
@@ -57,6 +59,23 @@ It's the flagship, its plugin name is simply `designagent`:
 - Install: `/plugin install designagent@designagent`
 
 ## Release notes
+
+### v0.23.0
+
+- **New: `place_svg`, `place_icon`, `place_lottie`** — any SVG (an exported SF Symbol, a brand
+  mark) lands as native vectors; Lucide and Material Symbols icons are fetched by name,
+  recolored, and sized; a Lottie file becomes one frame of native vectors. No more
+  redrawing the arrow.
+- **New: `capture_simulator`** (macOS) — screenshots the booted iOS Simulator into Figma as an
+  image frame at point size. Flat pixels; for editable layers, use `html_to_design`.
+- `html_to_design` fidelity: absolute/fixed children pin where the browser put them;
+  `radial-gradient` → native radial; layered backgrounds → stacked fills;
+  `backdrop-filter: blur()` → background blur; layer names come from
+  `data-name`/`id`/`aria-label`/class, and the root frame takes the `<title>`.
+- New nodes auto-place inside Sections (`html_to_design`, `place_image`, `create_*`).
+- Renders went from 20s+ to under a second (the font list is cached now);
+  `take_screenshot` waits for a paint in progress instead of catching it half-done.
+- `html_to_design { path }` also reads HTML from the OS temp dir and the scratchpad.
 
 ### v0.22.1
 
