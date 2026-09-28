@@ -45,7 +45,8 @@ The plugin bundles an MCP server that talks to a companion Figma plugin over a
 local WebSocket bridge. Install it through Claude Code and the server wires
 itself up. Claude gets a toolset for reading and mutating the canvas
 (`get_design_md`, `create_frame`, `set_fill`, `instantiate_component`,
-`html_to_design` — the full tool reference is at the bottom of this page).
+`html_to_design`, `place_icon`, `capture_simulator` — the full tool reference is at the
+bottom of this page).
 The `design-to-code` skill turns a `DESIGN.md`
 spec into framework-faithful UI code; `claude-design-to-figma` walks a Claude Design export
 or a `/design` canvas into Figma frames; `figma-effects` handles gradients, noise, and glass. No pixel-pushing by hand, which is exactly
