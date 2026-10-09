@@ -41,7 +41,7 @@ Status: ▢ todo · ◐ in progress · ✓ done
 - ✓ **Bridge page depth** — full 43-tool reference (`lib/tools.ts` + `ToolsSection`) + Release notes section on `/plugins/designagent-figma` (2026-07-07).
 - ✓ **Catalog trim (2026-07-08)** — `setup` hidden for now (presentation flag), `VOICE.md` → Brand & context, Copy group removed. Unhide setup when its story is ready.
 - ▢ **Google Analytics** — add GA.
-- ▢ **GEO / SEO** — optimise for generative-engine optimisation + traditional SEO.
+- ◐ **GEO / SEO** — JSON-LD (`SoftwareApplication` per plugin, `ItemList` on home), canonical URLs on plugin pages, `/llms.txt` generated from `marketplace.json`. Remaining: per-page descriptions/OG copy review, Search Console.
 - ▢ **Demo videos** — add a demo video per plugin.
 - ✓ **Clean up footer** — restructured into brand + Explore/Connect columns + a copyright/built-by bottom bar.
 - ✓ **Contact** — direct link to reach Sherizan on [x.com/sherizan](https://x.com/sherizan) (footer Connect column + built-by line).

@@ -14,6 +14,7 @@ import { getPluginDoc } from "@/lib/plugins";
 import { getFlow } from "@/lib/flows";
 import { getTools } from "@/lib/tools";
 import { mdxComponents } from "@/components/mdx";
+import { JsonLd } from "@/components/JsonLd";
 
 export function generateStaticParams() {
   return getPlugins().map((p) => ({ slug: p.slug }));
@@ -27,7 +28,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const plugin = getPlugin(slug);
   if (!plugin) return {};
-  return { title: plugin.title, description: plugin.description };
+  return {
+    title: plugin.title,
+    description: plugin.description,
+    alternates: { canonical: `/plugins/${slug}` },
+  };
 }
 
 export default async function PluginPage({
@@ -45,6 +50,20 @@ export default async function PluginPage({
 
   return (
     <article className="mx-auto max-w-[760px] px-6 py-16 sm:px-10">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: plugin.title,
+          description: plugin.description,
+          url: `https://designagent.dev/plugins/${slug}`,
+          applicationCategory: "DeveloperApplication",
+          operatingSystem: "Claude Code",
+          keywords: plugin.tags.join(", "),
+          offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+          ...(plugin.repo && { sameAs: `https://github.com/${plugin.repo}` }),
+        }}
+      />
       <Link
         href="/plugins"
         className="text-mono-sm text-on-surface-subtle transition-colors hover:text-on-surface"
