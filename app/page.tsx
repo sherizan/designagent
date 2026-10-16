@@ -4,13 +4,27 @@ import { SubmitBanner } from "@/components/SubmitBanner";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Frame } from "@/components/Frame";
 import { InstallBlock } from "@/components/InstallBlock";
-import { getBridges, MARKETPLACE_REPO } from "@/lib/marketplace";
+import { JsonLd } from "@/components/JsonLd";
+import { getBridges, getPlugins, MARKETPLACE_REPO } from "@/lib/marketplace";
 
 export default function Home() {
   const bridges = getBridges();
 
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "Claude Code plugins for designers",
+          itemListElement: getPlugins().map((p, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            name: p.title,
+            url: `https://designagent.dev/plugins/${p.slug}`,
+          })),
+        }}
+      />
       {/* Hero */}
       <Frame top={false} className="relative isolate pt-20 pb-14 sm:pt-28">
         <div
@@ -55,7 +69,7 @@ export default function Home() {
             Connect Claude Code to your canvas
           </h2>
           <p className="text-body-md mb-6 max-w-[640px] text-on-surface-muted">
-            Claude Code can't critique what it can't see. This is the plugin that
+            Claude Code can&apos;t critique what it can&apos;t see. This is the plugin that
             gives it eyes and hands inside Figma. Everything else builds on it.
           </p>
           <div className="flex flex-col gap-4">
