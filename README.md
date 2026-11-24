@@ -30,7 +30,7 @@ lists the bridge only.
 
 This repo also hosts the [designagent.dev](https://designagent.dev) site, a
 Next.js 16 (App Router) + Tailwind v4 app. The bridge's install commands come from
-`marketplace.json`; its long-form docs live in `content/plugins/designagent-figma.mdx`.
+`marketplace.json`; its release notes live in `content/plugins/designagent-figma.mdx`.
 
 ```bash
 pnpm install
@@ -43,7 +43,7 @@ pnpm build
 ```
 .claude-plugin/marketplace.json   the catalog (references plugin repos)
 app/                              Next.js 16 site (designagent.dev)
-components/                       InstallBlock, BridgeCard, FlowDiagram, mdx
+components/                       DemoStage, InstallBlock, ToolsSection, mdx
 lib/marketplace.ts                parses marketplace.json → typed plugins
 lib/plugins.ts                    loads long-form MDX docs
 content/plugins/*.mdx             the bridge's docs and release notes

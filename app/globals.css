@@ -1,71 +1,54 @@
 @import "tailwindcss";
 
-/* ── DesignAgent design system (source of truth: docs/DESIGN.md) ───────────── */
+/* ── DesignAgent site: the light version of superdesigner.ai ─────────────────
+   Same bones as the network site (Geist, one giant tight headline, hairline
+   rules, rounded tiles that each carry a soft glow) on a light ground.
+   DesignAgent's hue in the network is violet. */
 @theme {
-  /* Surface */
+  /* Surface: a quiet off-white page with white tiles on it */
   --color-surface: #ffffff;
-  --color-surface-secondary: #f8f8f8;
-  --color-surface-tertiary: #f0f0f0;
+  --color-surface-secondary: #f6f6f6;
+  --color-surface-tertiary: #ededed;
 
   /* Content */
-  --color-on-surface: #0f0f0f;
-  --color-on-surface-muted: #666666;
-  --color-on-surface-subtle: #999999;
-  --color-on-surface-faint: #cccccc;
+  --color-on-surface: #0a0a0a;
+  --color-on-surface-muted: #5f5f5f;
+  --color-on-surface-subtle: #8a8a8a;
+  --color-on-surface-faint: #c2c2c2;
 
-  /* Borders */
-  --color-border: #ebebeb;
-  --color-border-strong: #d0d0d0;
+  /* Borders (superdesigner's --line, inverted) */
+  --color-border: rgb(0 0 0 / 0.1);
+  --color-border-strong: rgb(0 0 0 / 0.22);
 
-  /* Primary: the single action color (black is the brand) */
-  --color-primary: #0f0f0f;
+  /* Primary: black is the action color */
+  --color-primary: #0a0a0a;
   --color-primary-hover: #2a2a2a;
   --color-on-primary: #ffffff;
 
-  /* Category accents: plugin icon containers only */
-  --color-accent-figma: #e8f4ff;
-  --color-on-accent-figma: #1a6fad;
-  --color-accent-review: #f0ebff;
-  --color-on-accent-review: #6b3fa0;
-  --color-accent-tokens: #fff4e6;
-  --color-on-accent-tokens: #a05a00;
-  --color-accent-community: #f5f5f5;
-  --color-on-accent-community: #999999;
-  --color-accent-setup: #e8faf0;
-  --color-on-accent-setup: #1a8a4a;
-  --color-accent-backgrounds: #e6fbfa;
-  --color-on-accent-backgrounds: #0e7c86;
-  --color-accent-brand: #ecebff;
-  --color-on-accent-brand: #4b45c6;
-  --color-accent-voice: #fdecf2;
-  --color-on-accent-voice: #b43e6e;
-  --color-accent-design: #eef2f7;
-  --color-on-accent-design: #3f5673;
+  /* The hue: DesignAgent's violet from the network page */
+  --color-accent-figma: #efedff;
+  --color-on-accent-figma: #6a5cf0;
 
   /* Semantic */
   --color-success: #1a8a4a;
   --color-success-surface: #e8faf0;
-  --color-info: #185fa5;
-  --color-info-surface: #e6f1fb;
-  --color-warning: #a05a00;
-  --color-warning-surface: #fff4e6;
-  --color-error: #a32d2d;
-  --color-error-surface: #fcebeb;
 
   /* Fonts */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-dm-mono), ui-monospace, "SF Mono", monospace;
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
 
   /* Radius */
   --radius-sm: 6px;
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-xl: 16px;
-  --radius-2xl: 24px;
+  --radius-2xl: 20px;
 }
 
 :root {
   color-scheme: light;
+  --hue: #7a6cff;
+  --gutter: clamp(16px, 4vw, 48px);
 }
 
 html {
@@ -73,9 +56,12 @@ html {
 }
 
 body {
-  background: var(--color-surface);
+  background: var(--color-surface-secondary);
   color: var(--color-on-surface);
   font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.5;
+  padding: 0 var(--gutter);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -85,396 +71,147 @@ body {
   color: var(--color-on-primary);
 }
 
-/* ── Type scale (verbatim from DESIGN.md typography tokens) ─────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-on-surface);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* ── Type scale ────────────────────────────────────────────────────────────── */
 .text-display-lg {
-  font-size: clamp(2rem, 8vw, 52px); /* fluid: ~32px on small phones → 52px desktop */
-  font-weight: 600;
-  line-height: 1.05;
+  font-size: clamp(44px, 8.4vw, 124px);
+  font-weight: 500;
+  line-height: 0.98;
   letter-spacing: -0.035em;
 }
-.text-display-md {
-  font-size: clamp(1.75rem, 5.5vw, 36px);
-  font-weight: 600;
-  line-height: 1.1;
+.text-heading-lg {
+  font-size: clamp(32px, 4.4vw, 60px);
+  font-weight: 500;
+  line-height: 1.02;
   letter-spacing: -0.03em;
 }
-.text-heading-lg {
-  font-size: 30px;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.025em;
-}
 .text-heading-md {
-  font-size: 22px;
-  font-weight: 600;
-  line-height: 1.3;
+  font-size: clamp(24px, 2.4vw, 30px);
+  font-weight: 500;
+  line-height: 1.1;
   letter-spacing: -0.02em;
 }
 .text-heading-sm {
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
-}
-
-/* Headings use Geist Pixel (bitmap/pixel display face): single weight, relaxed tracking. */
-.text-display-lg,
-.text-display-md,
-.text-heading-lg,
-.text-heading-md,
-.text-heading-sm {
-  font-family: "Geist Pixel", var(--font-sans);
-  font-weight: 400;
-  letter-spacing: normal;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
 }
 .text-body-lg {
-  font-size: 16px;
+  font-size: clamp(18px, 1.5vw, 21px);
   font-weight: 400;
-  line-height: 1.65;
+  line-height: 1.45;
 }
 .text-body-md {
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 .text-body-sm {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 .text-label-lg {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 1;
 }
 .text-label-md {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   line-height: 1;
 }
 .text-label-sm {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   line-height: 1;
 }
 .text-mono-md {
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
 }
 .text-mono-sm {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 400;
   line-height: 1.5;
 }
 .text-eyebrow {
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 400;
   line-height: 1;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  color: var(--color-on-surface-subtle);
 }
 
-/* ── Crosshair grid (DESIGN.md: the blueprint texture, `+` marks on a 26px pitch) ── */
-.bg-crosshair {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cpath d='M13 10v6M10 13h6' stroke='%23ebebeb' stroke-width='1'/%3E%3C/svg%3E");
-  background-size: 26px 26px;
-}
-/* Hero variant: faded from the top so it never competes with content. */
-.hero-crosshair {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cpath d='M13 10v6M10 13h6' stroke='%23ebebeb' stroke-width='1'/%3E%3C/svg%3E");
-  background-size: 26px 26px;
-  -webkit-mask-image: radial-gradient(120% 85% at 28% -10%, #000 0%, transparent 68%);
-  mask-image: radial-gradient(120% 85% at 28% -10%, #000 0%, transparent 68%);
-}
-
-/* ── Grain (the ElevenLabs-style film noise, tiled SVG turbulence) ─────────── */
-:root {
-  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0.6 0.6 0 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
-  --grain-strong: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0.6 0.6 0 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E");
-}
-
-/* ── Blueprint cards (DESIGN.md: depth from borders, life from the hover — no
-   shadows, no scale). One shared recipe: a whisper of accent mesh + grain in
-   the surface, corner crosshairs draw outward on hover, the border sweeps to
-   the card's accent, and the mesh deepens with a faint +-grid ground. ── */
+/* ── Tiles: white, hairline border, 20px radius, and a soft glow of the hue
+   rising from the bottom edge. Hover lifts the glow, as on the network page. ── */
 @layer components {
   .card {
-    --card-accent: var(--color-border-strong);
     position: relative;
     isolation: isolate;
-    border: 1px solid var(--card-border, var(--color-border));
-    border-radius: var(--radius-xl);
-    background-color: var(--card-bg, var(--color-surface-secondary));
-    /* Whisper-level accent mesh + film grain. */
-    background-image:
-      var(--grain),
-      radial-gradient(
-        90% 90% at 12% 0%,
-        rgb(from var(--card-accent) r g b / 0.07),
-        transparent 60%
-      ),
-      radial-gradient(
-        90% 100% at 100% 100%,
-        rgb(from var(--card-accent) r g b / 0.05),
-        transparent 55%
-      );
-    transition: border-color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    background-color: var(--card-bg, var(--color-surface));
+    transition: border-color 250ms;
   }
 }
-.card::before,
 .card::after {
   content: "";
   position: absolute;
-  inset: 0;
   z-index: -1;
-  border-radius: inherit;
-  opacity: 0;
+  inset: auto -20% -55% -20%;
+  height: 90%;
+  background: radial-gradient(closest-side, var(--hue), transparent);
+  opacity: 0.16;
+  filter: blur(24px);
   pointer-events: none;
   transition:
-    opacity 260ms cubic-bezier(0.16, 1, 0.3, 1),
-    background-position 260ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-/* Four + marks that ease outward into the corners as they appear. */
-.card::before {
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9'%3E%3Cpath d='M4.5 0v9M0 4.5h9' stroke='%23d0d0d0' stroke-width='1'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9'%3E%3Cpath d='M4.5 0v9M0 4.5h9' stroke='%23d0d0d0' stroke-width='1'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9'%3E%3Cpath d='M4.5 0v9M0 4.5h9' stroke='%23d0d0d0' stroke-width='1'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9'%3E%3Cpath d='M4.5 0v9M0 4.5h9' stroke='%23d0d0d0' stroke-width='1'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position:
-    12px 12px,
-    calc(100% - 12px) 12px,
-    12px calc(100% - 12px),
-    calc(100% - 12px) calc(100% - 12px);
-}
-/* The hover ground: the 26px +-grid plus a deeper accent mesh. */
-.card::after {
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cpath d='M13 10v6M10 13h6' stroke='%23ebebeb' stroke-width='1'/%3E%3C/svg%3E"),
-    radial-gradient(
-      80% 80% at 18% 0%,
-      rgb(from var(--card-accent) r g b / 0.13),
-      transparent 62%
-    ),
-    radial-gradient(
-      90% 90% at 100% 100%,
-      rgb(from var(--card-accent) r g b / 0.09),
-      transparent 58%
-    );
-  background-size: 26px 26px, auto, auto;
+    opacity 450ms,
+    transform 450ms;
 }
 .card-interactive:hover,
 .card-interactive:focus-visible {
-  border-color: var(--card-accent);
-}
-.card-interactive:hover::before,
-.card-interactive:focus-visible::before {
-  opacity: 1;
-  background-position:
-    5px 5px,
-    calc(100% - 5px) 5px,
-    5px calc(100% - 5px),
-    calc(100% - 5px) calc(100% - 5px);
+  border-color: var(--color-border-strong);
 }
 .card-interactive:hover::after,
 .card-interactive:focus-visible::after {
-  opacity: 0.8;
+  opacity: 0.34;
+  transform: translateY(-8%);
 }
-/* Chips inside a card catch the accent in a 30ms cascade. */
-.card-chip {
-  transition:
-    border-color 200ms cubic-bezier(0.16, 1, 0.3, 1),
-    color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+/* Small tiles (tool rows, replies) skip the glow so a long list stays calm. */
+.card-plain::after {
+  display: none;
 }
-.card-interactive:hover .card-chip {
-  border-color: var(--card-accent);
-  color: var(--color-on-surface);
-}
-.card-interactive:hover .card-chip:nth-child(2) { transition-delay: 30ms; }
-.card-interactive:hover .card-chip:nth-child(3) { transition-delay: 60ms; }
-.card-interactive:hover .card-chip:nth-child(4) { transition-delay: 90ms; }
-.card-interactive:hover .card-chip:nth-child(5) { transition-delay: 120ms; }
-.card-interactive:hover .card-chip:nth-child(n + 6) { transition-delay: 150ms; }
 
-/* ── The terminal (copy/install boxes): a comet runs the border and a soft
-   graphite aura breathes behind it on hover. The one glow the system allows —
-   it marks "this is the thing you copy", nowhere else. ── */
-@property --comet {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
+/* The canvas in the demo: a faint dot grid, like an empty Figma page. */
+.bg-crosshair {
+  background-image: radial-gradient(rgb(0 0 0 / 0.11) 1px, transparent 1px);
+  background-size: 22px 22px;
 }
+
+/* ── Copy box: the install commands ────────────────────────────────────────── */
 .copy-box {
   position: relative;
-  isolation: isolate;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
-  background-color: var(--color-surface-secondary);
-  background-image:
-    var(--grain),
-    radial-gradient(
-      100% 130% at 15% 0%,
-      rgb(from var(--color-primary) r g b / 0.04),
-      transparent 60%
-    );
-  transition: border-color 200ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-.copy-box::before {
-  content: "";
-  position: absolute;
-  inset: -14px;
-  z-index: -1;
-  border-radius: inherit;
-  background: radial-gradient(70% 90% at 50% 50%, rgba(15, 15, 15, 0.07), transparent 70%);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 260ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-.copy-box::after {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1px;
-  background: conic-gradient(
-    from var(--comet),
-    transparent 0deg 300deg,
-    var(--color-primary) 350deg,
-    transparent 360deg
-  );
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 260ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-.copy-box:hover::before,
-.copy-box:focus-within::before {
-  opacity: 1;
-}
-.copy-box:hover::after,
-.copy-box:focus-within::after {
-  opacity: 1;
-  animation: comet-run 1.6s linear infinite;
-}
-@keyframes comet-run {
-  to {
-    --comet: 360deg;
-  }
-}
-
-/* ── Cover mesh: the full-strength grain-mesh (ElevenLabs-style) for banner
-   surfaces with no body text. Tones come from the plugin accent pair via
-   --mesh-deep / --mesh-pale, set inline by PluginCover. ── */
-.cover-mesh {
-  background-color: var(--mesh-pale, var(--color-surface-secondary));
-  background-image:
-    var(--grain-strong),
-    radial-gradient(
-      75% 95% at 12% 8%,
-      rgb(from var(--mesh-deep) r g b / 0.55),
-      transparent 62%
-    ),
-    radial-gradient(
-      70% 80% at 88% 12%,
-      rgb(from var(--mesh-deep) r g b / 0.26),
-      transparent 58%
-    ),
-    radial-gradient(
-      85% 95% at 72% 100%,
-      rgb(from var(--mesh-deep) r g b / 0.42),
-      transparent 66%
-    ),
-    radial-gradient(60% 70% at 34% 88%, rgba(255, 255, 255, 0.55), transparent 60%);
-}
-
-/* ── Hero mesh: a multi-accent grain-mesh that dissolves into the paper ────── */
-.hero-mesh {
-  background-image:
-    var(--grain-strong),
-    radial-gradient(
-      55% 60% at 18% 8%,
-      rgb(from var(--color-on-accent-figma) r g b / 0.3),
-      transparent 62%
-    ),
-    radial-gradient(
-      50% 55% at 78% 0%,
-      rgb(from var(--color-on-accent-voice) r g b / 0.24),
-      transparent 58%
-    ),
-    radial-gradient(
-      60% 65% at 55% 30%,
-      rgb(from var(--color-on-accent-tokens) r g b / 0.22),
-      transparent 60%
-    ),
-    radial-gradient(
-      45% 50% at 92% 45%,
-      rgb(from var(--color-on-accent-setup) r g b / 0.16),
-      transparent 55%
-    );
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 35%, transparent 92%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 35%, transparent 92%);
-}
-
-/* The hero install card: light surface, same hues at a whisper. */
-.copy-box-mesh {
   background-color: var(--color-surface);
-  background-image:
-    var(--grain),
-    radial-gradient(
-      80% 100% at 10% 0%,
-      rgb(from var(--color-on-accent-figma) r g b / 0.1),
-      transparent 60%
-    ),
-    radial-gradient(
-      70% 90% at 95% 20%,
-      rgb(from var(--color-on-accent-voice) r g b / 0.08),
-      transparent 58%
-    ),
-    radial-gradient(
-      80% 100% at 60% 100%,
-      rgb(from var(--color-on-accent-tokens) r g b / 0.08),
-      transparent 62%
-    );
+  transition: border-color 250ms;
+}
+.copy-box:hover,
+.copy-box:focus-within {
+  border-color: var(--color-border-strong);
 }
 
-/* ── Site header: transparent over the hero, surfaces on scroll ────────────── */
-.site-header {
-  border-bottom: 1px solid transparent;
-  background-color: transparent;
-  -webkit-backdrop-filter: blur(0);
-  backdrop-filter: blur(0);
-  transition:
-    background-color 260ms cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 260ms cubic-bezier(0.16, 1, 0.3, 1),
-    -webkit-backdrop-filter 260ms cubic-bezier(0.16, 1, 0.3, 1),
-    backdrop-filter 260ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-.site-header .header-crosshair {
-  opacity: 0;
-  transition: opacity 260ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-.site-header.is-scrolled {
-  border-bottom-color: var(--color-border);
-  background-color: rgb(from var(--color-surface) r g b / 0.85);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-}
-.site-header.is-scrolled .header-crosshair {
-  opacity: 1;
-}
-
-/* ── Motion (DESIGN.md: subtle, fast, ease-out; honor reduced-motion) ───────── */
+/* ── Motion ────────────────────────────────────────────────────────────────── */
 @keyframes rise {
   from {
     opacity: 0;
@@ -486,7 +223,7 @@ body {
   }
 }
 .animate-rise {
-  animation: rise 260ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: rise 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 .delay-1 {
   animation-delay: 60ms;
@@ -498,18 +235,7 @@ body {
   animation-delay: 180ms;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* ── Demo stage: the "fade it in" scene loops a gentle fade + rise ─────────── */
+/* Demo stage: the "fade it in" scene loops a gentle fade + rise */
 @keyframes demo-fade {
   0%,
   12% {
@@ -524,4 +250,31 @@ body {
 }
 .demo-fade {
   animation: demo-fade 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+/* Disclosure rows ("All tools", "Older releases") */
+details > summary {
+  cursor: pointer;
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+details > summary .chev {
+  display: inline-block;
+  transition: transform 200ms;
+}
+details[open] > summary .chev {
+  transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

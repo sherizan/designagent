@@ -4,6 +4,8 @@ import type { NextConfig } from "next";
 // the bridge instead of a 404.
 const RETIRED = [
   "/build",
+  "/plugins",
+  "/plugins/designagent-figma",
   "/submit",
   "/plugins/backgrounds",
   "/plugins/brand",

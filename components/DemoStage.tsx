@@ -84,14 +84,13 @@ export function DemoStage() {
   return (
     <div>
       <div
-        className="card overflow-hidden"
-        style={{ "--card-accent": "var(--color-on-accent-figma)", "--card-bg": "var(--color-surface)" } as React.CSSProperties}
+        className="card"
       >
         <div className="grid md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
           {/* You, in Claude Code */}
           <div className="flex flex-col gap-5 border-b border-border p-6 sm:p-8 md:border-r md:border-b-0">
-            <p className="text-eyebrow text-on-surface-subtle">You, in Claude Code</p>
-            <p className="text-heading-md min-h-[3.9em] text-on-surface" aria-live="polite">
+            <p className="text-eyebrow">You, in Claude Code</p>
+            <p className="text-heading-md min-h-[3.4em] max-w-[18ch] text-on-surface" aria-live="polite">
               <span className="text-on-surface-faint">“</span>
               {prompt.slice(0, shown)}
               {done ? (
@@ -101,7 +100,7 @@ export function DemoStage() {
               )}
             </p>
             <div
-              className="mt-auto flex items-start gap-2.5 rounded-lg border border-border bg-surface-secondary px-4 py-3"
+              className="mt-auto flex items-start gap-2.5 rounded-xl border border-border bg-surface-secondary px-4 py-3"
               style={{ opacity: done ? 1 : 0, transition: reduced || !done ? "none" : `opacity 400ms ${ease} 500ms` }}
             >
               <span aria-hidden className="text-success">✓</span>
@@ -110,8 +109,8 @@ export function DemoStage() {
           </div>
 
           {/* Your Figma canvas */}
-          <div className="bg-crosshair relative flex min-h-[420px] flex-col p-6 sm:p-8">
-            <p className="text-eyebrow text-on-surface-subtle">Your Figma canvas</p>
+          <div className="bg-crosshair relative flex min-h-[440px] flex-col bg-surface-secondary/60 p-6 sm:p-8">
+            <p className="text-eyebrow">Your Figma canvas</p>
             <div className="flex flex-1 items-center justify-center py-6">
               <div
                 key={scene === 2 ? "fade" : "still"}
