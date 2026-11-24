@@ -21,11 +21,11 @@ export default function Home() {
       <Frame top={false} className="relative isolate pt-20 pb-14 sm:pt-28">
         <div
           aria-hidden
-          className="hero-mesh pointer-events-none absolute inset-x-0 -top-20 bottom-0 -z-10"
+          className="hero-mesh pointer-events-none absolute inset-x-0 -top-[60px] bottom-0 -z-10 rounded-t-[15px]"
         />
         <div
           aria-hidden
-          className="hero-crosshair pointer-events-none absolute inset-x-0 -top-20 bottom-0 -z-10"
+          className="hero-crosshair pointer-events-none absolute inset-x-0 -top-[60px] bottom-0 -z-10 rounded-t-[15px]"
         />
         <h1 className="text-display-lg animate-rise max-w-[680px] text-balance text-on-surface">
           Claude Code&apos;s hands

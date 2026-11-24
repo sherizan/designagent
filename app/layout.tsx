@@ -70,11 +70,12 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         <ScrollMotion />
-        {/* One framed column: vertical rules run the full height, header + footer
-            rules close the corners against them. */}
-        <div className="mx-auto flex min-h-dvh max-w-[760px] flex-col border-x border-border">
+        {/* One giant card: it fills the viewport inside a white margin, and every
+            section rule runs edge to edge across it. Content sits in a centered
+            1120px column inside. */}
+        <div className="m-3 flex min-h-[calc(100dvh-1.5rem)] flex-col rounded-2xl border border-border sm:m-5 sm:min-h-[calc(100dvh-2.5rem)]">
           <header className="site-header sticky top-0 z-40" data-header>
-            <nav className="relative flex h-[60px] items-center justify-between px-6 sm:px-10">
+            <nav className="relative mx-auto flex h-[60px] max-w-[1200px] items-center justify-between px-6 sm:px-10">
               <Link href="/" className="flex items-center gap-2.5">
                 <LogoMark />
                 <span className="text-[15px] font-semibold tracking-tight text-on-surface">
@@ -105,7 +106,7 @@ export default function RootLayout({
             {/* corners where the footer rule meets the vertical rules */}
             <Crosshair className="absolute left-[-0.5px] top-0 -translate-x-1/2 -translate-y-1/2" />
             <Crosshair className="absolute right-[-0.5px] top-0 -translate-y-1/2 translate-x-1/2" />
-            <div className="px-6 pt-10 pb-8 sm:px-10">
+            <div className="mx-auto max-w-[1200px] px-6 pt-10 pb-8 sm:px-10">
               <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
                 <div className="flex items-start gap-3">
                   <Coco size={30} className="text-on-surface" />
@@ -157,7 +158,7 @@ export default function RootLayout({
             <div className="relative border-t border-border px-6 py-5 sm:px-10">
               <Crosshair className="absolute left-[-0.5px] top-0 -translate-x-1/2 -translate-y-1/2" />
               <Crosshair className="absolute right-[-0.5px] top-0 -translate-y-1/2 translate-x-1/2" />
-              <div className="flex flex-col gap-1 text-body-sm text-on-surface-subtle sm:flex-row sm:items-center sm:justify-between">
+              <div className="mx-auto flex max-w-[1120px] flex-col gap-1 text-body-sm text-on-surface-subtle sm:flex-row sm:items-center sm:justify-between">
                 <p>© {new Date().getFullYear()} designagent</p>
                 <p>
                   Built by{" "}
