@@ -508,3 +508,20 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* ── Demo stage: the "fade it in" scene loops a gentle fade + rise ─────────── */
+@keyframes demo-fade {
+  0%,
+  12% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  45%,
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+.demo-fade {
+  animation: demo-fade 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}

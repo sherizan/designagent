@@ -11,13 +11,17 @@ export function Frame({
   children,
   className = "",
   top = true,
+  id,
 }: {
   children: ReactNode;
   className?: string;
   top?: boolean;
+  /** Anchor target, e.g. for the hero's "How to set it up" link. */
+  id?: string;
 }) {
   return (
     <section
+      id={id}
       className={`relative px-6 sm:px-16 ${top ? "border-t border-border" : ""} ${className}`}
     >
       {top && (
