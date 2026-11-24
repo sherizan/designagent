@@ -44,7 +44,11 @@ export default async function PluginPage({
   const tools = getTools(slug);
 
   return (
-    <article className="mx-auto max-w-[760px] px-6 py-16 sm:px-10">
+    <article className="px-6 py-20 sm:px-16 sm:py-28">
+      {/* Same gutter + 1120px column as the rest of the site; the reading column
+          sits on its left edge so it lines up with the logo. */}
+      <div className="mx-auto max-w-[1120px]">
+      <div className="max-w-[760px]">
       <Link
         href="/"
         className="text-mono-sm text-on-surface-subtle transition-colors hover:text-on-surface"
@@ -52,7 +56,7 @@ export default async function PluginPage({
         ← home
       </Link>
 
-      <header className="mt-6">
+      <header className="mt-10">
         <div className="flex items-start justify-between">
           <PluginLogo plugin={plugin} />
           <StatusBadge status={plugin.status} />
@@ -67,16 +71,16 @@ export default async function PluginPage({
         </p>
       </header>
 
-      <div className="mt-8">
+      <div className="mt-12">
         <PluginCover plugin={plugin} />
       </div>
 
-      <div className="mt-8">
+      <div className="mt-12">
         <InstallBlock add={plugin.install.add} install={plugin.install.install} />
       </div>
 
       {flow && (
-        <section className="mt-12">
+        <section className="mt-20">
           <Eyebrow>How it works</Eyebrow>
           <div className="mt-4">
             <FlowDiagram flow={flow} accent={plugin.accent} />
@@ -85,7 +89,7 @@ export default async function PluginPage({
       )}
 
       {doc ? (
-        <div className="mt-12" data-reveal>
+        <div className="mt-20" data-reveal>
           <MDXRemote source={doc.body} components={mdxComponents} />
         </div>
       ) : (
@@ -107,7 +111,7 @@ export default async function PluginPage({
 
       {tools && <ToolsSection groups={tools} accent={plugin.accent} />}
 
-      <footer className="text-body-sm mt-14 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-border pt-6 text-on-surface-subtle">
+      <footer className="text-body-sm mt-20 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-border pt-6 text-on-surface-subtle">
         {plugin.repo && (
           <a
             href={`https://github.com/${plugin.repo}`}
@@ -125,6 +129,8 @@ export default async function PluginPage({
           Figma Community plugin ↗
         </a>
       </footer>
+      </div>
+      </div>
     </article>
   );
 }

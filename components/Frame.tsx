@@ -18,7 +18,7 @@ export function Frame({
 }) {
   return (
     <section
-      className={`relative px-6 sm:px-10 ${top ? "border-t border-border" : ""} ${className}`}
+      className={`relative px-6 sm:px-16 ${top ? "border-t border-border" : ""} ${className}`}
     >
       {top && (
         <>

@@ -71,11 +71,13 @@ export default function RootLayout({
       <body className="antialiased">
         <ScrollMotion />
         {/* One giant card: it fills the viewport inside a white margin, and every
-            section rule runs edge to edge across it. Content sits in a centered
-            1120px column inside. */}
-        <div className="m-3 flex min-h-[calc(100dvh-1.5rem)] flex-col rounded-2xl border border-border sm:m-5 sm:min-h-[calc(100dvh-2.5rem)]">
+            section rule runs edge to edge across it. Everything inside (nav,
+            sections, docs, footer) shares one gutter and one centered 1120px
+            column, so left and right edges line up down the page. */}
+        <div className="m-3 flex min-h-[calc(100dvh-1.5rem)] flex-col rounded-2xl border border-border sm:m-8 sm:min-h-[calc(100dvh-4rem)]">
           <header className="site-header sticky top-0 z-40" data-header>
-            <nav className="relative mx-auto flex h-[60px] max-w-[1200px] items-center justify-between px-6 sm:px-10">
+            <nav className="px-6 sm:px-16">
+              <div className="relative mx-auto flex h-[76px] max-w-[1120px] items-center justify-between">
               <Link href="/" className="flex items-center gap-2.5">
                 <LogoMark />
                 <span className="text-[15px] font-semibold tracking-tight text-on-surface">
@@ -94,6 +96,7 @@ export default function RootLayout({
               >
                 Get the Figma plugin
               </a>
+            </div>
             </nav>
             {/* corners where the nav rule meets the vertical rules */}
             <Crosshair className="header-crosshair absolute bottom-0 left-[-0.5px] -translate-x-1/2 translate-y-1/2" />
@@ -106,8 +109,8 @@ export default function RootLayout({
             {/* corners where the footer rule meets the vertical rules */}
             <Crosshair className="absolute left-[-0.5px] top-0 -translate-x-1/2 -translate-y-1/2" />
             <Crosshair className="absolute right-[-0.5px] top-0 -translate-y-1/2 translate-x-1/2" />
-            <div className="mx-auto max-w-[1200px] px-6 pt-10 pb-8 sm:px-10">
-              <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
+            <div className="px-6 pt-16 pb-14 sm:px-16">
+              <div className="mx-auto flex max-w-[1120px] flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
                 <div className="flex items-start gap-3">
                   <Coco size={30} className="text-on-surface" />
                   <div>
@@ -155,7 +158,7 @@ export default function RootLayout({
                 </div>
               </div>
             </div>
-            <div className="relative border-t border-border px-6 py-5 sm:px-10">
+            <div className="relative border-t border-border px-6 py-6 sm:px-16">
               <Crosshair className="absolute left-[-0.5px] top-0 -translate-x-1/2 -translate-y-1/2" />
               <Crosshair className="absolute right-[-0.5px] top-0 -translate-y-1/2 translate-x-1/2" />
               <div className="mx-auto flex max-w-[1120px] flex-col gap-1 text-body-sm text-on-surface-subtle sm:flex-row sm:items-center sm:justify-between">
