@@ -61,6 +61,27 @@ It's the flagship, its plugin name is simply `designagent`:
 
 ## Release notes
 
+### v0.25.0
+
+- **`html_to_design` layout fidelity** — `flex-wrap` becomes wrapping Auto Layout, px
+  `min-`/`max-` sizes carry over, grid `fr` tracks stay flexible, and column/row spans and
+  `grid-area` land in their real cells.
+- **New: `bind_variable`** — tie spacing, radius, stroke weight, opacity, size, typography,
+  fill/stroke and effect values to your variables (or unbind them).
+- **Motion export (beta)** — `export_asset` writes MP4, WebM, or GIF from an animated frame;
+  custom animation styles can be listed and applied.
+- `set_auto_layout` gains wrap and min/max; `resize` gains min/max.
+
+### v0.24.0
+
+- **Removed four unused tools:** `place_lottie`, `set_pattern`, `set_noise`, `export_tokens`.
+  Noise lives on as `set_effect { type: "noise" }`.
+- **`place_image` / `set_image`** — SVG, web pages, and unreadable data now fail with a clear
+  next step; WebP, AVIF, HEIC, and images over 4096 px are converted on macOS.
+- **`apply_animation`** — accepts a style name or a variant such as "fade in";
+  `list_animation_styles` shows the props each style takes.
+- Telemetry now counts the operations inside `batch` (tool names only, as before).
+
 ### v0.23.0
 
 - **New: `place_svg`, `place_icon`, `place_lottie`** — any SVG (an exported SF Symbol, a brand
