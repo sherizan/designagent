@@ -72,10 +72,9 @@ export interface Plugin {
 }
 
 /**
- * Presentation for the plugins this site lists, keyed by plugin name. The site is
- * about one plugin, the Figma bridge: anything else in marketplace.json stays
- * installable but is not shown here. Kept out of marketplace.json so the catalog
- * stays schema-clean for `claude plugin validate`.
+ * Presentation for the plugin this site and marketplace are about: the Figma
+ * bridge. Kept out of marketplace.json so the catalog stays schema-clean for
+ * `claude plugin validate`.
  */
 const PRESENTATION: Record<
   string,

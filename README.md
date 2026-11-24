@@ -23,8 +23,7 @@ Then add the other half in Figma:
 
 The plugin's source lives in [designagent-figma](https://github.com/sherizan/designagent-figma).
 The catalog, [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json),
-**references** that repo (via `git-subdir`) rather than vendoring a copy. The website
-lists the bridge only.
+**references** that repo (via `git-subdir`) rather than vendoring a copy.
 
 ## The website
 

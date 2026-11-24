@@ -1,6 +1,6 @@
 # Releasing plugin updates
 
-Plugin sources in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json) are **pinned**
+The plugin source in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json) is **pinned**
 to an exact tag + commit (`ref` + `sha`), not a moving branch. This de-risks installs: a work-in-progress
 push to a plugin repo can never reach users — only a deliberate pin bump does. `sha` is the real
 guarantee (it's the effective pin even if the tag moves); `ref` is the human-readable version.
@@ -26,11 +26,6 @@ guarantee (it's the effective pin even if the tag moves); `ref` is the human-rea
 | Plugin | Repo | Pin |
 | --- | --- | --- |
 | `designagent` | designagent-figma | `v0.25.0` |
-| `setup` | designagent-setup | `v0.1.0` |
-| `designreview` | designagent-review | `v0.1.0` |
-| `tokens` | designagent-tokens | `v0.1.0` |
-| `design-qa` | designagent-design-qa | `v0.1.0` |
-| `backgrounds` | designagent-backgrounds | `v0.1.0` |
 
 > Note: `designagent-figma` is actively developed, so its pin will lag `main` by design — bump it
 > deliberately when a figma-plugin release is ready.
