@@ -58,9 +58,9 @@ export function InstallBlock({
 }) {
   return (
     <div
-      className={`copy-box inline-block max-w-full px-6 py-5 ${className}`}
+      className={`copy-box block max-w-full px-5 py-4 ${className}`}
     >
-      <p className="text-eyebrow mb-2.5 text-on-surface">{label}</p>
+      <p className="text-label-sm mb-2.5 text-on-surface-subtle">{label}</p>
       <CopyRow command={add} />
       {install && <CopyRow command={install} />}
       {install && (

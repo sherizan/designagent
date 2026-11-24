@@ -72,22 +72,16 @@ export interface Plugin {
 }
 
 /**
- * Per-plugin presentation, keyed by plugin name. Kept here (not in marketplace.json)
- * so the catalog stays schema-clean for `claude plugin validate`.
+ * Presentation for the plugins this site lists, keyed by plugin name. The site is
+ * about one plugin, the Figma bridge: anything else in marketplace.json stays
+ * installable but is not shown here. Kept out of marketplace.json so the catalog
+ * stays schema-clean for `claude plugin validate`.
  */
 const PRESENTATION: Record<
   string,
-  { status: PluginStatus; featured: boolean; accent: AccentKey; author: string; kind: PluginKind; group: string; title?: string; hidden?: boolean }
+  { status: PluginStatus; featured: boolean; accent: AccentKey; author: string; kind: PluginKind; group: string; title?: string }
 > = {
   designagent: { status: "live", featured: true, accent: "figma", author: "@sherizan", kind: "bridge", group: "Visual & build", title: "Design Agent - Claude Bridge" },
-  designreview: { status: "new", featured: false, accent: "review", author: "@sherizan", kind: "capability", group: "Review & QA" },
-  tokens: { status: "new", featured: false, accent: "tokens", author: "@sherizan", kind: "capability", group: "Visual & build" },
-  "design-qa": { status: "new", featured: false, accent: "community", author: "@sherizan", kind: "capability", group: "Review & QA" },
-  setup: { status: "new", featured: false, accent: "setup", author: "@sherizan", kind: "capability", group: "Brand & context", hidden: true },
-  backgrounds: { status: "new", featured: false, accent: "backgrounds", author: "@sherizan", kind: "capability", group: "Visual & build" },
-  brand: { status: "new", featured: false, accent: "brand", author: "@sherizan", kind: "capability", group: "Brand & context", title: "BRAND.md" },
-  voice: { status: "new", featured: false, accent: "voice", author: "@sherizan", kind: "capability", group: "Brand & context", title: "VOICE.md" },
-  design: { status: "new", featured: false, accent: "design", author: "@sherizan", kind: "capability", group: "Brand & context", title: "DESIGN.md" },
 };
 
 /** Best-effort accent from tags/category when a plugin isn't in PRESENTATION. */
@@ -139,7 +133,7 @@ export function getMarketplace() {
   ) as RawMarketplace;
 
   const plugins: Plugin[] = raw.plugins
-    .filter((p) => !PRESENTATION[p.name]?.hidden)
+    .filter((p) => p.name in PRESENTATION)
     .map((p) => {
     const tags = p.tags ?? [];
     const category = p.category ?? "design";
@@ -185,32 +179,7 @@ export function getPlugin(slug: string): Plugin | undefined {
   return getPlugins().find((p) => p.slug === slug);
 }
 
-/** The bridge plugins (connect Claude Code to an external surface, e.g. Figma). */
-export function getBridges(): Plugin[] {
-  return getPlugins().filter((p) => p.kind === "bridge");
-}
-
-/** The capability plugins (things Claude Code does). */
-export function getCapabilities(): Plugin[] {
-  return getPlugins().filter((p) => p.kind === "capability");
-}
-
-/** Workflow categories (how designers work), in display order. */
-export const CAPABILITY_GROUPS = [
-  "Brand & context",
-  "Visual & build",
-  "Review & QA",
-] as const;
-
-/** Capability plugins bucketed by workflow category; only non-empty groups, in order. */
-export function getCapabilityGroups(): { group: string; plugins: Plugin[] }[] {
-  const caps = getCapabilities();
-  return CAPABILITY_GROUPS.map((group) => ({
-    group,
-    plugins: caps.filter((p) => p.group === group),
-  })).filter((g) => g.plugins.length > 0);
-}
-
-export function getCategories(): string[] {
-  return Array.from(new Set(getPlugins().map((p) => p.category))).sort();
+/** The bridge: the one plugin this site is about. */
+export function getBridge(): Plugin | undefined {
+  return getPlugins().find((p) => p.kind === "bridge");
 }

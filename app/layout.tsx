@@ -1,182 +1,97 @@
 import type { Metadata } from "next";
-import { Inter, DM_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
-import { Coco } from "@/components/Coco";
-import { Crosshair } from "@/components/Crosshair";
-import { NavLinks } from "@/components/NavLinks";
 import { ScrollMotion } from "@/components/ScrollMotion";
 import "./globals.css";
 
-const inter = Inter({
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-geist",
   display: "swap",
 });
 
-const dmMono = DM_Mono({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-dm-mono",
+  variable: "--font-geist-mono",
   display: "swap",
 });
+
+const FIGMA_PLUGIN_URL =
+  "https://www.figma.com/community/plugin/1604428052675393154/designagent-claude-bridge";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://designagent.dev"),
   title: {
-    default: "designagent: Claude Code plugins for designers",
-    template: "%s | designagent",
+    default: "DesignAgent: ask Claude, watch it happen in Figma",
+    template: "%s | DesignAgent",
   },
   description:
-    "A curated marketplace of Claude Code plugins built for designers. Figma, design review, and more. Install in one command.",
+    "DesignAgent connects Claude Code to your open Figma file. Say what you want in plain words and Claude reads, builds and tidies your design right on the canvas.",
   openGraph: {
-    title: "designagent: Claude Code plugins for designers",
+    title: "DesignAgent: ask Claude, watch it happen in Figma",
     description:
-      "A curated marketplace of Claude Code plugins built for designers.",
+      "Connect Claude Code to your open Figma file. Say what you want, and it happens on your canvas.",
     url: "https://designagent.dev",
-    siteName: "designagent",
+    siteName: "DesignAgent",
     type: "website",
   },
 };
-
-function LogoMark() {
-  return (
-    <span aria-hidden className="grid grid-cols-2 gap-[2px]">
-      {[0, 1, 2, 3].map((i) => (
-        <span
-          key={i}
-          className="size-[7px] rounded-[2px] bg-primary"
-        />
-      ))}
-    </span>
-  );
-}
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${dmMono.variable}`}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Geist+Pixel&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className="antialiased">
+    <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
+      <body className="flex min-h-dvh flex-col antialiased">
         <ScrollMotion />
-        {/* One framed column: vertical rules run the full height, header + footer
-            rules close the corners against them. */}
-        <div className="mx-auto flex min-h-dvh max-w-[760px] flex-col border-x border-border">
-          <header className="site-header sticky top-0 z-40" data-header>
-            <nav className="relative flex h-[60px] items-center justify-between px-6 sm:px-10">
-              <Link href="/" className="flex items-center gap-2.5">
-                <LogoMark />
-                <span className="text-[15px] font-semibold tracking-tight text-on-surface">
-                  designagent
-                </span>
-              </Link>
+        <header className="flex items-center justify-between border-b border-border py-5">
+          <Link href="/" className="text-[19px] font-semibold tracking-[-0.01em] text-on-surface">
+            DesignAgent
+          </Link>
+          <a
+            href={FIGMA_PLUGIN_URL}
+            target="_blank"
+            rel="noreferrer"
+            data-magnetic
+            className="text-label-md rounded-full bg-primary px-[18px] py-2.5 text-on-primary transition-colors hover:bg-primary-hover"
+          >
+            Get the Figma plugin
+          </a>
+        </header>
 
-              <NavLinks />
+        <main className="flex-1">{children}</main>
 
-              <Link
-                href="/submit"
-                data-magnetic
-                className="text-label-lg rounded-full bg-primary px-[18px] py-2.5 text-on-primary transition-colors hover:bg-primary-hover"
-              >
-                Submit a plugin
-              </Link>
-            </nav>
-            {/* corners where the nav rule meets the vertical rules */}
-            <Crosshair className="header-crosshair absolute bottom-0 left-[-0.5px] -translate-x-1/2 translate-y-1/2" />
-            <Crosshair className="header-crosshair absolute bottom-0 right-[-0.5px] translate-x-1/2 translate-y-1/2" />
-          </header>
-
-          <main className="flex-1">{children}</main>
-
-          <footer className="relative border-t border-border">
-            {/* corners where the footer rule meets the vertical rules */}
-            <Crosshair className="absolute left-[-0.5px] top-0 -translate-x-1/2 -translate-y-1/2" />
-            <Crosshair className="absolute right-[-0.5px] top-0 -translate-y-1/2 translate-x-1/2" />
-            <div className="px-6 pt-10 pb-8 sm:px-10">
-              <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
-                <div className="flex items-start gap-3">
-                  <Coco size={30} className="text-on-surface" />
-                  <div>
-                    <p className="text-label-md text-on-surface">designagent</p>
-                    <p className="text-body-sm mt-1 max-w-[260px] text-on-surface-subtle">
-                      Curated Claude Code plugins for designers: Figma, design
-                      review, and more.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-14 text-body-sm text-on-surface-subtle">
-                  <div className="flex flex-col gap-2.5">
-                    <p className="text-eyebrow text-on-surface-faint">Explore</p>
-                    <Link
-                      href="/plugins"
-                      className="transition-colors hover:text-on-surface"
-                    >
-                      Plugins
-                    </Link>
-                    <Link
-                      href="/build"
-                      className="transition-colors hover:text-on-surface"
-                    >
-                      Build
-                    </Link>
-                    <Link
-                      href="/submit"
-                      className="transition-colors hover:text-on-surface"
-                    >
-                      Submit a plugin
-                    </Link>
-                  </div>
-                  <div className="flex flex-col gap-2.5">
-                    <p className="text-eyebrow text-on-surface-faint">Connect</p>
-                    <a
-                      href="https://github.com/sherizan/designagent"
-                      className="transition-colors hover:text-on-surface"
-                    >
-                      GitHub
-                    </a>
-                    <a
-                      href="https://x.com/sherizan"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="transition-colors hover:text-on-surface"
-                    >
-                      Contact
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="relative border-t border-border px-6 py-5 sm:px-10">
-              <Crosshair className="absolute left-[-0.5px] top-0 -translate-x-1/2 -translate-y-1/2" />
-              <Crosshair className="absolute right-[-0.5px] top-0 -translate-y-1/2 translate-x-1/2" />
-              <div className="flex flex-col gap-1 text-body-sm text-on-surface-subtle sm:flex-row sm:items-center sm:justify-between">
-                <p>© {new Date().getFullYear()} designagent</p>
-                <p>
-                  Built by{" "}
-                  <a
-                    href="https://x.com/sherizan"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-on-surface transition-colors hover:text-on-surface-muted"
-                  >
-                    @sherizan
-                  </a>
-                </p>
-              </div>
-            </div>
-          </footer>
-        </div>
+        <footer className="text-body-sm flex flex-wrap justify-between gap-x-6 gap-y-3 border-t border-border py-7 text-on-surface-subtle">
+          <p>
+            © {new Date().getFullYear()} DesignAgent.{" "}
+            <a
+              href="https://x.com/sherizan"
+              target="_blank"
+              rel="noreferrer"
+              className="underline underline-offset-[3px] transition-colors hover:text-on-surface"
+            >
+              Made by Sherizan
+            </a>
+            . Part of{" "}
+            <a
+              href="https://superdesigner.ai"
+              target="_blank"
+              rel="noreferrer"
+              className="underline underline-offset-[3px] transition-colors hover:text-on-surface"
+            >
+              Superdesigner
+            </a>
+            .
+          </p>
+          <p className="flex gap-6">
+            <a href={FIGMA_PLUGIN_URL} target="_blank" rel="noreferrer" className="transition-colors hover:text-on-surface">
+              Figma plugin
+            </a>
+            <a href="https://github.com/sherizan/designagent-figma" className="transition-colors hover:text-on-surface">
+              GitHub
+            </a>
+          </p>
+        </footer>
       </body>
     </html>
   );

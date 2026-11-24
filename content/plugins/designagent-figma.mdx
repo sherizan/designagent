@@ -11,76 +11,27 @@ installMarketplace: sherizan/designagent
 installPlugin: designagent@designagent
 ---
 
-## What it does
-
-Claude Code is a strong designer with one problem: it can't see your canvas.
-designagent fixes that. It opens a live, two-way bridge into Figma: Claude reads
-what's there, builds new frames and components, and edits existing ones in real
-time. The same bridge exports a design-system-faithful `DESIGN.md` you build
-production UI from.
-
-Two halves of one loop:
-
-- **Canvas → code.** Export tokens, components, and layout as `DESIGN.md`, then
-  let the bundled `design-to-code` skill build UI that respects your tokens and
-  component system, instead of hardcoding values Coco would immediately
-  delete.
-- **Code → canvas.** Have Claude read the open file, annotate issues, create
-  shapes and text, restyle layers, and render HTML straight onto the canvas.
-
-## What you can do with it
-
-- "Read the open Figma frame and build it as a React component using our tokens."
-- "Create a pricing section on the canvas with three tiers and a featured plan."
-- "Audit this screen for spacing and contrast issues and annotate them in place."
-- "Turn this HTML into Figma frames."
-- "Put my Claude Design export into Figma." — the `claude-design-to-figma` skill renders each
-  artboard as an editable frame, bound to your file's variables and styles.
-- "Drop a Lucide `arrow-right` icon into the button, then put my Simulator screen next to
-  the design." One of them is lying; now you can see which.
-
-## How it works
-
-The plugin bundles an MCP server that talks to a companion Figma plugin over a
-local WebSocket bridge. Install it through Claude Code and the server wires
-itself up. Claude gets a toolset for reading and mutating the canvas
-(`get_design_md`, `create_frame`, `set_fill`, `instantiate_component`,
-`html_to_design`, `place_icon`, `capture_simulator` — the full tool reference is at the
-bottom of this page).
-The `design-to-code` skill turns a `DESIGN.md`
-spec into framework-faithful UI code; `claude-design-to-figma` walks a Claude Design export
-or a `/design` canvas into Figma frames; `figma-effects` handles gradients, noise, and glass. No pixel-pushing by hand, which is exactly
-how Coco likes it.
-
-## Install
-
-It's the flagship, its plugin name is simply `designagent`:
-
-- Add the marketplace: `/plugin marketplace add sherizan/designagent`
-- Install: `/plugin install designagent@designagent`
-
 ## Release notes
 
 ### v0.25.0
 
-- **`html_to_design` layout fidelity** — `flex-wrap` becomes wrapping Auto Layout, px
-  `min-`/`max-` sizes carry over, grid `fr` tracks stay flexible, and column/row spans and
-  `grid-area` land in their real cells.
-- **New: `bind_variable`** — tie spacing, radius, stroke weight, opacity, size, typography,
-  fill/stroke and effect values to your variables (or unbind them).
-- **Motion export (beta)** — `export_asset` writes MP4, WebM, or GIF from an animated frame;
-  custom animation styles can be listed and applied.
-- `set_auto_layout` gains wrap and min/max; `resize` gains min/max.
+- **Link designs to your variables.** Spacing, corner radius, borders, opacity, sizes, text
+  styles, colours and shadows can follow your variables. Change the variable and the design
+  follows.
+- **Export animations as video or GIF (beta).** Animate a frame, then ask Claude to export it.
+- **Web pages turn into better Figma layouts.** Rows that wrap in the browser wrap in Figma,
+  minimum and maximum sizes carry over, grids keep their real column widths, and items that
+  span several columns or rows land where they should.
+- Claude can use the custom animation styles saved in your file.
 
 ### v0.24.0
 
-- **Removed four unused tools:** `place_lottie`, `set_pattern`, `set_noise`, `export_tokens`.
-  Noise lives on as `set_effect { type: "noise" }`.
-- **`place_image` / `set_image`** — SVG, web pages, and unreadable data now fail with a clear
-  next step; WebP, AVIF, HEIC, and images over 4096 px are converted on macOS.
-- **`apply_animation`** — accepts a style name or a variant such as "fade in";
-  `list_animation_styles` shows the props each style takes.
-- Telemetry now counts the operations inside `batch` (tool names only, as before).
+- **Images are more reliable.** Formats Figma can't read (WebP, HEIC, AVIF) and oversized
+  images are converted for you on Mac, and anything that still can't be placed comes with a
+  clear reason.
+- **Animations are easier to ask for.** Just say "fade in" or "slide out".
+- Removed four features almost nobody used (Lottie import, pattern fills, token export and the
+  separate noise tool). Noise and grain are still available as an effect.
 
 ### v0.23.0
 

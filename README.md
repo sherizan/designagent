@@ -1,12 +1,12 @@
 # designagent
 
-**Claude Code plugins for designers.** A curated third-party marketplace for
-Figma, design review, and more. Find a plugin, install it in one command, and
-it just works.
+**Claude Code's live two-way bridge to Figma.** Claude reads what's on the canvas,
+builds and edits it in place, and builds production UI from a design-system-faithful
+`DESIGN.md`.
 
 → Website: [designagent.dev](https://designagent.dev)
 
-## Install a plugin
+## Install
 
 Inside Claude Code:
 
@@ -15,32 +15,22 @@ Inside Claude Code:
 /plugin install designagent@designagent
 ```
 
-Swap `designagent` for any plugin in the [catalog](#whats-in-the-marketplace).
+Then add the other half in Figma:
+[DesignAgent on Figma Community](https://www.figma.com/community/plugin/1604428052675393154/designagent-claude-bridge).
 
 > **Already added the marketplace before?** `add` won't re-pull a cached copy, so run
 > `/plugin marketplace update designagent` to refresh the catalog, then install.
 
-## What's in the marketplace
-
-| Plugin | What it does | Source |
-| --- | --- | --- |
-| `designagent` | Claude Code's live two-way bridge to Figma: read, build, and edit the canvas, then build production UI from a `DESIGN.md` spec. | [designagent-figma](https://github.com/sherizan/designagent-figma) |
-| `designreview` | AI design review that connects PRD, research, Figma, and analytics to review design intent (not pixels) and surface gaps before handoff. | [designagent-review](https://github.com/sherizan/designagent-review) |
-
-The catalog is [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
-It **references** each plugin's own repo (via `git-subdir`) rather than vendoring
-copies. One source of truth per plugin, no drift.
-
-## Submit a plugin
-
-Built a Claude Code plugin for designers? [Open a submission issue](https://github.com/sherizan/designagent/issues/new?template=plugin-submission.yml)
-or see the criteria at [designagent.dev/submit](https://designagent.dev/submit).
+The plugin's source lives in [designagent-figma](https://github.com/sherizan/designagent-figma).
+The catalog, [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json),
+**references** that repo (via `git-subdir`) rather than vendoring a copy. The website
+lists the bridge only.
 
 ## The website
 
 This repo also hosts the [designagent.dev](https://designagent.dev) site, a
-Next.js 16 (App Router) + Tailwind v4 app. The plugin grid is generated directly
-from `marketplace.json`; long-form plugin docs live in `content/plugins/*.mdx`.
+Next.js 16 (App Router) + Tailwind v4 app. The bridge's install commands come from
+`marketplace.json`; its release notes live in `content/plugins/designagent-figma.mdx`.
 
 ```bash
 pnpm install
@@ -53,11 +43,10 @@ pnpm build
 ```
 .claude-plugin/marketplace.json   the catalog (references plugin repos)
 app/                              Next.js 16 site (designagent.dev)
-components/                       InstallBlock, PluginGrid, PluginCard, mdx
+components/                       DemoStage, InstallBlock, ToolsSection, mdx
 lib/marketplace.ts                parses marketplace.json → typed plugins
 lib/plugins.ts                    loads long-form MDX docs
-content/plugins/*.mdx             per-plugin deep-dives
-.github/ISSUE_TEMPLATE/           plugin submission form
+content/plugins/*.mdx             the bridge's docs and release notes
 BACKLOG.md · SESSIONS.md          roadmap + session log
 ```
 
