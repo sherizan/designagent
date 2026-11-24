@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { BRAND } from "@/lib/brand";
 
-export const alt = "designagent: Claude Code plugins for designers";
+export const alt = "designagent: Claude Code's bridge to Figma";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -57,10 +57,10 @@ export default function Image() {
               maxWidth: 900,
             }}
           >
-            Claude Code plugins, built for designers.
+            Claude Code’s hands and eyes in Figma.
           </div>
           <div style={{ display: "flex", fontSize: 30, color: BRAND.onSurfaceMuted }}>
-            Curated plugins · install in one command · designagent.dev
+            A live two-way bridge · install in one command · designagent.dev
           </div>
         </div>
       </div>

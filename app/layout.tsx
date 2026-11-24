@@ -23,15 +23,15 @@ const dmMono = DM_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://designagent.dev"),
   title: {
-    default: "designagent: Claude Code plugins for designers",
+    default: "designagent: Claude Code's bridge to Figma",
     template: "%s | designagent",
   },
   description:
-    "A curated marketplace of Claude Code plugins built for designers. Figma, design review, and more. Install in one command.",
+    "A live two-way bridge between Claude Code and Figma: read, build and edit the canvas in real time, then build production UI from a DESIGN.md.",
   openGraph: {
-    title: "designagent: Claude Code plugins for designers",
+    title: "designagent: Claude Code's bridge to Figma",
     description:
-      "A curated marketplace of Claude Code plugins built for designers.",
+      "A live two-way bridge between Claude Code and Figma.",
     url: "https://designagent.dev",
     siteName: "designagent",
     type: "website",
@@ -84,13 +84,15 @@ export default function RootLayout({
 
               <NavLinks />
 
-              <Link
-                href="/submit"
+              <a
+                href="https://www.figma.com/community/plugin/1604428052675393154/designagent-claude-bridge"
+                target="_blank"
+                rel="noreferrer"
                 data-magnetic
                 className="text-label-lg rounded-full bg-primary px-[18px] py-2.5 text-on-primary transition-colors hover:bg-primary-hover"
               >
-                Submit a plugin
-              </Link>
+                Get the Figma plugin
+              </a>
             </nav>
             {/* corners where the nav rule meets the vertical rules */}
             <Crosshair className="header-crosshair absolute bottom-0 left-[-0.5px] -translate-x-1/2 translate-y-1/2" />
@@ -110,8 +112,7 @@ export default function RootLayout({
                   <div>
                     <p className="text-label-md text-on-surface">designagent</p>
                     <p className="text-body-sm mt-1 max-w-[260px] text-on-surface-subtle">
-                      Curated Claude Code plugins for designers: Figma, design
-                      review, and more.
+                      Claude Code&apos;s live two-way bridge to Figma.
                     </p>
                   </div>
                 </div>
@@ -119,23 +120,19 @@ export default function RootLayout({
                   <div className="flex flex-col gap-2.5">
                     <p className="text-eyebrow text-on-surface-faint">Explore</p>
                     <Link
-                      href="/plugins"
+                      href="/plugins/designagent-figma"
                       className="transition-colors hover:text-on-surface"
                     >
-                      Plugins
+                      Docs
                     </Link>
-                    <Link
-                      href="/build"
+                    <a
+                      href="https://www.figma.com/community/plugin/1604428052675393154/designagent-claude-bridge"
+                      target="_blank"
+                      rel="noreferrer"
                       className="transition-colors hover:text-on-surface"
                     >
-                      Build
-                    </Link>
-                    <Link
-                      href="/submit"
-                      className="transition-colors hover:text-on-surface"
-                    >
-                      Submit a plugin
-                    </Link>
+                      Figma plugin
+                    </a>
                   </div>
                   <div className="flex flex-col gap-2.5">
                     <p className="text-eyebrow text-on-surface-faint">Connect</p>

@@ -6,8 +6,8 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 const NAV = [
-  { href: "/plugins", label: "Plugins" },
-  { href: "/build", label: "Build" },
+  { href: "/", label: "Overview" },
+  { href: "/plugins/designagent-figma", label: "Docs" },
 ];
 
 /**
@@ -20,7 +20,8 @@ export function NavLinks() {
   const pill = useRef<HTMLSpanElement>(null);
 
   const activeIndex = NAV.findIndex(
-    (item) => pathname === item.href || pathname.startsWith(`${item.href}/`)
+    (item) =>
+      pathname === item.href || (item.href !== "/" && pathname.startsWith(`${item.href}/`))
   );
 
   function moveTo(el: HTMLElement | null, immediate = false) {

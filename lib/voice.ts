@@ -10,7 +10,7 @@ export const COCO = {
   /** 404. */
   notFound: {
     title: "There's nothing here.",
-    body: "Coco removed this page. She felt it wasn't earning its place, and she was probably right. Try one of the ones that are.",
+    body: "Coco removed this page. She felt it wasn't earning its place, and she was probably right. Try the one that is.",
   },
   /** Empty catalog / no results. */
   empty: "Nothing here yet. Coco approves of the whitespace.",

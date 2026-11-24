@@ -1,13 +1,19 @@
-import { CapabilityGroups } from "@/components/CapabilityGroups";
+import Link from "next/link";
 import { BridgeCard } from "@/components/BridgeCard";
-import { SubmitBanner } from "@/components/SubmitBanner";
 import { Eyebrow } from "@/components/Eyebrow";
+import { FlowDiagram } from "@/components/FlowDiagram";
 import { Frame } from "@/components/Frame";
 import { InstallBlock } from "@/components/InstallBlock";
-import { getBridges, MARKETPLACE_REPO } from "@/lib/marketplace";
+import { getFlow } from "@/lib/flows";
+import { getBridge } from "@/lib/marketplace";
+
+/** The Figma half of the bridge: the Community plugin that runs inside Figma. */
+const FIGMA_PLUGIN_URL =
+  "https://www.figma.com/community/plugin/1604428052675393154/designagent-claude-bridge";
 
 export default function Home() {
-  const bridges = getBridges();
+  const bridge = getBridge();
+  const flow = bridge ? getFlow(bridge.slug) : null;
 
   return (
     <>
@@ -22,65 +28,69 @@ export default function Home() {
           className="hero-crosshair pointer-events-none absolute inset-x-0 -top-20 bottom-0 -z-10"
         />
         <h1 className="text-display-lg animate-rise max-w-[680px] text-balance text-on-surface">
-          Claude Code plugins,
+          Claude Code&apos;s hands
           <br />
-          built for designers.
+          and eyes in Figma.
         </h1>
         <p className="text-body-lg animate-rise delay-1 mt-5 max-w-[680px] text-on-surface-muted">
-          Curated plugins that let you prompt Claude Code to do design work, in
-          Figma, in design reviews, wherever the canvas lives. Install in one
-          command.
+          A live, two-way bridge between Claude Code and your Figma file. Claude
+          reads what&apos;s on the canvas, builds and edits it in place, and
+          turns it into production UI from a design-system-faithful DESIGN.md.
         </p>
-        <div className="animate-rise delay-2 mt-8">
-          <InstallBlock
-            add={`/plugin marketplace add ${MARKETPLACE_REPO}`}
-            label="Add the marketplace"
-            className="copy-box-mesh"
-          />
-          <p className="text-body-sm mt-3 max-w-[440px] text-on-surface-subtle">
-            Add it once, then install any plugin below with{" "}
-            <code className="text-mono-sm text-on-surface-muted">
-              /plugin install …@designagent
-            </code>
-            .
-          </p>
-        </div>
+        {bridge && (
+          <div className="animate-rise delay-2 mt-8">
+            <InstallBlock
+              add={bridge.install.add}
+              install={bridge.install.install}
+              label="Install in Claude Code"
+              className="copy-box-mesh"
+            />
+            <p className="text-body-sm mt-3 max-w-[520px] text-on-surface-subtle">
+              Then add the other half in Figma:{" "}
+              <a
+                href={FIGMA_PLUGIN_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="text-on-surface underline decoration-on-surface-faint underline-offset-4 transition-colors hover:decoration-on-surface"
+              >
+                DesignAgent on Figma Community ↗
+              </a>
+            </p>
+          </div>
+        )}
       </Frame>
 
-      {/* The bridge: the connection to Figma */}
-      {bridges.length > 0 && (
+      {/* The bridge */}
+      {bridge && (
         <Frame className="animate-rise delay-2 pt-12 pb-12">
           <Eyebrow>The bridge</Eyebrow>
           <h2 className="text-heading-lg mt-3 mb-2 text-on-surface">
             Connect Claude Code to your canvas
           </h2>
           <p className="text-body-md mb-6 max-w-[640px] text-on-surface-muted">
-            Claude Code can't critique what it can't see. This is the plugin that
-            gives it eyes and hands inside Figma. Everything else builds on it.
+            Claude Code can&apos;t critique what it can&apos;t see. This is the
+            plugin that gives it eyes and hands inside Figma.
           </p>
-          <div className="flex flex-col gap-4">
-            {bridges.map((plugin) => (
-              <BridgeCard key={plugin.slug} plugin={plugin} />
-            ))}
-          </div>
+          <BridgeCard plugin={bridge} />
         </Frame>
       )}
 
-      {/* Capabilities: what Claude Code does */}
-      <Frame className="animate-rise delay-3 pt-12 pb-20">
-        <Eyebrow>Capabilities</Eyebrow>
-        <h2 className="text-heading-lg mt-3 mb-2 text-on-surface">
-          What Claude Code can do
-        </h2>
-        <p className="text-body-md mb-8 max-w-[640px] text-on-surface-muted">
-          Each does exactly one thing, grouped by how designers work. No kitchen
-          sinks.
-        </p>
-        <CapabilityGroups />
-        <div className="mt-4">
-          <SubmitBanner />
-        </div>
-      </Frame>
+      {/* How it works */}
+      {bridge && flow && (
+        <Frame className="animate-rise delay-3 pt-12 pb-20">
+          <Eyebrow>How it works</Eyebrow>
+          <h2 className="text-heading-lg mt-3 mb-6 text-on-surface">
+            From canvas to code, and back
+          </h2>
+          <FlowDiagram flow={flow} accent={bridge.accent} />
+          <Link
+            href={`/plugins/${bridge.slug}`}
+            className="text-label-md mt-8 inline-flex items-center gap-1.5 text-on-surface-subtle transition-colors hover:text-on-surface"
+          >
+            Read the docs, tools and release notes <span aria-hidden>→</span>
+          </Link>
+        </Frame>
+      )}
     </>
   );
 }

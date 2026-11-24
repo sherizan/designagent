@@ -15,10 +15,10 @@ export default function NotFound() {
         {COCO.notFound.body}
       </p>
       <Link
-        href="/plugins"
+        href="/"
         className="text-label-lg mt-7 rounded-full bg-primary px-[18px] py-2.5 text-on-primary transition-colors hover:bg-primary-hover"
       >
-        Browse the plugins
+        Back to the bridge
       </Link>
     </Frame>
   );

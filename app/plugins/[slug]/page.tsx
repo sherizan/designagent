@@ -46,10 +46,10 @@ export default async function PluginPage({
   return (
     <article className="mx-auto max-w-[760px] px-6 py-16 sm:px-10">
       <Link
-        href="/plugins"
+        href="/"
         className="text-mono-sm text-on-surface-subtle transition-colors hover:text-on-surface"
       >
-        ← all plugins
+        ← home
       </Link>
 
       <header className="mt-6">
@@ -116,9 +116,14 @@ export default async function PluginPage({
             {plugin.repo} ↗
           </a>
         )}
-        <Link href="/submit" className="transition-colors hover:text-on-surface">
-          Submit your own →
-        </Link>
+        <a
+          href="https://www.figma.com/community/plugin/1604428052675393154/designagent-claude-bridge"
+          target="_blank"
+          rel="noreferrer"
+          className="transition-colors hover:text-on-surface"
+        >
+          Figma Community plugin ↗
+        </a>
       </footer>
     </article>
   );
