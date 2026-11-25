@@ -25,7 +25,7 @@ guarantee (it's the effective pin even if the tag moves); `ref` is the human-rea
 
 | Plugin | Repo | Pin |
 | --- | --- | --- |
-| `designagent` | designagent-figma | `v0.25.0` |
+| `designagent` | designagent-figma | `v0.26.0` |
 
 > Note: `designagent-figma` is actively developed, so its pin will lag `main` by design — bump it
 > deliberately when a figma-plugin release is ready.
